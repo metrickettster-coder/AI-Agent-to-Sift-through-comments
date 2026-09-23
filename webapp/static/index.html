@@ -149,6 +149,21 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .none h2 { margin: 0; font: 800 26px/1.1 var(--display); letter-spacing: -.02em; }
 .none p { margin: 0; color: var(--muted); }
 
+.watch { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.watch button { border: 2px solid var(--ink); background: transparent; color: var(--ink); border-radius: 12px;
+  padding: 10px 14px; font: 700 15px var(--body); cursor: pointer; }
+.watch .done { font-size: 14px; color: var(--muted); }
+.waiting { display: grid; gap: 10px; }
+.waiting h2 { margin: 0; font: 700 15px var(--display); }
+.wait-row { display: flex; gap: 12px; align-items: center; background: var(--surface); border-radius: 14px; padding: 10px 12px; }
+.wait-row img { width: 56px; aspect-ratio: 16/9; object-fit: cover; border-radius: 6px; flex: none; background: var(--bubble); max-width: 100%; }
+.wait-row .t { flex: 1; min-width: 0; font-size: 14px; line-height: 1.35; }
+.wait-row .t b { display: block; font-size: 16px; }
+.wait-row .t span { color: var(--muted); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.wait-row .open { border: 0; border-radius: 10px; padding: 8px 12px; font: 700 14px var(--body); cursor: pointer; background: var(--accent); color: var(--accent-ink); }
+.wait-row .x { border: 0; background: transparent; color: var(--muted); font-size: 20px; line-height: 1; cursor: pointer; padding: 6px; }
+.found-chip { color: var(--high); background: var(--high-bg); font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
+
 .how { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
 .how h2 { margin: 0; font: 700 15px var(--display); color: var(--ink); }
 .how ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
@@ -177,6 +192,11 @@ footer { font-size: 13px; color: var(--muted); }
   </form>
 
   <div id="out" aria-live="polite"></div>
+
+  <section class="waiting" id="waiting" hidden>
+    <h2>Waiting for a name</h2>
+    <div id="waitlist"></div>
+  </section>
 
   <section class="how">
     <h2>Getting the link on your phone</h2>
@@ -213,6 +233,13 @@ footer { font-size: 13px; color: var(--muted); }
     others: []
   };
 
+  // "Check back for me": the list lives in this phone's browser only. No
+  // account, and nothing about what someone looked up leaves their device.
+  var KEY = "titlesift-waiting";
+  function loadWaiting() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } }
+  function saveWaiting(list) { try { localStorage.setItem(KEY, JSON.stringify(list.slice(0, 30))); return true; } catch (e) { return false; } }
+  function watching(id) { return loadWaiting().some(function (w) { return w.id === id; }); }
+
   function el(tag, cls, text) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -244,9 +271,10 @@ footer { font-size: 13px; color: var(--muted); }
       var none = el("div", "none");
       none.appendChild(el("h2", null, r.notice ? "Can’t read this one" : "Nobody’s named it yet"));
       var msg = r.notice || (r.asked
-        ? r.asked + (r.asked === 1 ? " person is" : " people are") + " asking too, but no one has answered in the comments. Try again later, answers often come in after a day or two."
+        ? r.asked + (r.asked === 1 ? " person is" : " people are") + " asking too, but no one has answered in the comments yet. Answers often come in after a day or two."
         : "We read the comments and nobody has said what it is. Newer videos often get answered after a day or two.");
       none.appendChild(el("p", null, msg));
+      if (!r.notice && !r.example && r.video && r.video.id) none.appendChild(watchButton(r));
       card.appendChild(none);
       out.appendChild(card);
       return;
@@ -310,6 +338,71 @@ footer { font-size: 13px; color: var(--muted); }
     out.appendChild(card);
   }
 
+  function watchButton(r) {
+    var box = el("div", "watch");
+    function done(text) { box.textContent = ""; box.appendChild(el("span", "done", text)); }
+    if (watching(r.video.id)) { done("We’ll check this one again each time you open TitleSift."); return box; }
+    var b = el("button", null, "Check back for me");
+    b.type = "button";
+    b.addEventListener("click", function () {
+      var list = loadWaiting().filter(function (w) { return w.id !== r.video.id; });
+      list.unshift({ id: r.video.id, title: r.video.title || "", thumb: r.video.thumbnail || "",
+                     added: Date.now(), checked: Date.now(), found: null });
+      if (saveWaiting(list)) { done("Saved. We’ll check again each time you open TitleSift, and show it here when someone names it."); drawWaiting(); }
+      else done("This browser won’t let us save it. Try again from a normal (not private) window.");
+    });
+    box.appendChild(b);
+    return box;
+  }
+
+  function drawWaiting() {
+    var list = loadWaiting(), wrap = $("waiting"), box = $("waitlist");
+    box.textContent = "";
+    wrap.hidden = !list.length;
+    list.forEach(function (w) {
+      var row = el("div", "wait-row");
+      if (w.thumb) { var img = el("img"); img.alt = ""; img.src = w.thumb; img.onerror = function () { img.hidden = true; }; row.appendChild(img); }
+      var t = el("div", "t");
+      if (w.found) {
+        var b = el("b", null, w.found); b.appendChild(el("span", "found-chip", "Found")); t.appendChild(b);
+      } else {
+        t.appendChild(el("b", null, "No name yet"));
+      }
+      t.appendChild(el("span", null, w.title));
+      row.appendChild(t);
+      if (w.found) {
+        var o = el("button", "open", "See it"); o.type = "button";
+        o.addEventListener("click", function () { run("https://youtu.be/" + w.id); });
+        row.appendChild(o);
+      }
+      var x = el("button", "x", "×"); x.type = "button"; x.setAttribute("aria-label", "Stop checking this video");
+      x.addEventListener("click", function () { saveWaiting(loadWaiting().filter(function (v) { return v.id !== w.id; })); drawWaiting(); });
+      row.appendChild(x);
+      box.appendChild(row);
+    });
+  }
+
+  // Re-ask for anything still waiting, a few at a time and no more than
+  // every few hours per video, so the free YouTube allowance goes further.
+  function recheck() {
+    var list = loadWaiting(), due = list.filter(function (w) {
+      return !w.found && Date.now() - (w.checked || 0) > 3 * 3600 * 1000;
+    }).slice(0, 3);
+    due.forEach(function (w) {
+      fetch("/api/find?url=" + encodeURIComponent("https://youtu.be/" + w.id))
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (r) {
+          var cur = loadWaiting();
+          cur.forEach(function (v) {
+            if (v.id !== w.id) return;
+            v.checked = Date.now();
+            if (r && r.answer) v.found = r.answer.title;
+          });
+          saveWaiting(cur); drawWaiting();
+        }).catch(function () {});
+    });
+  }
+
   var STEPS = ["Reading the comments…", "Checking replies under “what’s this called?”…", "Looking it up on AniList and Wikipedia…"];
   function loading() {
     out.textContent = "";
@@ -337,6 +430,11 @@ footer { font-size: 13px; color: var(--muted); }
       .then(function (p) {
         if (!p[0]) throw new Error(p[1].error || "Something went wrong.");
         render(p[1]);
+        if (p[1].answer && p[1].video && watching(p[1].video.id)) {
+          var cur = loadWaiting();
+          cur.forEach(function (v) { if (v.id === p[1].video.id) { v.found = p[1].answer.title; v.checked = Date.now(); } });
+          saveWaiting(cur); drawWaiting();
+        }
         var top = out.getBoundingClientRect().top + window.scrollY - 12;
         window.scrollTo({ top: top, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
       })
@@ -361,6 +459,8 @@ footer { font-size: 13px; color: var(--muted); }
   var q = new URLSearchParams(location.search);
   var shared = q.get("url") || q.get("text") || q.get("v");
   if (shared) run(shared); else render(EXAMPLE);
+  drawWaiting();
+  recheck();
 
   if ("serviceWorker" in navigator) { navigator.serviceWorker.register("/sw.js").catch(function () {}); }
 })();

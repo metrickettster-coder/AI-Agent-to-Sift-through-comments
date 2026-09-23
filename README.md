@@ -327,3 +327,16 @@ titles are fetched in bulk and search is kept for the leftovers.
 Note: `www.youtube.com` itself is blocked here (403 on CONNECT), but
 `www.googleapis.com` is reachable, so the Data API path works and is what
 the tool uses. That is also the only terms-compliant route for a product.
+
+## The paste-a-link page (product A)
+
+`webapp/` is the first viewer-facing version: paste a YouTube clip or Short,
+get the name, the comment it came from and an AniList/MangaDex link. The
+answer policy lives in `titlesift/finder.py`; see `webapp/README.md` for how
+it chooses, how to run it and how to host it free.
+
+Re-checked on the 92 held-out videos (2026-09-23, live comments): of 49 with
+people asking, 37 got an answer (22 confident) against 18 before. A hand
+check put roughly 4 in 5 right; the misses were compilations ("best anime
+fights 2024") and editing tutorials. Results in
+`webapp/holdout_check_2026-09-23.json`.

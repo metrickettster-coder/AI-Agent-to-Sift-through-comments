@@ -227,24 +227,37 @@ def labelled(meta: dict) -> list[str]:
 _PREFIX = re.compile(r"^\s*(?:" + _WORK + r"\s*)?(?:name|title)\s*[:：\-–—]\s*", re.I)
 
 
+_NOISE = re.compile(r"(?:\s+(?:4k|hd|amv|fmv|edit|edits|scene|scenes|recap|explained|shorts?|"
+                    r"manhwa|manhua|manga|anime|webtoon|clip|part\s*\d+|ep\.?\s*\d+))+\s*$", re.I)
+
+
 def _uploader_candidates(meta: dict) -> list[str]:
-    """Other things the uploader wrote that might be the name, best first."""
+    """Other things the uploader wrote that might be the name, best first.
+
+    Pieces of the title bar come before hashtags: an edit titled
+    "Angry Rage Mode 《 Tokyo Revengers 4k Edit 》" tagged #jujutsukaisen is
+    Tokyo Revengers.
+    """
     from .metadata import candidates
     out: list[str] = []
+    title = re.split(r"\s#", meta.get("title", ""))[0]
+    for seg in re.split(r"[|《》「」【】\[\]•]|\s[-–—]\s", title):
+        seg = _NOISE.sub("", _EMOJI_ISH.sub(" ", seg)).strip(" -–—:!.,\"'")
+        seg = re.sub(r"\s+", " ", seg)
+        if 1 <= len(seg.split()) <= 16 and re.search(r"[^\W\d_]{2}", seg):
+            out.append(seg)
     for c in candidates(meta)[:5]:
         if c.source in ("title", "hashtag", "description"):
             out.append(_PREFIX.sub("", c.text))
-    # "Shut Up, Evil Dragon! I don't want to raise a child with you anymore
-    # #shorts" - on recap channels the whole title bar is often the name.
-    head = re.split(r"\s*(?:#|\||【|\[)", meta.get("title", ""))[0].strip(" -–—:")
-    if 2 <= len(head.split()) <= 16:
-        out.append(head)
     seen, uniq = set(), []
     for x in out:
         if x and fold(x) not in seen:
             seen.add(fold(x))
             uniq.append(x)
     return uniq
+
+
+_EMOJI_ISH = re.compile(r"[^\w\s'’:&!?,.\-–—()]+")
 
 
 # ------------------------------------------------------------- the lookup
@@ -298,49 +311,108 @@ def find(url: str, source: YouTubeAPISource | None = None,
         "others": [],
     }
 
-    # 1. Someone in the comments named it. This is what the tool is for.
-    said = [a for a in answers if a.commenters > 0 and a.confidence != "low"]
-    best = said[0] if said else None
     stated = labelled(meta)
+    # Stated in the comments, or a known title people mentioned that the
+    # uploader's own words corroborate.
+    spoken = [x for x in answers
+              if (any(src.startswith("comments") for src in x.sources)
+                  or (x.confidence == "high" and x.commenters > 0))
+              and not _about_song(x, comments)]
+    passing = [x for x in answers if x.commenters > 0 and x not in spoken
+               and x.confidence != "low" and not _about_song(x, comments)]
+    probes = 0
 
-    # A labelled name from the uploader beats a thin comment answer, but not
-    # a crowd: "Title : War of Extinction" over one person's guess.
-    if best is not None and best.confidence != "high" and stated:
-        if not any(fold(s) == fold(best.title) for s in stated):
-            best = None
+    def take(ans, conf, text, db, shown_comments=None):
+        out["answer"] = _answer_dict(
+            ans if isinstance(ans, str) else ans.title, conf, text, db, meta,
+            shown_comments if shown_comments is not None else [],
+            [] if isinstance(ans, str) else [n for n, _k in ans.alternates])
+        if not isinstance(ans, str):
+            out["others"] = [{"title": x.title, "commenters": x.commenters}
+                             for x in (spoken + passing)[:5]
+                             if x is not ans and x.confidence != "low"][:3]
+        return out
 
-    if best is not None:
-        db = confirm(best.title, meta, caches)
-        if not (db and db.get("status") == "contradicted" and best.confidence != "high"):
-            out["answer"] = _answer_dict(
-                best.title, best.confidence, note(best, asked), db, meta,
-                evidence(best, comments), [n for n, _k in best.alternates])
-            out["others"] = [{"title": a.title, "commenters": a.commenters}
-                             for a in said[1:4] if a is not best]
-            return out
+    def ok(db):
+        return bool(db) and db.get("status") == "confirmed"
+
+    # 1. Someone in the comments stated the name ("it's called X", a reply
+    #    under "name?"). This is what the tool is for. A labelled name from
+    #    the uploader beats one or two people, though not a crowd.
+    for x in spoken:
+        if x.confidence == "low":
+            break
+        if x.confidence != "high" and stated and not any(
+                fold(s) == fold(x.title) for s in stated):
+            break
+        db = confirm(x.title, meta, caches)
+        probes += 1
+        if db and db.get("status") == "contradicted" and x.confidence != "high":
+            continue
+        return take(x, x.confidence, note(x, asked), db, evidence(x, comments))
 
     # 2. The uploader said it outright with a label.
     for name in stated[:2]:
         db = confirm(name, meta, caches)
+        probes += 1
         if db and db.get("status") == "contradicted":
             continue
-        ok = db and db.get("status") == "confirmed"
         text = ("The uploader named it in the video's description"
-                + (f", and {_db_note(db)}." if ok else ". No database has it yet, so check it."))
-        out["answer"] = _answer_dict(name, "high" if ok else "medium", text, db, meta, [], [])
-        return out
+                + (f", and {_db_note(db)}." if ok(db) else ". No database has it yet, so check it."))
+        return take(name, "high" if ok(db) else "medium", text, db)
 
-    # 3. Something else the uploader wrote, but only if a title database
-    # knows it. Unconfirmed, the title bar of a Short is clickbait ("Bro
-    # Sacrificed His Own Kidney To Kill A God") far more often than a name.
-    for name in _uploader_candidates(meta)[:3]:
+    # 3. One person stated a name and it is a real work. On a yuri Short,
+    #    one reply saying "Tamen de Gushi" (417 likes) is the answer; five
+    #    people mentioning Blue Lock in passing are not.
+    for x in [x for x in spoken if x.confidence == "low"][:2]:
+        db = confirm(x.title, meta, caches, budget=6.0)
+        probes += 1
+        if ok(db):
+            text = (f"{x.commenters} {'person' if x.commenters == 1 else 'people'} named it "
+                    f"in the comments and {_db_note(db)}. Worth a quick check.")
+            return take(x, "medium", text, db, evidence(x, comments))
+
+    # 4. Something the uploader wrote, if a title database knows it.
+    #    Unconfirmed, the title bar of a Short is clickbait ("Bro Sacrificed
+    #    His Own Kidney To Kill A God") far more often than a name.
+    for name in _uploader_candidates(meta):
+        if probes >= 6:
+            break
         db = confirm(name, meta, caches, budget=6.0)
-        if db and db.get("status") == "confirmed":
+        probes += 1
+        if ok(db):
             text = (f"The uploader wrote it and {_db_note(db)}. "
                     "Nobody in the comments confirmed it.")
-            out["answer"] = _answer_dict(name, "medium", text, db, meta, [], [])
-            return out
+            return take(name, "medium", text, db)
+
+    # 5. A known title people kept mentioning. Weakest: on an edit, people
+    #    name the shows they compare it to.
+    for x in passing[:1]:
+        db = confirm(x.title, meta, caches)
+        if db and db.get("status") == "contradicted":
+            continue
+        return take(x, "medium", note(x, asked), db, evidence(x, comments))
     return out
+
+
+_SONG = re.compile(r"\b(?:songs?|music|audio|sound|remix|phonk|montagem|funk|lyrics|"
+                   r"cancion|canci[oó]n|musica|m[uú]sica|gaana|gana)\b", re.I)
+
+
+def _about_song(answer, comments: list[dict]) -> bool:
+    """People ask for the song under edits as often as for the show."""
+    names = [fold(answer.title)]
+    by_id = {c.get("id"): c for c in comments}
+    hits = total = 0
+    for c in comments:
+        if not _mentions(c.get("text", ""), names):
+            continue
+        total += 1
+        cid = c.get("id") or ""
+        parent = by_id.get(cid.split(".", 1)[0]) if "." in cid else None
+        if _SONG.search(c.get("text", "")) or (parent and _SONG.search(parent.get("text", ""))):
+            hits += 1
+    return total > 0 and hits * 2 >= total
 
 
 def interactive() -> None:

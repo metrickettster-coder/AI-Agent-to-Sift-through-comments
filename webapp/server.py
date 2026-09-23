@@ -20,6 +20,7 @@ import threading
 import time
 import urllib.error
 import urllib.parse
+import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -95,6 +96,69 @@ def lookup(url: str, visitor: str) -> tuple[int, dict]:
     return 200, result
 
 
+# ------------------------------------------------------------- feedback
+#
+# Render's free disk is wiped on every deploy, so feedback cannot live in a
+# file. With GITHUB_TOKEN set (a fine-grained token that may only write
+# issues on FEEDBACK_REPO) each message becomes an issue, where it lasts and
+# can be read and acted on. Without it, messages still reach the service log.
+
+FEEDBACK_REPO = os.environ.get("FEEDBACK_REPO", "metrickettster-coder/AI-Agent-to-Sift-through-comments")
+KINDS = {"right": "Answer was right", "wrong": "Wrong or missing name",
+         "bug": "Something broke", "idea": "Idea"}
+_sent: dict[str, list[float]] = {}
+
+
+def _clip(v, n: int) -> str:
+    return str(v or "").replace("\r", "")[:n].strip()
+
+
+def feedback(data: dict, visitor: str) -> tuple[int, dict]:
+    kind = data.get("kind") if data.get("kind") in KINDS else "idea"
+    message = _clip(data.get("message"), 2000)
+    video = _clip(data.get("video"), 20)
+    answer = _clip(data.get("answer"), 200)
+    if kind in ("bug", "idea") and not message:
+        return 400, {"error": "Write a few words so we know what to fix."}
+    now = time.time()
+    with _lock:
+        recent = [t for t in _sent.get(visitor, []) if now - t < 3600]
+        if len(recent) >= 10:
+            return 429, {"error": "Thanks, we have plenty from you for this hour."}
+        _sent[visitor] = recent + [now]
+
+    title = f"[feedback] {KINDS[kind]}" + (f": {answer}" if answer else "") + \
+            (f" ({video})" if video else "")
+    lines = [f"**{KINDS[kind]}**", ""]
+    if message:
+        lines += ["> " + l for l in message.splitlines()] + [""]
+    if video:
+        lines.append(f"Video: https://youtu.be/{video}")
+    if answer:
+        lines.append(f"TitleSift said: {answer}" + (f" [{_clip(data.get('confidence'), 10)}]"
+                                                    if data.get("confidence") else ""))
+    lines += ["", "_Sent from the TitleSift feedback form._"]
+    body = "\n".join(lines)
+    print("FEEDBACK " + json.dumps({"title": title, "body": body}, ensure_ascii=False),
+          file=sys.stderr, flush=True)
+
+    token = os.environ.get("GITHUB_TOKEN")
+    # A thumbs-up is worth counting, not an issue each.
+    if token and kind != "right":
+        req = urllib.request.Request(
+            f"https://api.github.com/repos/{FEEDBACK_REPO}/issues",
+            data=json.dumps({"title": title[:200], "body": body}).encode(),
+            headers={"Authorization": f"Bearer {token}",
+                     "Accept": "application/vnd.github+json",
+                     "Content-Type": "application/json",
+                     "User-Agent": "titlesift"}, method="POST")
+        try:
+            urllib.request.urlopen(req, timeout=15).read()
+        except Exception as e:           # the log line above still has it
+            print(f"FEEDBACK issue not created: {e}", file=sys.stderr, flush=True)
+    return 200, {"ok": True}
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "titlesift"
 
@@ -106,6 +170,20 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
         self.wfile.write(body)
+
+    def do_POST(self):
+        if urllib.parse.urlparse(self.path).path != "/api/feedback":
+            return self._send(404, b"Not found", "text/plain")
+        try:
+            n = min(int(self.headers.get("Content-Length") or 0), 8000)
+            data = json.loads(self.rfile.read(n).decode("utf-8") or "{}")
+            if not isinstance(data, dict):
+                raise ValueError
+        except (ValueError, UnicodeDecodeError):
+            return self._send(400, b'{"error": "Bad request"}', "application/json")
+        visitor = (self.headers.get("X-Forwarded-For") or self.client_address[0]).split(",")[0].strip()
+        code, out = feedback(data, visitor)
+        return self._send(code, json.dumps(out).encode(), "application/json; charset=utf-8")
 
     def do_GET(self):
         u = urllib.parse.urlparse(self.path)

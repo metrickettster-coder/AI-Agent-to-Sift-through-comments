@@ -167,7 +167,25 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .how { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
 .how h2 { margin: 0; font: 700 15px var(--display); color: var(--ink); }
 .how ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
-footer { font-size: 13px; color: var(--muted); }
+footer { font-size: 13px; color: var(--muted); display: grid; gap: 10px; }
+.rate { border-top: 1px solid var(--line); padding: 14px 18px 18px; display: grid; gap: 10px; font-size: 15px; }
+.rate .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.rate .q { font-weight: 700; margin-right: 4px; }
+.pill { border: 2px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px;
+  padding: 7px 14px; font: 700 14px var(--body); cursor: pointer; }
+.pill:hover { border-color: var(--ink); }
+textarea, select { width: 100%; border: 2px solid var(--line); border-radius: 12px; background: var(--surface);
+  color: var(--ink); font: 16px/1.4 var(--body); padding: 10px 12px; }
+textarea { min-height: 84px; resize: vertical; }
+textarea:focus, select:focus { outline: none; border-color: var(--accent); }
+.send { justify-self: start; border: 0; border-radius: 12px; background: var(--ink); color: var(--ground);
+  padding: 10px 16px; font: 700 15px var(--body); cursor: pointer; }
+.thanks { color: var(--high); font-weight: 700; }
+.fb { background: var(--surface); border-radius: 16px; padding: 16px; display: grid; gap: 10px; }
+.fb h2 { margin: 0; font: 700 17px var(--display); color: var(--ink); }
+.fb label { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+.linkish { border: 0; background: none; padding: 0; color: var(--ink); font: 700 14px var(--body);
+  text-decoration: underline; text-underline-offset: 3px; cursor: pointer; justify-self: start; }
 </style>
 </head>
 <body>
@@ -207,7 +225,25 @@ footer { font-size: 13px; color: var(--muted); }
       <li>Come back here and tap <b>Paste</b>.</li>
     </ol>
   </section>
-  <footer>Answers come from what people wrote in the comments. When nobody has named it yet, we say so rather than guess.</footer>
+  <footer>
+    <span>Answers come from what people wrote in the comments. When nobody has named it yet, we say so rather than guess.</span>
+    <button class="linkish" id="fb-open" type="button">Send feedback</button>
+    <form class="fb" id="fb" hidden novalidate>
+      <h2>Tell us what to fix</h2>
+      <label for="fb-kind">What is it about?
+        <select id="fb-kind">
+          <option value="bug">Something broke</option>
+          <option value="wrong">A wrong or missing name</option>
+          <option value="idea">An idea to make it better</option>
+        </select>
+      </label>
+      <label for="fb-msg">What happened, or what would help?
+        <textarea id="fb-msg" maxlength="2000" placeholder="For a wrong name, the video link and the right name help most."></textarea>
+      </label>
+      <button class="send" type="submit">Send</button>
+      <span id="fb-status" aria-live="polite"></span>
+    </form>
+  </footer>
 </main>
 
 <script>
@@ -264,6 +300,7 @@ footer { font-size: 13px; color: var(--muted); }
   }
 
   function render(r) {
+    current = r.example ? null : r;
     out.textContent = "";
     var card = el("article", "card");
     videoRow(r).forEach(function (n) { card.appendChild(n); });
@@ -277,6 +314,7 @@ footer { font-size: 13px; color: var(--muted); }
       none.appendChild(el("p", null, msg));
       if (!r.notice && !r.example && r.video && r.video.id) none.appendChild(watchButton(r));
       card.appendChild(none);
+      if (!r.example && !r.notice && r.video && r.video.id) card.appendChild(rateBox(r));
       out.appendChild(card);
       return;
     }
@@ -344,6 +382,7 @@ footer { font-size: 13px; color: var(--muted); }
       o.appendChild(ul);
       card.appendChild(o);
     }
+    if (!r.example) card.appendChild(rateBox(r));
     out.appendChild(card);
   }
 
@@ -430,6 +469,64 @@ footer { font-size: 13px; color: var(--muted); }
     });
   }
 
+  var current = null;   // the result on screen, sent along with feedback
+
+  function sendFeedback(payload) {
+    if (current && current.video && payload.kind !== "idea" && payload.kind !== "bug") {
+      payload.video = payload.video || current.video.id;
+      if (current.answer) {
+        payload.answer = payload.answer || current.answer.title;
+        payload.confidence = payload.confidence || current.answer.confidence;
+      }
+    }
+    return fetch("/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify(payload) })
+      .then(function (res) { return res.json().then(function (j) { if (!res.ok) throw new Error(j.error || "Couldn’t send that."); return j; }); });
+  }
+
+  // "Was this right?" under every live answer, and "Know the name?" when
+  // there is none: the people who searched are the ones who can tell us.
+  function rateBox(r) {
+    var box = el("div", "rate");
+    var row = el("div", "row");
+    function thanks(text) { box.textContent = ""; box.appendChild(el("span", "thanks", text)); }
+    function askWhat(prompt, kind) {
+      box.textContent = "";
+      var id = "fix-" + (r.video.id || "x");
+      var lab = el("label", null, prompt); lab.htmlFor = id;
+      var ta = el("textarea"); ta.id = id; ta.maxLength = 2000;
+      ta.placeholder = "The right name, or what’s wrong (optional)";
+      var send = el("button", "send", "Send"); send.type = "button";
+      var st = el("span");
+      send.addEventListener("click", function () {
+        send.disabled = true;
+        sendFeedback({ kind: kind, message: ta.value })
+          .then(function () { thanks("Thanks! This helps us fix it."); })
+          .catch(function (e) { st.textContent = e.message; send.disabled = false; });
+      });
+      box.appendChild(lab); box.appendChild(ta); box.appendChild(send); box.appendChild(st);
+      ta.focus();
+    }
+    if (r.answer) {
+      row.appendChild(el("span", "q", "Was this right?"));
+      var yes = el("button", "pill", "Yes"); yes.type = "button";
+      var no = el("button", "pill", "No"); no.type = "button";
+      yes.addEventListener("click", function () {
+        yes.disabled = no.disabled = true;
+        sendFeedback({ kind: "right" }).then(function () { thanks("Thanks for letting us know."); })
+          .catch(function () { thanks("Thanks for letting us know."); });
+      });
+      no.addEventListener("click", function () { askWhat("What’s the right name, or what went wrong?", "wrong"); });
+      row.appendChild(yes); row.appendChild(no);
+    } else {
+      var know = el("button", "pill", "I know the name"); know.type = "button";
+      know.addEventListener("click", function () { askWhat("What is it called?", "wrong"); });
+      row.appendChild(know);
+    }
+    box.appendChild(row);
+    return box;
+  }
+
   var STEPS = ["Reading the comments…", "Checking replies under “what’s this called?”…", "Looking it up on AniList and Wikipedia…"];
   function loading() {
     out.textContent = "";
@@ -489,6 +586,17 @@ footer { font-size: 13px; color: var(--muted); }
   if (shared) run(shared); else render(EXAMPLE);
   drawWaiting();
   recheck();
+
+  $("fb-open").addEventListener("click", function () { $("fb").hidden = false; $("fb-open").hidden = true; $("fb-msg").focus(); });
+  $("fb").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var st = $("fb-status"), btn = $("fb").querySelector(".send");
+    btn.disabled = true; st.textContent = "";
+    sendFeedback({ kind: $("fb-kind").value, message: $("fb-msg").value })
+      .then(function () { $("fb-msg").value = ""; st.className = "thanks"; st.textContent = "Sent. Thank you!"; })
+      .catch(function (err) { st.className = ""; st.textContent = err.message; })
+      .finally(function () { btn.disabled = false; });
+  });
 
   if ("serviceWorker" in navigator) { navigator.serviceWorker.register("/sw.js").catch(function () {}); }
 })();

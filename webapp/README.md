@@ -42,6 +42,15 @@ after 15 minutes idle; the first visit after that takes about a minute.
 **Hugging Face Spaces**: new Space, SDK "Docker", upload the files, add
 `YOUTUBE_API_KEY` under Settings, Secrets. Port 7860 is already set.
 
+## Feedback
+
+Every answer asks "Was this right?", and the footer has a Send feedback
+form. Each message is written to the service log as a line starting with
+`FEEDBACK`. Set `GITHUB_TOKEN` (a fine-grained token limited to this
+repository with Issues: read and write) and every message except a plain
+"yes, it was right" also becomes a GitHub issue titled `[feedback] ...`.
+`FEEDBACK_REPO` overrides the repository.
+
 ## Phone extras
 
 `manifest.json` makes the page installable ("Add to Home screen"). On

@@ -540,7 +540,7 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
     box.textContent = "";
     box.appendChild(el("span", "q", "Thanks! One quick question: would you pay to keep TitleSift going?"));
     var row = el("div", "row");
-    [["free", "Only if it’s free"], ["1.99", "$1.99 a month"], ["2.99", "$2.99 a month"], ["5.99", "$5.99 a month"]]
+    [["free", "Only if it’s free"], ["0.99", "$0.99 a month"], ["1.99", "$1.99 a month"], ["2.99", "$2.99 a month"]]
       .forEach(function (o) {
         var b = el("button", "pill", o[1]); b.type = "button";
         b.addEventListener("click", function () {

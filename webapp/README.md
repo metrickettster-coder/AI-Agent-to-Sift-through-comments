@@ -55,7 +55,7 @@ repository with Issues: read and write) and every message except a plain
 ## "Would you pay?" and tips
 
 After someone says an answer was right, the page asks once per browser
-whether they'd pay: only if free, $1.99, $2.99 or $5.99 a month. One vote per
+whether they'd pay: only if free, $0.99, $1.99 or $2.99 a month. One vote per
 visitor a day counts. See the totals at `/votes`. They live in memory, and
 with `GITHUB_TOKEN` set they are also kept in one issue titled
 `[price-votes] ...`, so updates don't reset them. Each vote is also logged as

@@ -185,8 +185,8 @@ def feedback(data: dict, visitor: str) -> tuple[int, dict]:
 # live in memory; with GITHUB_TOKEN set they are also kept in the body of one
 # issue ("[price-votes]") so a redeploy doesn't wipe them. /votes shows them.
 
-PRICES = {"free": "Only if it's free", "1.99": "$1.99 a month",
-          "2.99": "$2.99 a month", "5.99": "$5.99 a month"}
+PRICES = {"free": "Only if it's free", "0.99": "$0.99 a month",
+          "1.99": "$1.99 a month", "2.99": "$2.99 a month"}
 VOTES_TITLE = "[price-votes] Would you pay for TitleSift?"
 _votes: dict[str, int] = {k: 0 for k in PRICES}
 _voted: dict[str, float] = {}           # visitor -> time of their vote

@@ -99,11 +99,14 @@ def lookup(url: str, visitor: str) -> tuple[int, dict]:
 # ------------------------------------------------------------- feedback
 #
 # Render's free disk is wiped on every deploy, so feedback cannot live in a
-# file. With GITHUB_TOKEN set (a fine-grained token that may only write
+# file. Each message is emailed through Formspree. With GITHUB_TOKEN set (a fine-grained token that may only write
 # issues on FEEDBACK_REPO) each message becomes an issue, where it lasts and
 # can be read and acted on. Without it, messages still reach the service log.
 
 FEEDBACK_REPO = os.environ.get("FEEDBACK_REPO", "metrickettster-coder/AI-Agent-to-Sift-through-comments")
+# Chi's Formspree form: each message arrives as an email. The form id is
+# public by design (it normally sits in a page's HTML), so it is not a secret.
+FORMSPREE_URL = os.environ.get("FORMSPREE_URL", "https://formspree.io/f/mkjgbkgb")
 KINDS = {"right": "Answer was right", "wrong": "Wrong or missing name",
          "bug": "Something broke", "idea": "Idea"}
 _sent: dict[str, list[float]] = {}
@@ -142,8 +145,23 @@ def feedback(data: dict, visitor: str) -> tuple[int, dict]:
     print("FEEDBACK " + json.dumps({"title": title, "body": body}, ensure_ascii=False),
           file=sys.stderr, flush=True)
 
+    # A thumbs-up is worth counting, not an email or an issue each, and the
+    # free Formspree plan allows 50 messages a month.
+    if kind != "right" and FORMSPREE_URL:
+        req = urllib.request.Request(
+            FORMSPREE_URL,
+            data=json.dumps({"_subject": title[:150], "kind": KINDS[kind],
+                             "message": message or "(no message)",
+                             "video": f"https://youtu.be/{video}" if video else "",
+                             "titlesift_said": answer}).encode(),
+            headers={"Accept": "application/json", "Content-Type": "application/json",
+                     "User-Agent": "titlesift"}, method="POST")
+        try:
+            urllib.request.urlopen(req, timeout=15).read()
+        except Exception as e:
+            print(f"FEEDBACK email not sent: {e}", file=sys.stderr, flush=True)
+
     token = os.environ.get("GITHUB_TOKEN")
-    # A thumbs-up is worth counting, not an issue each.
     if token and kind != "right":
         req = urllib.request.Request(
             f"https://api.github.com/repos/{FEEDBACK_REPO}/issues",

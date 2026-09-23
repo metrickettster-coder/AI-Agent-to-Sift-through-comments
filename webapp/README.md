@@ -46,7 +46,8 @@ after 15 minutes idle; the first visit after that takes about a minute.
 
 Every answer asks "Was this right?", and the footer has a Send feedback
 form. Each message is written to the service log as a line starting with
-`FEEDBACK`. Set `GITHUB_TOKEN` (a fine-grained token limited to this
+`FEEDBACK` and, except a plain "yes, it was right", emailed through the
+Formspree form in `FORMSPREE_URL` (free plan: 50 a month). Set `GITHUB_TOKEN` (a fine-grained token limited to this
 repository with Issues: read and write) and every message except a plain
 "yes, it was right" also becomes a GitHub issue titled `[feedback] ...`.
 `FEEDBACK_REPO` overrides the repository.

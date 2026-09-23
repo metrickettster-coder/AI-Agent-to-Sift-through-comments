@@ -194,7 +194,8 @@ footer { font-size: 13px; color: var(--muted); }
   <div id="out" aria-live="polite"></div>
 
   <section class="waiting" id="waiting" hidden>
-    <h2>Waiting for a name</h2>
+    <h2>Your check-back list</h2>
+    <p class="hint">We look again each time you open TitleSift and mark anything new.</p>
     <div id="waitlist"></div>
   </section>
 
@@ -308,6 +309,9 @@ footer { font-size: 13px; color: var(--muted); }
       s.href = a.search; s.target = "_blank"; s.rel = "noopener"; act.appendChild(s);
     }
     card.appendChild(act);
+    if (!r.example && r.video && r.video.id) {
+      var wb = watchButton(r); wb.style.padding = "0 18px 18px"; card.appendChild(wb);
+    }
 
     if (a.comments && a.comments.length) {
       var th = el("div", "thread");
@@ -343,18 +347,30 @@ footer { font-size: 13px; color: var(--muted); }
     out.appendChild(card);
   }
 
+  function snapshot(r) {
+    var a = r.answer;
+    return { name: a ? a.title : null, conf: a ? a.confidence : null,
+             alts: a && a.also_called ? a.also_called.length : 0 };
+  }
+
+  // Works on any result: no name yet, a guess worth confirming, or a name
+  // whose other titles haven't turned up anywhere yet.
   function watchButton(r) {
     var box = el("div", "watch");
     function done(text) { box.textContent = ""; box.appendChild(el("span", "done", text)); }
-    if (watching(r.video.id)) { done("We’ll check this one again each time you open TitleSift."); return box; }
-    var b = el("button", null, "Check back for me");
+    if (watching(r.video.id)) { done("This one is on your check-back list below. We look again each time you open TitleSift."); return box; }
+    var b = el("button", null, r.answer ? "Check back later for updates" : "Check back for me");
     b.type = "button";
     b.addEventListener("click", function () {
       var list = loadWaiting().filter(function (w) { return w.id !== r.video.id; });
+      var snap = snapshot(r);
       list.unshift({ id: r.video.id, title: r.video.title || "", thumb: r.video.thumbnail || "",
-                     added: Date.now(), checked: Date.now(), found: null });
-      if (saveWaiting(list)) { done("Saved. We’ll check again each time you open TitleSift, and show it here when someone names it."); drawWaiting(); }
-      else done("This browser won’t let us save it. Try again from a normal (not private) window.");
+                     added: Date.now(), checked: Date.now(), found: snap.name, conf: snap.conf,
+                     alts: snap.alts, updated: false });
+      if (saveWaiting(list)) {
+        done("Saved to your check-back list below. We’ll look again each time you open TitleSift and mark it when something new turns up.");
+        drawWaiting();
+      } else done("This browser won’t let us save it. Try again from a normal (not private) window.");
     });
     box.appendChild(b);
     return box;
@@ -368,18 +384,14 @@ footer { font-size: 13px; color: var(--muted); }
       var row = el("div", "wait-row");
       if (w.thumb) { var img = el("img"); img.alt = ""; img.src = w.thumb; img.onerror = function () { img.hidden = true; }; row.appendChild(img); }
       var t = el("div", "t");
-      if (w.found) {
-        var b = el("b", null, w.found); b.appendChild(el("span", "found-chip", "Found")); t.appendChild(b);
-      } else {
-        t.appendChild(el("b", null, "No name yet"));
-      }
+      var b = el("b", null, w.found || "No name yet");
+      if (w.updated) b.appendChild(el("span", "found-chip", w.found ? "Updated" : "Found"));
+      t.appendChild(b);
       t.appendChild(el("span", null, w.title));
       row.appendChild(t);
-      if (w.found) {
-        var o = el("button", "open", "See it"); o.type = "button";
-        o.addEventListener("click", function () { run("https://youtu.be/" + w.id); });
-        row.appendChild(o);
-      }
+      var o = el("button", "open", "See it"); o.type = "button";
+      o.addEventListener("click", function () { run("https://youtu.be/" + w.id); });
+      row.appendChild(o);
       var x = el("button", "x", "×"); x.type = "button"; x.setAttribute("aria-label", "Stop checking this video");
       x.addEventListener("click", function () { saveWaiting(loadWaiting().filter(function (v) { return v.id !== w.id; })); drawWaiting(); });
       row.appendChild(x);
@@ -387,11 +399,19 @@ footer { font-size: 13px; color: var(--muted); }
     });
   }
 
-  // Re-ask for anything still waiting, a few at a time and no more than
+  var RANK = { low: 0, medium: 1, high: 2 };
+  function improved(old, snap) {
+    if (!snap.name) return false;
+    if (!old.found || snap.name !== old.found) return true;
+    if ((RANK[snap.conf] || 0) > (RANK[old.conf] || 0)) return true;
+    return snap.alts > (old.alts || 0);
+  }
+
+  // Re-ask for everything on the list, a few at a time and no more than
   // every few hours per video, so the free YouTube allowance goes further.
   function recheck() {
-    var list = loadWaiting(), due = list.filter(function (w) {
-      return !w.found && Date.now() - (w.checked || 0) > 3 * 3600 * 1000;
+    var due = loadWaiting().filter(function (w) {
+      return Date.now() - (w.checked || 0) > 3 * 3600 * 1000;
     }).slice(0, 3);
     due.forEach(function (w) {
       fetch("/api/find?url=" + encodeURIComponent("https://youtu.be/" + w.id))
@@ -401,7 +421,9 @@ footer { font-size: 13px; color: var(--muted); }
           cur.forEach(function (v) {
             if (v.id !== w.id) return;
             v.checked = Date.now();
-            if (r && r.answer) v.found = r.answer.title;
+            if (!r) return;
+            var snap = snapshot(r);
+            if (improved(v, snap)) { v.updated = true; v.found = snap.name; v.conf = snap.conf; v.alts = snap.alts; }
           });
           saveWaiting(cur); drawWaiting();
         }).catch(function () {});
@@ -435,9 +457,10 @@ footer { font-size: 13px; color: var(--muted); }
       .then(function (p) {
         if (!p[0]) throw new Error(p[1].error || "Something went wrong.");
         render(p[1]);
-        if (p[1].answer && p[1].video && watching(p[1].video.id)) {
+        if (p[1].video && watching(p[1].video.id)) {
           var cur = loadWaiting();
-          cur.forEach(function (v) { if (v.id === p[1].video.id) { v.found = p[1].answer.title; v.checked = Date.now(); } });
+          var snap = snapshot(p[1]);
+          cur.forEach(function (v) { if (v.id === p[1].video.id) { v.found = snap.name; v.conf = snap.conf; v.alts = snap.alts; v.updated = false; v.checked = Date.now(); } });
           saveWaiting(cur); drawWaiting();
         }
         var top = out.getBoundingClientRect().top + window.scrollY - 12;

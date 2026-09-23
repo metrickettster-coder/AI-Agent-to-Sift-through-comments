@@ -224,7 +224,7 @@ footer { font-size: 13px; color: var(--muted); }
     answer: {
       title: "Tears on a Withered Flower", confidence: "high",
       note: "2 people named it in the comments, and it matches what the uploader wrote.",
-      also_called: [],
+      also_called: ["Sideun Kkoche Nunmureul", "시든 꽃에 눈물을", "Tears for Withered Flowers", "枯れた花に涙を"],
       comments: [{ text: "Tears on a withered flower", likes: 40, reply_to: { text: "Name?", likes: 55 } }],
       database: { name: "Tears on a Withered Flower", what: "Manhwa", year: 2024,
                   url: "https://anilist.co/manga/178692", source: "AniList" },
@@ -289,7 +289,12 @@ footer { font-size: 13px; color: var(--muted); }
     conf.appendChild(el("span", "chip " + a.confidence, CONF[a.confidence] || a.confidence));
     conf.appendChild(el("span", null, a.note));
     ans.appendChild(conf);
-    if (a.also_called && a.also_called.length) ans.appendChild(el("div", "aka", "Also called " + a.also_called.join(", ")));
+    var aka = el("div", "aka");
+    aka.appendChild(el("b", null, "Also known as: "));
+    aka.appendChild(document.createTextNode(a.also_called && a.also_called.length
+      ? a.also_called.join(" · ")
+      : "no other names found"));
+    ans.appendChild(aka);
     card.appendChild(ans);
 
     var act = el("div", "actions");

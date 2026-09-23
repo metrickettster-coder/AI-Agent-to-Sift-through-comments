@@ -185,7 +185,7 @@ def _confirm(title: str, meta: dict, caches: dict, budget: float):
     if ent is None:
         return {"status": status}
     return {"status": "confirmed", "name": ent.name, "what": kind_label(ent),
-            "year": ent.year, "url": ent.url, "source": {
+            "year": ent.year, "url": ent.url, "names": ent.names, "source": {
                 "anilist": "AniList", "wikipedia": "Wikipedia",
                 "mangadex": "MangaDex"}[ent.source]}
 
@@ -276,12 +276,26 @@ def _answer_dict(title: str, confidence: str, note_text: str, db, meta: dict,
         also = also + [confirmed["name"]]
     if confirmed and fold(confirmed["name"]) != fold(title):
         also = [title] + [a for a in also if fold(a) != fold(title)]
-    also = [a for a in also if fold(a) and fold(a) not in fold(shown)]
+    # Every other name the database knows the work by: the Korean, Chinese
+    # or Japanese original, its romanisation and any English titles. People
+    # hunting for a manhwa often find it under a different name elsewhere.
+    if confirmed:
+        also = also + [n for n in confirmed.get("names") or [] if len(n) <= 60]
+    seen, names = {fold(shown)}, []
+    for a in also:
+        k = fold(a)
+        if not k or k in seen or k in fold(shown):
+            continue
+        seen.add(k)
+        names.append(a)
+    also = names
+    if confirmed:
+        confirmed = {k: v for k, v in confirmed.items() if k != "names"}
     return {
         "title": shown,
         "confidence": confidence,
         "note": note_text,
-        "also_called": also[:4],
+        "also_called": also[:6],
         "comments": comments_shown,
         "database": confirmed,
         "search": "https://www.google.com/search?q=" + urllib.parse.quote(

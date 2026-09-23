@@ -78,6 +78,9 @@ input[type=url] {
 input::placeholder { color: var(--muted); opacity: .8; }
 .paste { border: 0; background: var(--bubble); color: var(--ink); border-radius: 11px;
   padding: 0 14px; font: 700 14px var(--body); cursor: pointer; }
+.clear { border: 0; background: transparent; color: var(--muted); font-size: 24px; line-height: 1;
+  width: 40px; flex: none; border-radius: 10px; cursor: pointer; }
+.clear:hover { color: var(--ink); background: var(--bubble); }
 .go {
   border: 0; border-radius: 16px; background: var(--accent); color: var(--accent-ink);
   font: 800 19px/1 var(--display); letter-spacing: -.01em; padding: 17px; cursor: pointer;
@@ -203,6 +206,7 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
     <div class="field">
       <input id="url" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false"
              placeholder="Paste a YouTube link" aria-label="YouTube link">
+      <button class="clear" id="clear" type="button" aria-label="Clear the link" hidden>×</button>
       <button class="paste" id="paste" type="button">Paste</button>
     </div>
     <button class="go" id="go" type="submit">Find the name</button>
@@ -546,7 +550,7 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
   function run(link) {
     link = extractLink(link);
     if (!link) { input.focus(); return; }
-    input.value = link;
+    input.value = link; syncClear();
     go.disabled = true;
     var timer = loading();
     fetch("/api/find?url=" + encodeURIComponent(link))
@@ -571,10 +575,18 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
       .finally(function () { clearInterval(timer); go.disabled = false; });
   }
 
+  // One tap to empty the box, since a long link is fiddly to delete on a phone.
+  function syncClear() { $("clear").hidden = !input.value; }
+  input.addEventListener("input", syncClear);
+  $("clear").addEventListener("click", function () {
+    input.value = ""; syncClear(); input.focus();
+    try { history.replaceState(null, "", location.pathname); } catch (e) {}
+  });
+
   form.addEventListener("submit", function (e) { e.preventDefault(); run(input.value); });
   $("paste").addEventListener("click", function () {
     if (navigator.clipboard && navigator.clipboard.readText) {
-      navigator.clipboard.readText().then(function (t) { input.value = extractLink(t); if (input.value) run(input.value); })
+      navigator.clipboard.readText().then(function (t) { input.value = extractLink(t); syncClear(); if (input.value) run(input.value); })
         .catch(function () { input.focus(); });
     } else { input.focus(); }
   });

@@ -231,6 +231,7 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
   </section>
   <footer>
     <span>Answers come from what people wrote in the comments. When nobody has named it yet, we say so rather than guess.</span>
+    <a class="linkish" id="kofi" href="#" target="_blank" rel="noopener" hidden>Like TitleSift? Tip on Ko-fi</a>
     <button class="linkish" id="fb-open" type="button">Send feedback</button>
     <form class="fb" id="fb" hidden novalidate>
       <h2>Tell us what to fix</h2>
@@ -517,8 +518,8 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
       var no = el("button", "pill", "No"); no.type = "button";
       yes.addEventListener("click", function () {
         yes.disabled = no.disabled = true;
-        sendFeedback({ kind: "right" }).then(function () { thanks("Thanks for letting us know."); })
-          .catch(function () { thanks("Thanks for letting us know."); });
+        sendFeedback({ kind: "right" }).catch(function () {});
+        if (askedPrice()) thanks("Thanks for letting us know."); else priceBox(box);
       });
       no.addEventListener("click", function () { askWhat("What’s the right name, or what went wrong?", "wrong"); });
       row.appendChild(yes); row.appendChild(no);
@@ -530,6 +531,40 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
     box.appendChild(row);
     return box;
   }
+
+  // Asked once per browser, right after someone says an answer was right:
+  // the moment the tool has just been useful to them.
+  var PRICE_KEY = "titlesift.price-asked";
+  function askedPrice() { try { return !!localStorage.getItem(PRICE_KEY); } catch (e) { return false; } }
+  function priceBox(box) {
+    box.textContent = "";
+    box.appendChild(el("span", "q", "Thanks! One quick question: would you pay to keep TitleSift going?"));
+    var row = el("div", "row");
+    [["free", "Only if it’s free"], ["1.99", "$1.99 a month"], ["2.99", "$2.99 a month"], ["5.99", "$5.99 a month"]]
+      .forEach(function (o) {
+        var b = el("button", "pill", o[1]); b.type = "button";
+        b.addEventListener("click", function () {
+          try { localStorage.setItem(PRICE_KEY, o[0]); } catch (e) {}
+          fetch("/api/vote", { method: "POST", headers: { "Content-Type": "application/json" },
+                               body: JSON.stringify({ price: o[0] }) }).catch(function () {});
+          box.textContent = "";
+          box.appendChild(el("span", "thanks", "Got it, thank you!"));
+          if (kofi) {
+            var a = el("a", "linkish", "Want to help now? Tip on Ko-fi"); a.href = kofi; a.target = "_blank"; a.rel = "noopener";
+            box.appendChild(a);
+          }
+        });
+        row.appendChild(b);
+      });
+    box.appendChild(row);
+  }
+
+  var kofi = "";
+  fetch("/api/config").then(function (res) { return res.ok ? res.json() : {}; }).then(function (c) {
+    if (c && /^https:\/\/ko-fi\.com\//.test(c.kofi || "")) {
+      kofi = c.kofi; $("kofi").href = kofi; $("kofi").hidden = false;
+    }
+  }).catch(function () {});
 
   var STEPS = ["Reading the comments…", "Checking replies under “what’s this called?”…", "Looking it up on AniList and Wikipedia…"];
   function loading() {

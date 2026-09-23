@@ -13,8 +13,10 @@ so one busy Short cannot spend the day's quota on its own.
 """
 from __future__ import annotations
 
+import html
 import json
 import os
+import re
 import sys
 import threading
 import time
@@ -177,6 +179,119 @@ def feedback(data: dict, visitor: str) -> tuple[int, dict]:
     return 200, {"ok": True}
 
 
+# ------------------------------------------------------------- price votes
+#
+# "Would you pay?" is asked once per browser after a right answer. Counts
+# live in memory; with GITHUB_TOKEN set they are also kept in the body of one
+# issue ("[price-votes]") so a redeploy doesn't wipe them. /votes shows them.
+
+PRICES = {"free": "Only if it's free", "1.99": "$1.99 a month",
+          "2.99": "$2.99 a month", "5.99": "$5.99 a month"}
+VOTES_TITLE = "[price-votes] Would you pay for TitleSift?"
+_votes: dict[str, int] = {k: 0 for k in PRICES}
+_voted: dict[str, float] = {}           # visitor -> time of their vote
+_votes_issue: dict[str, int] = {}       # {"number": n} once found or made
+_votes_dirty = threading.Event()
+
+
+def _github(method: str, path: str, body: dict | None = None):
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        return None
+    req = urllib.request.Request(
+        f"https://api.github.com/repos/{FEEDBACK_REPO}{path}",
+        data=json.dumps(body).encode() if body is not None else None,
+        headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+                 "Content-Type": "application/json", "User-Agent": "titlesift"}, method=method)
+    with urllib.request.urlopen(req, timeout=15) as r:
+        return json.loads(r.read().decode() or "null")
+
+
+def _votes_body() -> str:
+    total = sum(_votes.values())
+    lines = ["Answers to \"Would you pay to keep TitleSift going?\" (one per visitor a day).", "",
+             "| Answer | Votes |", "|---|---|"]
+    lines += [f"| {PRICES[k]} | {_votes[k]} |" for k in PRICES]
+    lines += [f"| **Total** | **{total}** |", "",
+              "Kept up to date by the TitleSift server. Don't edit the line below.", "",
+              "<!-- votes " + json.dumps(_votes) + " -->"]
+    return "\n".join(lines)
+
+
+def load_votes():
+    """Pick up the counts saved before the last restart, if any."""
+    try:
+        issues = _github("GET", "/issues?state=all&per_page=100&sort=created&direction=asc") or []
+        for it in issues:
+            if it.get("title") == VOTES_TITLE:
+                _votes_issue["number"] = it["number"]
+                m = re.search(r"<!-- votes (\{.*?\}) -->", it.get("body") or "")
+                if m:
+                    saved = json.loads(m.group(1))
+                    with _lock:
+                        for k in PRICES:
+                            _votes[k] = max(_votes[k], int(saved.get(k, 0)))
+                break
+    except Exception as e:
+        print(f"PRICEVOTE could not load saved counts: {e}", file=sys.stderr, flush=True)
+
+
+def _save_votes_forever():
+    while True:
+        _votes_dirty.wait()
+        time.sleep(30)                   # one write for a burst of votes
+        _votes_dirty.clear()
+        try:
+            with _lock:
+                body = _votes_body()
+            if "number" in _votes_issue:
+                _github("PATCH", f"/issues/{_votes_issue['number']}", {"body": body})
+            else:
+                made = _github("POST", "/issues", {"title": VOTES_TITLE, "body": body})
+                if made:
+                    _votes_issue["number"] = made["number"]
+        except Exception as e:
+            print(f"PRICEVOTE counts not saved: {e}", file=sys.stderr, flush=True)
+
+
+def vote(data: dict, visitor: str) -> tuple[int, dict]:
+    choice = str(data.get("price") or "")
+    if choice not in PRICES:
+        return 400, {"error": "Pick one of the answers."}
+    now = time.time()
+    with _lock:
+        if now - _voted.get(visitor, 0) < 86400:
+            return 200, {"ok": True, "counted": False}
+        _voted[visitor] = now
+        _votes[choice] += 1
+    print("PRICEVOTE " + json.dumps({"price": choice}), file=sys.stderr, flush=True)
+    if os.environ.get("GITHUB_TOKEN"):
+        _votes_dirty.set()
+    return 200, {"ok": True, "counted": True}
+
+
+def votes_page() -> bytes:
+    with _lock:
+        counts = dict(_votes)
+    total = sum(counts.values()) or 1
+    rows = "".join(
+        f"<tr><td>{html.escape(PRICES[k])}</td><td>{counts[k]}</td><td>{round(100 * counts[k] / total)}%</td></tr>"
+        for k in PRICES)
+    kept = ("Saved on GitHub, so they survive updates." if os.environ.get("GITHUB_TOKEN")
+            else "Not saved anywhere yet: an update or restart resets them. Add GITHUB_TOKEN on Render to keep them.")
+    return (f"<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'>"
+            f"<title>TitleSift price votes</title><body style='font:16px/1.5 system-ui;margin:24px'>"
+            f"<h1 style='font-size:22px'>Would you pay to keep TitleSift going?</h1>"
+            f"<table cellpadding=6 style='border-collapse:collapse'><tr><th align=left>Answer</th><th>Votes</th><th></th></tr>"
+            f"{rows}<tr><td><b>Total</b></td><td><b>{sum(counts.values())}</b></td><td></td></tr></table>"
+            f"<p style='color:#666'>{kept}</p>").encode()
+
+
+def config() -> dict:
+    kofi = os.environ.get("KOFI_URL", "").strip()
+    return {"kofi": kofi if re.match(r"^https://ko-fi\.com/[A-Za-z0-9_]+/?$", kofi) else ""}
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "titlesift"
 
@@ -190,7 +305,8 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_POST(self):
-        if urllib.parse.urlparse(self.path).path != "/api/feedback":
+        path = urllib.parse.urlparse(self.path).path
+        if path not in ("/api/feedback", "/api/vote"):
             return self._send(404, b"Not found", "text/plain")
         try:
             n = min(int(self.headers.get("Content-Length") or 0), 8000)
@@ -200,7 +316,7 @@ class Handler(BaseHTTPRequestHandler):
         except (ValueError, UnicodeDecodeError):
             return self._send(400, b'{"error": "Bad request"}', "application/json")
         visitor = (self.headers.get("X-Forwarded-For") or self.client_address[0]).split(",")[0].strip()
-        code, out = feedback(data, visitor)
+        code, out = (vote if path == "/api/vote" else feedback)(data, visitor)
         return self._send(code, json.dumps(out).encode(), "application/json; charset=utf-8")
 
     def do_GET(self):
@@ -211,6 +327,10 @@ class Handler(BaseHTTPRequestHandler):
             code, data = lookup(q, visitor)
             return self._send(code, json.dumps(data, ensure_ascii=False).encode(),
                               "application/json; charset=utf-8")
+        if u.path == "/api/config":
+            return self._send(200, json.dumps(config()).encode(), "application/json; charset=utf-8")
+        if u.path == "/votes":
+            return self._send(200, votes_page(), "text/html; charset=utf-8")
         if u.path == "/healthz":
             return self._send(200, b"ok", "text/plain")
         name = "index.html" if u.path in ("/", "") else u.path.lstrip("/")
@@ -231,6 +351,8 @@ def main():
         raise SystemExit(2)
     interactive()
     extractor()          # build the catalogue before the first visitor waits on it
+    load_votes()
+    threading.Thread(target=_save_votes_forever, daemon=True).start()
     port = int(os.environ.get("PORT", "7860"))
     print(f"Listening on http://0.0.0.0:{port}", file=sys.stderr)
     ThreadingHTTPServer(("0.0.0.0", port), Handler).serve_forever()

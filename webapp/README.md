@@ -52,6 +52,18 @@ repository with Issues: read and write) and every message except a plain
 "yes, it was right" also becomes a GitHub issue titled `[feedback] ...`.
 `FEEDBACK_REPO` overrides the repository.
 
+## "Would you pay?" and tips
+
+After someone says an answer was right, the page asks once per browser
+whether they'd pay: only if free, $1.99, $2.99 or $5.99 a month. One vote per
+visitor a day counts. See the totals at `/votes`. They live in memory, and
+with `GITHUB_TOKEN` set they are also kept in one issue titled
+`[price-votes] ...`, so updates don't reset them. Each vote is also logged as
+a `PRICEVOTE` line.
+
+Set `KOFI_URL` (for example `https://ko-fi.com/yourname`) and a "Tip on
+Ko-fi" link appears in the footer and after a vote. Without it, no link shows.
+
 ## Phone extras
 
 `manifest.json` makes the page installable ("Add to Home screen"). On

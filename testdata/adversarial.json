@@ -1,0 +1,28 @@
+[
+ {"id":"a1","author":"u1","text":"monster energy is the only thing keeping me awake","expect":[]},
+ {"id":"a2","author":"u2","text":"what a bastard, i hate that character so much","expect":[]},
+ {"id":"a3","author":"u3","text":"there's a parasite in my code somewhere lol","expect":[]},
+ {"id":"a4","author":"u4","text":"my dad drove a dune buggy in the 80s","expect":[]},
+ {"id":"a5","author":"u5","text":"he went berserk mode in the last fight","expect":[]},
+ {"id":"a6","author":"u6","text":"i've been living a vagabond lifestyle for years","expect":[]},
+ {"id":"a7","author":"u7","text":"got whiplash from how fast that plot twist hit","expect":[]},
+ {"id":"a8","author":"u8","text":"the arrival of the new season is all i care about","expect":[]},
+ {"id":"a9","author":"u9","text":"that was an absolute monster of a performance","expect":[]},
+ {"id":"a10","author":"u10","text":"noblesse oblige is a french phrase actually","expect":[]},
+ {"id":"a11","author":"u11","text":"sweet home alabama plays in my head every time","expect":[]},
+ {"id":"a12","author":"u12","text":"bluelock my calendar for next week","expect":[]},
+ {"id":"a13","author":"u13","text":"death note taking in class is a real skill","expect":[]},
+ {"id":"a14","author":"u14","text":"i just want a nano sized phone again","expect":[]},
+ {"id":"a15","author":"u15","text":"the prestige of this channel is unmatched","expect":[]},
+
+ {"id":"b1","author":"v1","text":"Monster by Urasawa is the best thriller manga period","expect":["Monster"]},
+ {"id":"b2","author":"v2","text":"read Bastard, the manhwa not the insult lol","expect":["Bastard"]},
+ {"id":"b3","author":"v3","text":"Parasite (2019) swept the oscars","expect":["Parasite"]},
+ {"id":"b4","author":"v4","text":"Dune the book is way better than the movie","expect":["Dune"]},
+ {"id":"b5","author":"v5","text":"Berserk manga art is unmatched","expect":["Berserk"]},
+ {"id":"b6","author":"v6","text":"watch Whiplash if you havent","expect":["Whiplash"]},
+ {"id":"b7","author":"v7","text":"noblesse was the original webtoon king","expect":["Noblesse"]},
+ {"id":"b8","author":"v8","text":"sweet home the manhwa is way darker than the netflix show","expect":["Sweet Home"]},
+ {"id":"b9","author":"v9","text":"blue lock made me care about soccer","expect":["Blue Lock"]},
+ {"id":"b10","author":"v10","text":"death note is still the best written shonen","expect":["Death Note"]}
+]

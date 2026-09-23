@@ -1,0 +1,19 @@
+{
+  "name": "TitleSift",
+  "short_name": "TitleSift",
+  "description": "Paste a YouTube clip or Short and get the name of the manhwa, manhua, manga, webtoon or anime.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2F3F7",
+  "theme_color": "#E8336D",
+  "icons": [
+    {"src": "/icon.svg", "sizes": "any", "type": "image/svg+xml"},
+    {"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}
+  ],
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {"title": "title", "text": "text", "url": "url"}
+  }
+}

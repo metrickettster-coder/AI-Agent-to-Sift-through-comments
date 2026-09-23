@@ -1,0 +1,98 @@
+[
+ {
+  "text": "La serie se llama: estamos muertos y se trata de una invasión zombie",
+  "expect": "estamos muertos",
+  "lang": "es"
+ },
+ {
+  "text": "La serie se llama Estamos muertos❤",
+  "expect": "estamos muertos",
+  "lang": "es"
+ },
+ {
+  "text": "Cómo se llama ?",
+  "expect": null,
+  "lang": "es"
+ },
+ {
+  "text": "Nombre plis",
+  "expect": null,
+  "lang": "es"
+ },
+ {
+  "text": "Movie ka naam Dhoom hai",
+  "expect": "dhoom",
+  "lang": "hi"
+ },
+ {
+  "text": "Movie ka naam kya hai",
+  "expect": null,
+  "lang": "hi"
+ },
+ {
+  "text": "Movies ka naam bta do please",
+  "expect": null,
+  "lang": "hi"
+ },
+ {
+  "text": "Фильм называется Битва за Москву",
+  "expect": "битва за москву",
+  "lang": "ru"
+ },
+ {
+  "text": "Как называется манга",
+  "expect": null,
+  "lang": "ru"
+ },
+ {
+  "text": "Как фильм называется?",
+  "expect": null,
+  "lang": "ru"
+ },
+ {
+  "text": "dizinin adı Çukur",
+  "expect": "çukur",
+  "lang": "tr"
+ },
+ {
+  "text": "judulnya Pengabdi Setan",
+  "expect": "pengabdi setan",
+  "lang": "id"
+ },
+ {
+  "text": "Judulnya apa ya?",
+  "expect": null,
+  "lang": "id"
+ },
+ {
+  "text": "اسم المسلسل مسلسل الحب",
+  "expect": "مسلسل الحب",
+  "lang": "ar"
+ },
+ {
+  "text": "Anyone wondering it's called TEACH YOU A LESSON on Netflix",
+  "expect": "teach you a lesson",
+  "lang": "en"
+ },
+ {
+  "text": "Drama name : May I help you. Thanks me later",
+  "expect": "may i help you",
+  "lang": "en"
+ },
+ {
+  "text": "I love this series \"teach you a lesson\"",
+  "expect": null,
+  "lang": "en",
+  "note": "quote-only: supports an answer but cannot be one alone"
+ },
+ {
+  "text": "the last slap was terrifying 😂",
+  "expect": null,
+  "lang": "en"
+ },
+ {
+  "text": "Grandma you are the best 😂",
+  "expect": null,
+  "lang": "en"
+ }
+]

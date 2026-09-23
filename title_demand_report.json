@@ -1,0 +1,5735 @@
+{
+ "videos": 530,
+ "comments": 130991,
+ "people_asking": 2624,
+ "videos_with_demand": 397,
+ "videos_answered_high": 238,
+ "demand_gap": 189,
+ "distinct_titles": 139,
+ "confirmed": true,
+ "titles": [
+  {
+   "title": "True Beauty",
+   "videos": 17,
+   "commenters": 90,
+   "likes": 511,
+   "demand": 59,
+   "confidence": 0.79,
+   "genres": {
+    "Revenge": 2,
+    "Korean": 9,
+    "General drama": 1,
+    "Manhwa/Webtoon": 2,
+    "School drama": 3
+   },
+   "languages": {
+    "en/other": 3880,
+    "ru": 16,
+    "ar": 30,
+    "es": 12,
+    "ko": 18,
+    "hi": 2,
+    "bn": 5
+   },
+   "alternates": [
+    "Yeosingangnim"
+   ],
+   "views": 109021918,
+   "variants": [
+    "true beauty",
+    "True beauty"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2020,
+   "url": "https://en.wikipedia.org/wiki/True_Beauty_%28South_Korean_TV_series%29",
+   "entities": {
+    "wikipedia:True Beauty (South Korean TV series)": 15,
+    "anilist:152184": 1,
+    "anilist:103995": 1
+   }
+  },
+  {
+   "title": "F4 Thailand: Boys Over Flowers",
+   "videos": 11,
+   "commenters": 47,
+   "likes": 795,
+   "demand": 26,
+   "confidence": 0.95,
+   "genres": {
+    "Romance": 1,
+    "Thai": 10
+   },
+   "languages": {
+    "en/other": 2737,
+    "ar": 11,
+    "ko": 3,
+    "es": 13,
+    "bn": 34,
+    "hi": 1,
+    "ru": 7,
+    "pt": 1,
+    "th": 2
+   },
+   "alternates": [],
+   "views": 110060330,
+   "variants": [
+    "F4 Thailand",
+    "f4 Thailand",
+    "f4 thailand"
+   ],
+   "confirmed": true,
+   "kind": "Thai drama",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/F4_Thailand%3A_Boys_Over_Flowers",
+   "entities": {
+    "wikipedia:F4 Thailand: Boys Over Flowers": 11
+   }
+  },
+  {
+   "title": "Lookism",
+   "videos": 6,
+   "commenters": 37,
+   "likes": 0,
+   "demand": 25,
+   "confidence": 0.92,
+   "genres": {
+    "Manhwa/Webtoon": 6
+   },
+   "languages": {
+    "en/other": 1538,
+    "th": 1,
+    "ar": 3,
+    "ru": 2,
+    "hi": 1,
+    "es": 1
+   },
+   "alternates": [
+    "Oemo Jisangjuui"
+   ],
+   "views": 14547960,
+   "variants": [
+    "lookism"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2014,
+   "url": "https://anilist.co/manga/86848",
+   "entities": {
+    "anilist:86848": 3,
+    "anilist:158539": 3
+   }
+  },
+  {
+   "title": "My Demon",
+   "videos": 5,
+   "commenters": 33,
+   "likes": 604,
+   "demand": 11,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 2,
+    "General drama": 1,
+    "Romance": 2
+   },
+   "languages": {
+    "en/other": 1066,
+    "ar": 23,
+    "ru": 20,
+    "ko": 5,
+    "es": 1,
+    "fr": 1,
+    "hi": 2,
+    "pt": 1,
+    "bn": 4
+   },
+   "alternates": [],
+   "views": 62916930,
+   "variants": [
+    "MY DEMON",
+    "My demon",
+    "my demon"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/My_Demon",
+   "entities": {
+    "wikipedia:My Demon": 4,
+    "anilist:176079": 1
+   }
+  },
+  {
+   "title": "Business Proposal",
+   "videos": 5,
+   "commenters": 31,
+   "likes": 2439,
+   "demand": 11,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 2,
+    "Korean": 3
+   },
+   "languages": {
+    "en/other": 1259,
+    "th": 1,
+    "ru": 49,
+    "ar": 3,
+    "ko": 4,
+    "es": 9,
+    "fr": 1
+   },
+   "alternates": [
+    "Sanae Matseon"
+   ],
+   "views": 59795829,
+   "variants": [
+    "business proposal",
+    "A BUSINESS PROPOSAL",
+    "Business proposal"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/Business_Proposal",
+   "entities": {
+    "wikipedia:Business Proposal": 4,
+    "anilist:110095": 1
+   }
+  },
+  {
+   "title": "My Happy Marriage",
+   "videos": 5,
+   "commenters": 23,
+   "likes": 3609,
+   "demand": 27,
+   "confidence": 1.0,
+   "genres": {
+    "Japanese": 5
+   },
+   "languages": {
+    "en/other": 1288,
+    "ru": 28,
+    "es": 2,
+    "ar": 6,
+    "id": 1,
+    "ja": 14,
+    "ko": 1
+   },
+   "alternates": [
+    "Watashi no Shiawase na Kekkon"
+   ],
+   "views": 32231222,
+   "variants": [
+    "My happy marriage",
+    "my happy marriage",
+    "MY HAPPY MARRIAGE"
+   ],
+   "confirmed": true,
+   "kind": "Novel",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/My_Happy_Marriage",
+   "entities": {
+    "wikipedia:My Happy Marriage": 4,
+    "anilist:147103": 1
+   }
+  },
+  {
+   "title": "Revenge of Others",
+   "videos": 5,
+   "commenters": 23,
+   "likes": 1127,
+   "demand": 14,
+   "confidence": 1.0,
+   "genres": {
+    "Revenge": 5
+   },
+   "languages": {
+    "en/other": 1053,
+    "ar": 20,
+    "ko": 1,
+    "ru": 16,
+    "es": 4,
+    "ja": 1,
+    "pt": 1
+   },
+   "alternates": [],
+   "views": 17555830,
+   "variants": [
+    "revenge of others",
+    "Revenge Of Others"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/Revenge_of_Others",
+   "entities": {
+    "wikipedia:Revenge of Others": 5
+   }
+  },
+  {
+   "title": "Jujutsu Kaisen",
+   "videos": 4,
+   "commenters": 26,
+   "likes": 31,
+   "demand": 6,
+   "confidence": 0.88,
+   "genres": {
+    "Anime": 4
+   },
+   "languages": {
+    "en/other": 1060,
+    "hi": 1,
+    "zh": 1,
+    "ru": 5
+   },
+   "alternates": [
+    "jjk",
+    "jujitsu kaisen"
+   ],
+   "views": 31996401,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2020,
+   "url": "https://anilist.co/anime/113415",
+   "entities": {
+    "anilist:113415": 4
+   }
+  },
+  {
+   "title": "Omniscient Reader's Viewpoint",
+   "videos": 3,
+   "commenters": 51,
+   "likes": 5,
+   "demand": 22,
+   "confidence": 0.67,
+   "genres": {
+    "Manhwa/Webtoon": 3
+   },
+   "languages": {
+    "en/other": 820,
+    "ru": 16,
+    "pt": 1,
+    "es": 4,
+    "bn": 1,
+    "ko": 2
+   },
+   "alternates": [
+    "orv"
+   ],
+   "views": 33962168,
+   "variants": [
+    "Omniscient Readers Viewpoint"
+   ],
+   "confirmed": true,
+   "kind": "Novel",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/Omniscient_Reader%27s_Viewpoint",
+   "entities": {
+    "wikipedia:Omniscient Reader's Viewpoint": 2
+   }
+  },
+  {
+   "title": "Naruto",
+   "videos": 3,
+   "commenters": 48,
+   "likes": 0,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 3
+   },
+   "languages": {
+    "en/other": 658,
+    "ru": 3,
+    "bn": 3,
+    "es": 1,
+    "ja": 1
+   },
+   "alternates": [],
+   "views": 42688600,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2002,
+   "url": "https://anilist.co/anime/20",
+   "entities": {
+    "anilist:20": 3
+   }
+  },
+  {
+   "title": "When the Phone Rings",
+   "videos": 3,
+   "commenters": 27,
+   "likes": 429,
+   "demand": 37,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1,
+    "General drama": 1,
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 697,
+    "ar": 8,
+    "ru": 4,
+    "bn": 6,
+    "es": 3
+   },
+   "alternates": [
+    "Jigeum Geosin Jeonhwaneun"
+   ],
+   "views": 40755316,
+   "variants": [
+    "When the phone rings",
+    "When the Phone Rings"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2024,
+   "url": "https://en.wikipedia.org/wiki/When_the_Phone_Rings",
+   "entities": {
+    "wikipedia:When the Phone Rings": 2,
+    "anilist:187874": 1
+   }
+  },
+  {
+   "title": "Only for Love",
+   "videos": 3,
+   "commenters": 19,
+   "likes": 628,
+   "demand": 22,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 2,
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 660,
+    "ru": 13,
+    "es": 7,
+    "th": 8,
+    "ar": 11
+   },
+   "alternates": [],
+   "views": 71976353,
+   "variants": [
+    "Only for love",
+    "only for love"
+   ],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Only_for_Love_%28TV_series%29",
+   "entities": {
+    "wikipedia:Only for Love (TV series)": 3
+   }
+  },
+  {
+   "title": "Hidden Love",
+   "videos": 3,
+   "commenters": 18,
+   "likes": 502,
+   "demand": 9,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 2,
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 680,
+    "bn": 16,
+    "ar": 6,
+    "ru": 5
+   },
+   "alternates": [],
+   "views": 28202305,
+   "variants": [
+    "hidden love",
+    "Hidden love"
+   ],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Hidden_Love",
+   "entities": {
+    "wikipedia:Hidden Love (film)": 1,
+    "wikipedia:Hidden Love": 2
+   }
+  },
+  {
+   "title": "One-Punch Man",
+   "videos": 3,
+   "commenters": 15,
+   "likes": 0,
+   "demand": 8,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 3
+   },
+   "languages": {
+    "en/other": 709,
+    "es": 3,
+    "ru": 3,
+    "ja": 1
+   },
+   "alternates": [
+    "opm",
+    "onepunch man"
+   ],
+   "views": 28278636,
+   "variants": [
+    "One Punch Man"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2015,
+   "url": "https://anilist.co/anime/21087",
+   "entities": {
+    "anilist:21087": 3
+   }
+  },
+  {
+   "title": "Blue Lock",
+   "videos": 3,
+   "commenters": 11,
+   "likes": 0,
+   "demand": 22,
+   "confidence": 0.67,
+   "genres": {
+    "Anime": 1,
+    "Manhwa/Webtoon": 1,
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 728,
+    "zh": 2,
+    "tr": 1,
+    "es": 32,
+    "ja": 2,
+    "ru": 2,
+    "ar": 3,
+    "ko": 1
+   },
+   "alternates": [
+    "bluelock"
+   ],
+   "views": 24135672,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2022,
+   "url": "https://anilist.co/anime/137822",
+   "entities": {
+    "anilist:137822": 2,
+    "wikipedia:Blue Lock": 1
+   }
+  },
+  {
+   "title": "An Incurable Case of Love",
+   "videos": 3,
+   "commenters": 7,
+   "likes": 936,
+   "demand": 21,
+   "confidence": 0.67,
+   "genres": {
+    "Japanese": 3
+   },
+   "languages": {
+    "en/other": 528,
+    "ja": 19,
+    "zh": 2,
+    "es": 4,
+    "ar": 2,
+    "ru": 3
+   },
+   "alternates": [],
+   "views": 10846820,
+   "variants": [
+    "An Incurable Case Of Love",
+    "incurable case of love"
+   ],
+   "confirmed": true,
+   "kind": "Manga",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/An_Incurable_Case_of_Love",
+   "entities": {
+    "wikipedia:An Incurable Case of Love": 2,
+    "anilist:100383": 1
+   }
+  },
+  {
+   "title": "Dragon Ball",
+   "videos": 3,
+   "commenters": 7,
+   "likes": 0,
+   "demand": 8,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 3
+   },
+   "languages": {
+    "en/other": 557,
+    "ar": 2
+   },
+   "alternates": [
+    "dragonball",
+    "db"
+   ],
+   "views": 27401266,
+   "variants": [
+    "Dragon Ball"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 1986,
+   "url": "https://anilist.co/anime/223",
+   "entities": {
+    "anilist:223": 3
+   }
+  },
+  {
+   "title": "Demon Slayer: Kimetsu no Yaiba",
+   "videos": 3,
+   "commenters": 6,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 3
+   },
+   "languages": {
+    "en/other": 729,
+    "ar": 3,
+    "ru": 2,
+    "ja": 2,
+    "bn": 1
+   },
+   "alternates": [
+    "Kimetsu no Yaiba",
+    "kny"
+   ],
+   "views": 32428260,
+   "variants": [
+    "Demon Slayer",
+    "demon Slayer"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2019,
+   "url": "https://anilist.co/anime/101922",
+   "entities": {
+    "anilist:101922": 3
+   }
+  },
+  {
+   "title": "Cheer Up",
+   "videos": 2,
+   "commenters": 30,
+   "likes": 1321,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 2
+   },
+   "languages": {
+    "en/other": 529,
+    "ru": 12,
+    "ar": 3,
+    "de": 1,
+    "bn": 2,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 11858497,
+   "variants": [
+    "cheer up"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/Cheer_Up_%28South_Korean_TV_series%29",
+   "entities": {
+    "wikipedia:Cheer Up (South Korean TV series)": 2
+   }
+  },
+  {
+   "title": "Solo Leveling",
+   "videos": 2,
+   "commenters": 21,
+   "likes": 0,
+   "demand": 3,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1,
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 469,
+    "ru": 3,
+    "es": 1,
+    "ar": 1
+   },
+   "alternates": [
+    "sololeveling",
+    "Ore dake Level Up na Ken"
+   ],
+   "views": 16935950,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2024,
+   "url": "https://anilist.co/anime/151807",
+   "entities": {
+    "anilist:151807": 2
+   }
+  },
+  {
+   "title": "Unforgettable Love",
+   "videos": 2,
+   "commenters": 15,
+   "likes": 36,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 1,
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 460,
+    "ko": 5,
+    "ru": 3,
+    "ar": 1,
+    "th": 7
+   },
+   "alternates": [],
+   "views": 29042548,
+   "variants": [
+    "Unforgettable love"
+   ],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/Unforgettable_Love",
+   "entities": {
+    "wikipedia:Unforgettable Love": 2
+   }
+  },
+  {
+   "title": "Our Beloved Summer",
+   "videos": 2,
+   "commenters": 13,
+   "likes": 1502,
+   "demand": 14,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 2
+   },
+   "languages": {
+    "en/other": 430,
+    "ar": 17,
+    "es": 6,
+    "ru": 3,
+    "ko": 4,
+    "zh": 4
+   },
+   "alternates": [],
+   "views": 18968598,
+   "variants": [
+    "Our beloved summer"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/Our_Beloved_Summer",
+   "entities": {
+    "wikipedia:Our Beloved Summer": 2
+   }
+  },
+  {
+   "title": "S Line",
+   "videos": 2,
+   "commenters": 12,
+   "likes": 53,
+   "demand": 37,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1,
+    "Revenge": 1
+   },
+   "languages": {
+    "en/other": 479,
+    "ja": 1,
+    "ru": 5,
+    "ar": 14,
+    "es": 7
+   },
+   "alternates": [],
+   "views": 11388431,
+   "variants": [
+    "S LINE"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2011,
+   "url": "https://anilist.co/manga/195781",
+   "entities": {
+    "anilist:195781": 1,
+    "wikipedia:S Line (TV series)": 1
+   }
+  },
+  {
+   "title": "Vinland Saga",
+   "videos": 2,
+   "commenters": 12,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 2
+   },
+   "languages": {
+    "en/other": 477,
+    "ar": 1,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 6215732,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2019,
+   "url": "https://anilist.co/anime/101348",
+   "entities": {
+    "anilist:101348": 2
+   }
+  },
+  {
+   "title": "Friendly Rivalry",
+   "videos": 2,
+   "commenters": 10,
+   "likes": 8,
+   "demand": 32,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1,
+    "Revenge": 1
+   },
+   "languages": {
+    "en/other": 527,
+    "ru": 3,
+    "pt": 2,
+    "es": 4,
+    "ar": 1,
+    "ko": 1
+   },
+   "alternates": [],
+   "views": 35589580,
+   "variants": [
+    "friendly rivalry",
+    "FriendlyRivalry"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Friendly_Rivalry",
+   "entities": {
+    "wikipedia:Friendly Rivalry": 1
+   }
+  },
+  {
+   "title": "School 2021",
+   "videos": 2,
+   "commenters": 9,
+   "likes": 4345,
+   "demand": 15,
+   "confidence": 0.75,
+   "genres": {
+    "School drama": 1,
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 449,
+    "ar": 35,
+    "ru": 6,
+    "ko": 3,
+    "es": 3
+   },
+   "alternates": [],
+   "views": 28297566,
+   "variants": [
+    "school 2021"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/School_2021",
+   "entities": {
+    "wikipedia:School 2021": 2
+   }
+  },
+  {
+   "title": "Love Scenery",
+   "videos": 2,
+   "commenters": 9,
+   "likes": 131,
+   "demand": 36,
+   "confidence": 0.75,
+   "genres": {
+    "Chinese": 2
+   },
+   "languages": {
+    "en/other": 539,
+    "ar": 8,
+    "ko": 1,
+    "zh": 2
+   },
+   "alternates": [],
+   "views": 19158384,
+   "variants": [
+    "love scenery"
+   ],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/Love_Scenery",
+   "entities": {
+    "wikipedia:Love Scenery": 2
+   }
+  },
+  {
+   "title": "Perfect Marriage Revenge",
+   "videos": 2,
+   "commenters": 7,
+   "likes": 620,
+   "demand": 16,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1,
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 384,
+    "ko": 2,
+    "bn": 2,
+    "es": 12,
+    "ru": 8,
+    "pt": 2
+   },
+   "alternates": [],
+   "views": 12058913,
+   "variants": [
+    "Perfect marriage revenge",
+    "perfect marriage revenge"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Perfect_Marriage_Revenge",
+   "entities": {
+    "wikipedia:Perfect Marriage Revenge": 2
+   }
+  },
+  {
+   "title": "Reborn",
+   "videos": 2,
+   "commenters": 6,
+   "likes": 125,
+   "demand": 11,
+   "confidence": 0.5,
+   "genres": {
+    "General drama": 1,
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 518,
+    "ru": 13,
+    "ar": 9,
+    "th": 4
+   },
+   "alternates": [],
+   "views": 18148015,
+   "variants": [],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Reborn_%28TV_series%29",
+   "entities": {
+    "wikipedia:Reborn (TV series)": 2
+   }
+  },
+  {
+   "title": "My Hero Academia",
+   "videos": 2,
+   "commenters": 5,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 2
+   },
+   "languages": {
+    "en/other": 374,
+    "es": 21,
+    "ru": 4
+   },
+   "alternates": [
+    "mha",
+    "Boku no Hero Academia",
+    "bnha"
+   ],
+   "views": 7506410,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2016,
+   "url": "https://anilist.co/anime/21459",
+   "entities": {
+    "anilist:21459": 2
+   }
+  },
+  {
+   "title": "Resident Playbook",
+   "videos": 2,
+   "commenters": 4,
+   "likes": 472,
+   "demand": 5,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 2
+   },
+   "languages": {
+    "en/other": 445,
+    "ru": 3,
+    "es": 2,
+    "bn": 3,
+    "ko": 3,
+    "fr": 1
+   },
+   "alternates": [],
+   "views": 104989401,
+   "variants": [
+    "Resident playbook"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Resident_Playbook",
+   "entities": {
+    "wikipedia:Resident Playbook": 2
+   }
+  },
+  {
+   "title": "Childhood Friend Complex",
+   "videos": 2,
+   "commenters": 4,
+   "likes": 3,
+   "demand": 9,
+   "confidence": 0.75,
+   "genres": {
+    "Manhwa/Webtoon": 2
+   },
+   "languages": {
+    "en/other": 398,
+    "ar": 1,
+    "th": 1,
+    "bn": 1
+   },
+   "alternates": [
+    "Sokkupchingu Complex"
+   ],
+   "views": 926464,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2024,
+   "url": "https://anilist.co/manga/176025",
+   "entities": {
+    "anilist:176025": 2
+   }
+  },
+  {
+   "title": "Weak Hero",
+   "videos": 2,
+   "commenters": 4,
+   "likes": 2,
+   "demand": 15,
+   "confidence": 1.0,
+   "genres": {
+    "Revenge": 1,
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 468,
+    "ru": 7,
+    "es": 3,
+    "ar": 3,
+    "hi": 2
+   },
+   "alternates": [
+    "weakhero"
+   ],
+   "views": 4240566,
+   "variants": [],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/Weak_Hero",
+   "entities": {
+    "wikipedia:Weak Hero": 2
+   }
+  },
+  {
+   "title": "The Greatest Estate Developer",
+   "videos": 2,
+   "commenters": 2,
+   "likes": 2,
+   "demand": 5,
+   "confidence": 0.75,
+   "genres": {
+    "Manhwa/Webtoon": 2
+   },
+   "languages": {
+    "en/other": 450,
+    "ru": 16,
+    "ar": 1,
+    "es": 1
+   },
+   "alternates": [
+    "Yeokdaegeum Yeongji Seolgyesa"
+   ],
+   "views": 1146322,
+   "variants": [
+    "The Greatest Estate Developer WEBTOON",
+    "The greatest estate developer"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2021,
+   "url": "https://anilist.co/manga/140407",
+   "entities": {
+    "anilist:140407": 1
+   }
+  },
+  {
+   "title": "Marry My Husband",
+   "videos": 2,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 0.75,
+   "genres": {
+    "Revenge": 2
+   },
+   "languages": {
+    "en/other": 361,
+    "ko": 1,
+    "ru": 1,
+    "ja": 1,
+    "fr": 1
+   },
+   "alternates": [],
+   "views": 3135319,
+   "variants": [
+    "Marry My husband",
+    "Marry my Husband"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2024,
+   "url": "https://en.wikipedia.org/wiki/Marry_My_Husband",
+   "entities": {
+    "wikipedia:Marry My Husband": 2
+   }
+  },
+  {
+   "title": "Attack on Titan",
+   "videos": 1,
+   "commenters": 30,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 242
+   },
+   "alternates": [
+    "aot",
+    "Shingeki no Kyojin",
+    "snk",
+    "attack titan"
+   ],
+   "views": 2272030,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2013,
+   "url": "https://anilist.co/anime/16498",
+   "entities": {
+    "anilist:16498": 1
+   }
+  },
+  {
+   "title": "Sakamoto Days",
+   "videos": 1,
+   "commenters": 18,
+   "likes": 27,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 254,
+    "ru": 9,
+    "pt": 2,
+    "zh": 2
+   },
+   "alternates": [],
+   "views": 42094978,
+   "variants": [
+    "sakamoto days"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2025,
+   "url": "https://anilist.co/anime/177709",
+   "entities": {
+    "anilist:177709": 1
+   }
+  },
+  {
+   "title": "My Name",
+   "videos": 1,
+   "commenters": 13,
+   "likes": 106,
+   "demand": 14,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 257,
+    "ru": 9,
+    "ar": 6,
+    "ko": 1
+   },
+   "alternates": [],
+   "views": 4733718,
+   "variants": [],
+   "confirmed": true,
+   "kind": "TV series",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/My_Name_%28TV_series%29",
+   "entities": {
+    "wikipedia:My Name (TV series)": 1
+   }
+  },
+  {
+   "title": "Genie, Make a Wish",
+   "videos": 1,
+   "commenters": 11,
+   "likes": 3107,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 313,
+    "ko": 2,
+    "bn": 1,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 32211273,
+   "variants": [
+    "genie make a wish"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Genie%2C_Make_a_Wish",
+   "entities": {
+    "wikipedia:Genie, Make a Wish": 1
+   }
+  },
+  {
+   "title": "Regressor Instruction Manual",
+   "videos": 1,
+   "commenters": 10,
+   "likes": 0,
+   "demand": 1,
+   "confidence": 0.5,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 254,
+    "ru": 21,
+    "es": 2,
+    "de": 1
+   },
+   "alternates": [
+    "How to Use a Returner",
+    "regressor instruction manual",
+    "Hoegwija Sayongseolmyeongseo"
+   ],
+   "views": 5126892,
+   "variants": [
+    "Regressor's Instruction Manual"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2021,
+   "url": "https://anilist.co/manga/141007",
+   "entities": {
+    "anilist:141007": 1
+   }
+  },
+  {
+   "title": "Sweet Home",
+   "videos": 1,
+   "commenters": 9,
+   "likes": 241,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 223,
+    "ru": 5,
+    "ar": 3,
+    "es": 2
+   },
+   "alternates": [],
+   "views": 7406831,
+   "variants": [
+    "SWEET HOME"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2017,
+   "url": "https://anilist.co/manga/100954",
+   "entities": {
+    "anilist:100954": 1
+   }
+  },
+  {
+   "title": "Praesepe Outside the Cage",
+   "videos": 1,
+   "commenters": 9,
+   "likes": 153,
+   "demand": 34,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 252,
+    "ru": 8,
+    "ar": 5,
+    "th": 1
+   },
+   "alternates": [
+    "Saejang Bakkui Peuresepe"
+   ],
+   "views": 1727864,
+   "variants": [
+    "praesepe outside the cage"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2024,
+   "url": "https://anilist.co/manga/186699",
+   "entities": {
+    "anilist:186699": 1
+   }
+  },
+  {
+   "title": "La desalmada",
+   "videos": 1,
+   "commenters": 9,
+   "likes": 78,
+   "demand": 67,
+   "confidence": 1.0,
+   "genres": {
+    "Spanish-language": 1
+   },
+   "languages": {
+    "en/other": 224,
+    "es": 31
+   },
+   "alternates": [],
+   "views": 1730177,
+   "variants": [
+    "la desalmada"
+   ],
+   "confirmed": true,
+   "kind": "Telenovela",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/La_desalmada",
+   "entities": {
+    "wikipedia:La desalmada": 1
+   }
+  },
+  {
+   "title": "The First Frost",
+   "videos": 1,
+   "commenters": 9,
+   "likes": 23,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 151,
+    "id": 1,
+    "pt": 1,
+    "fr": 1
+   },
+   "alternates": [],
+   "views": 4092659,
+   "variants": [
+    "The first frost"
+   ],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/The_First_Frost",
+   "entities": {
+    "wikipedia:The First Frost": 1
+   }
+  },
+  {
+   "title": "Undercover High School",
+   "videos": 1,
+   "commenters": 9,
+   "likes": 13,
+   "demand": 1,
+   "confidence": 1.0,
+   "genres": {
+    "School drama": 1
+   },
+   "languages": {
+    "en/other": 259,
+    "ar": 2,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 37049013,
+   "variants": [
+    "undercover high-school"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Undercover_High_School",
+   "entities": {
+    "wikipedia:Undercover High School": 1
+   }
+  },
+  {
+   "title": "Mushoku Tensei: Jobless Reincarnation",
+   "videos": 1,
+   "commenters": 9,
+   "likes": 2,
+   "demand": 5,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 285,
+    "ar": 1,
+    "hi": 1
+   },
+   "alternates": [
+    "jobless reincarnation",
+    "Mushoku Tensei: Isekai Ittara Honki Dasu"
+   ],
+   "views": 5810846,
+   "variants": [
+    "Mushoku Tensei"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2021,
+   "url": "https://anilist.co/anime/108465",
+   "entities": {
+    "anilist:108465": 1
+   }
+  },
+  {
+   "title": "Vampire Dormitory",
+   "videos": 1,
+   "commenters": 8,
+   "likes": 65,
+   "demand": 14,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 201,
+    "ru": 4,
+    "ar": 3,
+    "ja": 1
+   },
+   "alternates": [],
+   "views": 4397749,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2024,
+   "url": "https://anilist.co/anime/170604",
+   "entities": {
+    "anilist:170604": 1
+   }
+  },
+  {
+   "title": "Farz",
+   "videos": 1,
+   "commenters": 8,
+   "likes": 11,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 111,
+    "hi": 9
+   },
+   "alternates": [],
+   "views": 2244958,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Pakistani drama",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/Farz_%28TV_series%29",
+   "entities": {
+    "wikipedia:Farz (TV series)": 1
+   }
+  },
+  {
+   "title": "All of Us Are Dead",
+   "videos": 1,
+   "commenters": 7,
+   "likes": 75,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Revenge": 1
+   },
+   "languages": {
+    "en/other": 264,
+    "ru": 5,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 7770203,
+   "variants": [
+    "all of us are dead"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/All_of_Us_Are_Dead",
+   "entities": {
+    "wikipedia:All of Us Are Dead": 1
+   }
+  },
+  {
+   "title": "Dark Fall",
+   "videos": 1,
+   "commenters": 7,
+   "likes": 53,
+   "demand": 7,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 245,
+    "ru": 5,
+    "es": 3,
+    "ar": 3
+   },
+   "alternates": [
+    "Darkfall"
+   ],
+   "views": 5520162,
+   "variants": [
+    "dark fall"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2021,
+   "url": "https://anilist.co/manga/145984",
+   "entities": {
+    "anilist:145984": 1
+   }
+  },
+  {
+   "title": "Fool's Love",
+   "videos": 1,
+   "commenters": 7,
+   "likes": 25,
+   "demand": 12,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 287,
+    "ru": 7,
+    "ar": 4,
+    "ja": 2
+   },
+   "alternates": [
+    "Hogu's Love"
+   ],
+   "views": 10256406,
+   "variants": [],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2015,
+   "url": "https://en.wikipedia.org/wiki/Hogu%27s_Love",
+   "entities": {
+    "wikipedia:Hogu's Love": 1
+   }
+  },
+  {
+   "title": "Reality Quest",
+   "videos": 1,
+   "commenters": 7,
+   "likes": 8,
+   "demand": 18,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 165,
+    "ru": 3,
+    "ar": 2,
+    "es": 1
+   },
+   "alternates": [
+    "Hyeonsil Quest"
+   ],
+   "views": 970698,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2021,
+   "url": "https://anilist.co/manga/141705",
+   "entities": {
+    "anilist:141705": 1
+   }
+  },
+  {
+   "title": "Vincenzo",
+   "videos": 1,
+   "commenters": 7,
+   "likes": 6,
+   "demand": 5,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 218,
+    "ar": 1,
+    "bn": 1
+   },
+   "alternates": [],
+   "views": 3168397,
+   "variants": [
+    "vincenzo"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/Vincenzo_%28TV_series%29",
+   "entities": {
+    "wikipedia:Vincenzo (TV series)": 1
+   }
+  },
+  {
+   "title": "When Life Gives You Tangerines",
+   "videos": 1,
+   "commenters": 7,
+   "likes": 4,
+   "demand": 10,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 161,
+    "hi": 1
+   },
+   "alternates": [],
+   "views": 6735499,
+   "variants": [
+    "When life give you tangerines"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/When_Life_Gives_You_Tangerines",
+   "entities": {
+    "wikipedia:When Life Gives You Tangerines": 1
+   }
+  },
+  {
+   "title": "To Be Hero X",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 671,
+   "demand": 5,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 283,
+    "ru": 5,
+    "ar": 2,
+    "pt": 1
+   },
+   "alternates": [
+    "Tu Bian Yingxiong X"
+   ],
+   "views": 8410098,
+   "variants": [
+    "To be hero x"
+   ],
+   "confirmed": true,
+   "kind": "Donghua",
+   "year": 2025,
+   "url": "https://anilist.co/anime/156092",
+   "entities": {
+    "anilist:156092": 1
+   }
+  },
+  {
+   "title": "Beyond the Boundary",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 131,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 247,
+    "ru": 3,
+    "ar": 1,
+    "es": 1
+   },
+   "alternates": [
+    "Kyoukai no Kanata"
+   ],
+   "views": 2211759,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2013,
+   "url": "https://anilist.co/anime/18153",
+   "entities": {
+    "anilist:18153": 1
+   }
+  },
+  {
+   "title": "Extraordinary You",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 54,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 230,
+    "ko": 11,
+    "bn": 2,
+    "ar": 2
+   },
+   "alternates": [],
+   "views": 17933121,
+   "variants": [
+    "extraordinary you"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2019,
+   "url": "https://en.wikipedia.org/wiki/Extraordinary_You",
+   "entities": {
+    "wikipedia:Extraordinary You": 1
+   }
+  },
+  {
+   "title": "Wind Breaker",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 45,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 220,
+    "ru": 66,
+    "ar": 7,
+    "ja": 5
+   },
+   "alternates": [
+    "windbreaker"
+   ],
+   "views": 6858424,
+   "variants": [
+    "wind breaker"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2024,
+   "url": "https://anilist.co/anime/163270",
+   "entities": {
+    "anilist:163270": 1
+   }
+  },
+  {
+   "title": "Buried Hearts",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 14,
+   "demand": 15,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 217
+   },
+   "alternates": [],
+   "views": 2672099,
+   "variants": [
+    "buried heart"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Buried_Hearts",
+   "entities": {
+    "wikipedia:Buried Hearts": 1
+   }
+  },
+  {
+   "title": "Barfi",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 10,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 334,
+    "hi": 1,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 11815734,
+   "variants": [
+    "barfi"
+   ],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2013,
+   "url": "https://en.wikipedia.org/wiki/Barfi_%28film%29",
+   "entities": {
+    "wikipedia:Barfi (film)": 1
+   }
+  },
+  {
+   "title": "Vagabond",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 0,
+   "demand": 7,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 217,
+    "es": 2,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 5432750,
+   "variants": [],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2019,
+   "url": "https://en.wikipedia.org/wiki/Vagabond_%28TV_series%29",
+   "entities": {
+    "wikipedia:Vagabond (TV series)": 1
+   }
+  },
+  {
+   "title": "Secret Relationships",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 0,
+   "demand": 29,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 237,
+    "ru": 1,
+    "ko": 1
+   },
+   "alternates": [],
+   "views": 3314002,
+   "variants": [
+    "secret relationship"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Secret_Relationships",
+   "entities": {
+    "wikipedia:Secret Relationships": 1
+   }
+  },
+  {
+   "title": "One Ranger",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 1935,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 324
+   },
+   "alternates": [],
+   "views": 21424517,
+   "variants": [],
+   "confirmed": true,
+   "kind": "American film",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/One_Ranger",
+   "entities": {
+    "wikipedia:One Ranger": 1
+   }
+  },
+  {
+   "title": "The Potato Lab",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 1785,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 271,
+    "ar": 5,
+    "ru": 3,
+    "es": 2
+   },
+   "alternates": [],
+   "views": 15118731,
+   "variants": [
+    "Potato Lab"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/The_Potato_Lab",
+   "entities": {
+    "wikipedia:The Potato Lab": 1
+   }
+  },
+  {
+   "title": "Never Too Late",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 270,
+   "demand": 3,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 188,
+    "ko": 2,
+    "bn": 1
+   },
+   "alternates": [
+    "Eommaneun Yeodaesaeng"
+   ],
+   "views": 9309749,
+   "variants": [
+    "Never too late"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2019,
+   "url": "https://anilist.co/manga/125718",
+   "entities": {
+    "anilist:125718": 1
+   }
+  },
+  {
+   "title": "When I Fly Towards You",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 57,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 276,
+    "ko": 3,
+    "bn": 1
+   },
+   "alternates": [],
+   "views": 21341279,
+   "variants": [
+    "when i fly towards you"
+   ],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/When_I_Fly_Towards_You",
+   "entities": {
+    "wikipedia:When I Fly Towards You": 1
+   }
+  },
+  {
+   "title": "Death Race",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 48,
+   "demand": 10,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 241,
+    "ar": 12,
+    "ru": 11,
+    "es": 2
+   },
+   "alternates": [],
+   "views": 4443075,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2008,
+   "url": "https://en.wikipedia.org/wiki/Death_Race_%282008_film%29",
+   "entities": {
+    "wikipedia:Death Race (2008 film)": 1
+   }
+  },
+  {
+   "title": "The Heirs",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 24,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 252,
+    "ko": 3,
+    "bn": 3,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 20985950,
+   "variants": [
+    "Heirs"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2013,
+   "url": "https://en.wikipedia.org/wiki/The_Heirs",
+   "entities": {
+    "wikipedia:The Heirs": 1
+   }
+  },
+  {
+   "title": "The Dude in Me",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 8,
+   "demand": 15,
+   "confidence": 1.0,
+   "genres": {
+    "Revenge": 1
+   },
+   "languages": {
+    "en/other": 163,
+    "es": 2
+   },
+   "alternates": [],
+   "views": 793265,
+   "variants": [
+    "the dude in me"
+   ],
+   "confirmed": true,
+   "kind": "Korean film",
+   "year": 2019,
+   "url": "https://en.wikipedia.org/wiki/The_Dude_in_Me",
+   "entities": {
+    "wikipedia:The Dude in Me": 1
+   }
+  },
+  {
+   "title": "I Will Be Your Bloom",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 5,
+   "demand": 16,
+   "confidence": 1.0,
+   "genres": {
+    "Japanese": 1
+   },
+   "languages": {
+    "en/other": 353,
+    "ar": 3,
+    "ja": 3,
+    "ru": 3
+   },
+   "alternates": [],
+   "views": 3195044,
+   "variants": [
+    "I will be your bloom"
+   ],
+   "confirmed": true,
+   "kind": "J-drama",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/I_Will_Be_Your_Bloom",
+   "entities": {
+    "wikipedia:I Will Be Your Bloom": 1
+   }
+  },
+  {
+   "title": "Flower of Evil",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 2,
+   "demand": 10,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 249,
+    "ko": 3,
+    "id": 2,
+    "ja": 2
+   },
+   "alternates": [],
+   "views": 2286587,
+   "variants": [
+    "Flower of evil"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2020,
+   "url": "https://en.wikipedia.org/wiki/Flower_of_Evil_%28South_Korean_TV_series%29",
+   "entities": {
+    "wikipedia:Flower of Evil (South Korean TV series)": 1
+   }
+  },
+  {
+   "title": "The Human Centipede",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 1,
+   "demand": 16,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 251
+   },
+   "alternates": [],
+   "views": 7662708,
+   "variants": [
+    "Human Centipede"
+   ],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2009,
+   "url": "https://en.wikipedia.org/wiki/The_Human_Centipede_%28First_Sequence%29",
+   "entities": {
+    "wikipedia:The Human Centipede (First Sequence)": 1
+   }
+  },
+  {
+   "title": "The Next Prince",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 0,
+   "demand": 19,
+   "confidence": 1.0,
+   "genres": {
+    "Thai": 1
+   },
+   "languages": {
+    "en/other": 264,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 1195433,
+   "variants": [
+    "The next prince"
+   ],
+   "confirmed": true,
+   "kind": "Thai drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/The_Next_Prince",
+   "entities": {
+    "wikipedia:The Next Prince": 1
+   }
+  },
+  {
+   "title": "Celebrity",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 0,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Revenge": 1
+   },
+   "languages": {
+    "en/other": 298,
+    "ko": 3,
+    "es": 1,
+    "ja": 1
+   },
+   "alternates": [],
+   "views": 4391458,
+   "variants": [
+    "celebrity"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Celebrity_%28South_Korean_TV_series%29",
+   "entities": {
+    "wikipedia:Celebrity (South Korean TV series)": 1
+   }
+  },
+  {
+   "title": "Hello World",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 20575,
+   "demand": 4,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 260,
+    "ru": 3,
+    "zh": 2,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 26519994,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2019,
+   "url": "https://anilist.co/anime/106240",
+   "entities": {
+    "anilist:106240": 1
+   }
+  },
+  {
+   "title": "Now You See Me",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 735,
+   "demand": 5,
+   "confidence": 0.5,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 222,
+    "ru": 9,
+    "ar": 2,
+    "tr": 1
+   },
+   "alternates": [],
+   "views": 214845476,
+   "variants": [
+    "Now you see me"
+   ],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2013,
+   "url": "https://en.wikipedia.org/wiki/Now_You_See_Me_%28film%29",
+   "entities": {
+    "wikipedia:Now You See Me (film)": 1
+   }
+  },
+  {
+   "title": "My Girlfriend is the Man!",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 441,
+   "demand": 21,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 268,
+    "ar": 2,
+    "es": 1,
+    "ru": 1
+   },
+   "alternates": [
+    "Nae Yeojachinguneun Sangnamja"
+   ],
+   "views": 10038333,
+   "variants": [
+    "My girlfriend is the man"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2018,
+   "url": "https://anilist.co/manga/110794",
+   "entities": {
+    "anilist:110794": 1
+   }
+  },
+  {
+   "title": "Wonka",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 431,
+   "demand": 2,
+   "confidence": 0.5,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 268
+   },
+   "alternates": [],
+   "views": 9721930,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Wonka_%28film%29",
+   "entities": {
+    "wikipedia:Wonka (film)": 1
+   }
+  },
+  {
+   "title": "Knight",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 344,
+   "demand": 17,
+   "confidence": 0.5,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 271,
+    "ar": 7,
+    "ru": 7,
+    "es": 3
+   },
+   "alternates": [
+    "Detective Knight: Rogue"
+   ],
+   "views": 88943424,
+   "variants": [
+    "knight"
+   ],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/Detective_Knight%3A_Rogue",
+   "entities": {
+    "wikipedia:Detective Knight: Rogue": 1
+   }
+  },
+  {
+   "title": "Newtopia",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 291,
+   "demand": 18,
+   "confidence": 0.5,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 250,
+    "hi": 1
+   },
+   "alternates": [],
+   "views": 1654333,
+   "variants": [],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Newtopia",
+   "entities": {
+    "wikipedia:Newtopia": 1
+   }
+  },
+  {
+   "title": "Summer Pockets",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 142,
+   "demand": 10,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 251,
+    "ru": 8,
+    "ar": 6,
+    "es": 2
+   },
+   "alternates": [],
+   "views": 8247973,
+   "variants": [
+    "summer pockets"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2025,
+   "url": "https://anilist.co/anime/143200",
+   "entities": {
+    "anilist:143200": 1
+   }
+  },
+  {
+   "title": "Tempted",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 126,
+   "demand": 13,
+   "confidence": 0.5,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 266,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 5099645,
+   "variants": [],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2018,
+   "url": "https://en.wikipedia.org/wiki/Tempted_%28TV_series%29",
+   "entities": {
+    "wikipedia:Tempted (TV series)": 1
+   }
+  },
+  {
+   "title": "The Ravages of Time",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 42,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese animation": 1
+   },
+   "languages": {
+    "en/other": 202,
+    "ru": 4,
+    "ar": 2
+   },
+   "alternates": [
+    "Huo Feng Liao Yuan"
+   ],
+   "views": 9519107,
+   "variants": [
+    "the ravages of time"
+   ],
+   "confirmed": true,
+   "kind": "Donghua",
+   "year": 2023,
+   "url": "https://anilist.co/anime/114107",
+   "entities": {
+    "anilist:114107": 1
+   }
+  },
+  {
+   "title": "Love Alarm",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 35,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "School drama": 1
+   },
+   "languages": {
+    "en/other": 235,
+    "ko": 3,
+    "ja": 1,
+    "bn": 1
+   },
+   "alternates": [],
+   "views": 12406813,
+   "variants": [],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2019,
+   "url": "https://en.wikipedia.org/wiki/Love_Alarm",
+   "entities": {
+    "wikipedia:Love Alarm": 1
+   }
+  },
+  {
+   "title": "Doona!",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 35,
+   "demand": 3,
+   "confidence": 0.5,
+   "genres": {
+    "School drama": 1
+   },
+   "languages": {
+    "en/other": 235,
+    "hi": 3,
+    "ja": 1
+   },
+   "alternates": [],
+   "views": 13447746,
+   "variants": [
+    "Doona"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Doona%21",
+   "entities": {
+    "wikipedia:Doona!": 1
+   }
+  },
+  {
+   "title": "Mr. Plankton",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 32,
+   "demand": 14,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 385,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 2611425,
+   "variants": [
+    "mr plankton"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2024,
+   "url": "https://en.wikipedia.org/wiki/Mr._Plankton",
+   "entities": {
+    "wikipedia:Mr. Plankton": 1
+   }
+  },
+  {
+   "title": "Guru",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 23,
+   "demand": 2,
+   "confidence": 0.5,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 216,
+    "hi": 4
+   },
+   "alternates": [],
+   "views": 7822077,
+   "variants": [
+    "guru"
+   ],
+   "confirmed": true,
+   "kind": "Pakistani drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Guru_%28TV_series%29",
+   "entities": {
+    "wikipedia:Guru (TV series)": 1
+   }
+  },
+  {
+   "title": "Big Mouth",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 23,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 149,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 2278468,
+   "variants": [
+    "Big mouth"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/Big_Mouth_%28South_Korean_TV_series%29",
+   "entities": {
+    "wikipedia:Big Mouth (South Korean TV series)": 1
+   }
+  },
+  {
+   "title": "Andhadhun",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 22,
+   "demand": 1,
+   "confidence": 1.0,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 137,
+    "hi": 1
+   },
+   "alternates": [],
+   "views": 3047138,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Indian film",
+   "year": 2018,
+   "url": "https://en.wikipedia.org/wiki/Andhadhun",
+   "entities": {
+    "wikipedia:Andhadhun": 1
+   }
+  },
+  {
+   "title": "Zakhmi Sipahi",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 11,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 159,
+    "hi": 10,
+    "ar": 6,
+    "bn": 4
+   },
+   "alternates": [],
+   "views": 9048633,
+   "variants": [
+    "Zakhmi sipahi"
+   ],
+   "confirmed": true,
+   "kind": "Indian film",
+   "year": 1995,
+   "url": "https://en.wikipedia.org/wiki/Zakhmi_Sipahi",
+   "entities": {
+    "wikipedia:Zakhmi Sipahi": 1
+   }
+  },
+  {
+   "title": "The Boy in the Striped Pyjamas",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 8,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 278,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 711609,
+   "variants": [
+    "The boy in the striped pajamas"
+   ],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2008,
+   "url": "https://en.wikipedia.org/wiki/The_Boy_in_the_Striped_Pyjamas_%28film%29",
+   "entities": {
+    "wikipedia:The Boy in the Striped Pyjamas (film)": 1
+   }
+  },
+  {
+   "title": "Ajnabee",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 5,
+   "demand": 9,
+   "confidence": 1.0,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 243,
+    "hi": 4
+   },
+   "alternates": [],
+   "views": 10034065,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Indian film",
+   "year": 2001,
+   "url": "https://en.wikipedia.org/wiki/Ajnabee_%282001_film%29",
+   "entities": {
+    "wikipedia:Ajnabee (2001 film)": 1
+   }
+  },
+  {
+   "title": "Watari-kun's ****** Is about to Collapse",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 3,
+   "demand": 16,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 193,
+    "ru": 6,
+    "ar": 3,
+    "es": 1
+   },
+   "alternates": [
+    "Watari-kun no xx ga Houkai Sunzen"
+   ],
+   "views": 3781458,
+   "variants": [
+    "Watari-kun Is About To Collapse* . It"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2025,
+   "url": "https://anilist.co/anime/169420",
+   "entities": {
+    "anilist:169420": 1
+   }
+  },
+  {
+   "title": "Hunter x Hunter",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 321
+   },
+   "alternates": [
+    "hxh",
+    "hunter hunter"
+   ],
+   "views": 6861267,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 1999,
+   "url": "https://anilist.co/anime/136",
+   "entities": {
+    "anilist:136": 1
+   }
+  },
+  {
+   "title": "Masamune-kun's Revenge R",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 0,
+   "demand": 1,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 233,
+    "es": 1
+   },
+   "alternates": [
+    "Masamune-kun no Revenge R"
+   ],
+   "views": 8809402,
+   "variants": [
+    "Masamune kun s revenge"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2023,
+   "url": "https://anilist.co/anime/146953",
+   "entities": {
+    "anilist:146953": 1
+   }
+  },
+  {
+   "title": "Nine Puzzles",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 6799,
+   "demand": 1,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 252,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 52759326,
+   "variants": [
+    "nine puzzles"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Nine_Puzzles",
+   "entities": {
+    "wikipedia:Nine Puzzles": 1
+   }
+  },
+  {
+   "title": "Infinite",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 1920,
+   "demand": 2,
+   "confidence": 0.5,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 225
+   },
+   "alternates": [],
+   "views": 14142155,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/Infinite_%28film%29",
+   "entities": {
+    "wikipedia:Infinite (film)": 1
+   }
+  },
+  {
+   "title": "Summer Time Rendering",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 572,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 260,
+    "ru": 3,
+    "tr": 1
+   },
+   "alternates": [
+    "Summer Time Render"
+   ],
+   "views": 1692214,
+   "variants": [
+    "Summer time rendering"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2022,
+   "url": "https://anilist.co/anime/129201",
+   "entities": {
+    "anilist:129201": 1
+   }
+  },
+  {
+   "title": "Begin Again",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 261,
+   "demand": 3,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 213,
+    "ru": 9,
+    "ar": 8,
+    "es": 6
+   },
+   "alternates": [],
+   "views": 22770946,
+   "variants": [],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2020,
+   "url": "https://en.wikipedia.org/wiki/Begin_Again_%28Chinese_TV_series%29",
+   "entities": {
+    "wikipedia:Begin Again (Chinese TV series)": 1
+   }
+  },
+  {
+   "title": "Doom at Your Service",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 224,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 195,
+    "ru": 4,
+    "ar": 1,
+    "ko": 1
+   },
+   "alternates": [],
+   "views": 18499149,
+   "variants": [
+    "Doom at your service"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/Doom_at_Your_Service",
+   "entities": {
+    "wikipedia:Doom at Your Service": 1
+   }
+  },
+  {
+   "title": "20th Century Girl",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 214,
+   "demand": 10,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 195,
+    "ru": 21,
+    "ko": 3,
+    "es": 2
+   },
+   "alternates": [],
+   "views": 10704348,
+   "variants": [
+    "20th century girl"
+   ],
+   "confirmed": true,
+   "kind": "Korean film",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/20th_Century_Girl",
+   "entities": {
+    "wikipedia:20th Century Girl": 1
+   }
+  },
+  {
+   "title": "Crash Course in Romance",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 178,
+   "demand": 8,
+   "confidence": 0.5,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 247,
+    "ko": 10,
+    "zh": 3,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 67470475,
+   "variants": [
+    "crash course in romance"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Crash_Course_in_Romance",
+   "entities": {
+    "wikipedia:Crash Course in Romance": 1
+   }
+  },
+  {
+   "title": "Fall in Love",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 162,
+   "demand": 11,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 188,
+    "ru": 7,
+    "es": 2,
+    "th": 1
+   },
+   "alternates": [],
+   "views": 7681290,
+   "variants": [
+    "fall in love"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2019,
+   "url": "https://anilist.co/manga/143622",
+   "entities": {
+    "anilist:143622": 1
+   }
+  },
+  {
+   "title": "Would You Marry Me?",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 36,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 141,
+    "ru": 10,
+    "ar": 2
+   },
+   "alternates": [],
+   "views": 8536117,
+   "variants": [
+    "Would you marry me"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Would_You_Marry_Me%3F_%28TV_series%29",
+   "entities": {
+    "wikipedia:Would You Marry Me? (TV series)": 1
+   }
+  },
+  {
+   "title": "Your Name.",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 32,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 202,
+    "ru": 4,
+    "ja": 2,
+    "es": 1
+   },
+   "alternates": [
+    "Kimi no Na wa."
+   ],
+   "views": 6607373,
+   "variants": [
+    "Your name"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2016,
+   "url": "https://anilist.co/anime/21519",
+   "entities": {
+    "anilist:21519": 1
+   }
+  },
+  {
+   "title": "Nukitashi THE ANIMATION",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 27,
+   "demand": 5,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 285,
+    "id": 2,
+    "ja": 1
+   },
+   "alternates": [],
+   "views": 23995648,
+   "variants": [
+    "nukitashi the animation"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2025,
+   "url": "https://anilist.co/anime/174188",
+   "entities": {
+    "anilist:174188": 1
+   }
+  },
+  {
+   "title": "School 2017",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 13,
+   "demand": 6,
+   "confidence": 0.5,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 179,
+    "ar": 14,
+    "ru": 7,
+    "es": 3
+   },
+   "alternates": [],
+   "views": 3079752,
+   "variants": [
+    "school 2017"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2017,
+   "url": "https://en.wikipedia.org/wiki/School_2017",
+   "entities": {
+    "wikipedia:School 2017": 1
+   }
+  },
+  {
+   "title": "Tengoku Daimakyo",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 13,
+   "demand": 3,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 256,
+    "ja": 1,
+    "th": 1,
+    "ru": 1
+   },
+   "alternates": [
+    "Tengoku Daimakyou"
+   ],
+   "views": 38139818,
+   "variants": [
+    "Tengoku Daimakyou"
+   ],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2023,
+   "url": "https://anilist.co/anime/155783",
+   "entities": {
+    "anilist:155783": 1
+   }
+  },
+  {
+   "title": "Toying With Daddy",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 9,
+   "demand": 7,
+   "confidence": 0.5,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 273,
+    "ru": 3,
+    "es": 2,
+    "ar": 2
+   },
+   "alternates": [
+    "TOY DADDY"
+   ],
+   "views": 2918126,
+   "variants": [
+    "toying with daddy"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2025,
+   "url": "https://anilist.co/manga/198182",
+   "entities": {
+    "anilist:198182": 1
+   }
+  },
+  {
+   "title": "Social Savvy Class 101",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 3,
+   "demand": 15,
+   "confidence": 0.5,
+   "genres": {
+    "School drama": 1
+   },
+   "languages": {
+    "en/other": 235
+   },
+   "alternates": [],
+   "views": 1214548,
+   "variants": [
+    "social savvy class 101"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2024,
+   "url": "https://en.wikipedia.org/wiki/Social_Savvy_Class_101",
+   "entities": {
+    "wikipedia:Social Savvy Class 101": 1
+   }
+  },
+  {
+   "title": "Destined with You",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 2,
+   "demand": 7,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 128,
+    "ar": 9,
+    "es": 1,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 1791251,
+   "variants": [
+    "Destined with you"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Destined_with_You",
+   "entities": {
+    "wikipedia:Destined with You": 1
+   }
+  },
+  {
+   "title": "The Love You Give Me",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 1,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 219,
+    "zh": 4,
+    "ru": 3,
+    "th": 1
+   },
+   "alternates": [],
+   "views": 2666484,
+   "variants": [
+    "The love you give me"
+   ],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/The_Love_You_Give_Me_%28TV_series%29",
+   "entities": {
+    "wikipedia:The Love You Give Me (TV series)": 1
+   }
+  },
+  {
+   "title": "Operation: True Love",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 0,
+   "demand": 14,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 151,
+    "ar": 7,
+    "es": 2,
+    "pt": 1
+   },
+   "alternates": [
+    "Jakjeonmyeong Sunjeong"
+   ],
+   "views": 1751691,
+   "variants": [
+    "Operation true love"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2022,
+   "url": "https://anilist.co/manga/149483",
+   "entities": {
+    "anilist:149483": 1
+   }
+  },
+  {
+   "title": "Tower of God",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 0,
+   "demand": 4,
+   "confidence": 0.5,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 193,
+    "ru": 2
+   },
+   "alternates": [
+    "tog",
+    "kami no tou",
+    "Kami no Tou: Tower of God"
+   ],
+   "views": 1685136,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2020,
+   "url": "https://anilist.co/anime/115230",
+   "entities": {
+    "anilist:115230": 1
+   }
+  },
+  {
+   "title": "The Frog",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 1628,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 312,
+    "ru": 5,
+    "ko": 1
+   },
+   "alternates": [],
+   "views": 3550876,
+   "variants": [
+    "The frog"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2024,
+   "url": "https://en.wikipedia.org/wiki/The_Frog_%28South_Korean_TV_series%29",
+   "entities": {
+    "wikipedia:The Frog (South Korean TV series)": 1
+   }
+  },
+  {
+   "title": "Amidst a Snowstorm of Love",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 331,
+   "demand": 7,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 247,
+    "ru": 13,
+    "zh": 3,
+    "th": 3
+   },
+   "alternates": [],
+   "views": 16639581,
+   "variants": [],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/Amidst_a_Snowstorm_of_Love",
+   "entities": {
+    "wikipedia:Amidst a Snowstorm of Love": 1
+   }
+  },
+  {
+   "title": "Soul Land 2: The Peerless Tang Clan",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 143,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese animation": 1
+   },
+   "languages": {
+    "en/other": 243,
+    "bn": 22,
+    "ar": 5,
+    "ru": 4
+   },
+   "alternates": [
+    "Douluo Dalu 2: Jueshi Tangmen"
+   ],
+   "views": 11025084,
+   "variants": [
+    "soul land 2"
+   ],
+   "confirmed": true,
+   "kind": "Donghua",
+   "year": 2023,
+   "url": "https://anilist.co/anime/137683",
+   "entities": {
+    "anilist:137683": 1
+   }
+  },
+  {
+   "title": "Bad Romeo",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 116,
+   "demand": 15,
+   "confidence": 1.0,
+   "genres": {
+    "Thai": 1
+   },
+   "languages": {
+    "en/other": 289,
+    "ar": 4,
+    "ru": 3,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 8784052,
+   "variants": [
+    "bad romeo"
+   ],
+   "confirmed": true,
+   "kind": "Thai drama",
+   "year": 2022,
+   "url": "https://en.wikipedia.org/wiki/Bad_Romeo",
+   "entities": {
+    "wikipedia:Bad Romeo": 1
+   }
+  },
+  {
+   "title": "TenPuru -No One Can Live on Loneliness-",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 103,
+   "demand": 22,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 267,
+    "ru": 7,
+    "ar": 2
+   },
+   "alternates": [
+    "Temple"
+   ],
+   "views": 11394648,
+   "variants": [
+    "tenpuru: no one can live on loneliness"
+   ],
+   "confirmed": true,
+   "kind": "Manga",
+   "year": 2018,
+   "url": "https://anilist.co/manga/109122",
+   "entities": {
+    "anilist:109122": 1
+   }
+  },
+  {
+   "title": "Smells Like Green Spirit",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 44,
+   "demand": 5,
+   "confidence": 1.0,
+   "genres": {
+    "Japanese": 1
+   },
+   "languages": {
+    "en/other": 119,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 773639,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Manga",
+   "year": 2011,
+   "url": "https://anilist.co/manga/85804",
+   "entities": {
+    "anilist:85804": 1
+   }
+  },
+  {
+   "title": "Monster",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 23,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 236,
+    "ru": 8,
+    "ja": 1,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 4936310,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Anime",
+   "year": 2004,
+   "url": "https://anilist.co/anime/19",
+   "entities": {
+    "anilist:19": 1
+   }
+  },
+  {
+   "title": "Dreaming Freedom",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 7,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 288,
+    "es": 1
+   },
+   "alternates": [
+    "Kkumeseo Jayuro"
+   ],
+   "views": 2635747,
+   "variants": [
+    "dreaming freedom"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2021,
+   "url": "https://anilist.co/manga/145525",
+   "entities": {
+    "anilist:145525": 1
+   }
+  },
+  {
+   "title": "The Haunted Palace",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 7,
+   "demand": 12,
+   "confidence": 1.0,
+   "genres": {
+    "Revenge": 1
+   },
+   "languages": {
+    "en/other": 265,
+    "es": 1,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 4903564,
+   "variants": [
+    "The haunted palace"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/The_Haunted_Palace_%28TV_series%29",
+   "entities": {
+    "wikipedia:The Haunted Palace (TV series)": 1
+   }
+  },
+  {
+   "title": "Avenida Brasil",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 3,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Spanish-language": 1
+   },
+   "languages": {
+    "en/other": 199,
+    "es": 18,
+    "ar": 8,
+    "pt": 2
+   },
+   "alternates": [],
+   "views": 7259022,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Telenovela",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/Avenida_Brasil_%28TV_series%29",
+   "entities": {
+    "wikipedia:Avenida Brasil (TV series)": 1
+   }
+  },
+  {
+   "title": "Kill Me, Heal Me",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 1,
+   "demand": 3,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 266,
+    "ko": 1
+   },
+   "alternates": [],
+   "views": 1953014,
+   "variants": [
+    "kill me heal me"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2015,
+   "url": "https://en.wikipedia.org/wiki/Kill_Me%2C_Heal_Me",
+   "entities": {
+    "wikipedia:Kill Me, Heal Me": 1
+   }
+  },
+  {
+   "title": "Codename: Anastasia",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 0,
+   "demand": 5,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 182,
+    "es": 2,
+    "ko": 1,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 978655,
+   "variants": [
+    "codename Anastasia"
+   ],
+   "confirmed": true,
+   "kind": "Manhwa",
+   "year": 2023,
+   "url": "https://anilist.co/manga/164535",
+   "entities": {
+    "anilist:164535": 1
+   }
+  },
+  {
+   "title": "Chuunibyou demo Koi ga Shitai!",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 5,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 206,
+    "ru": 4,
+    "es": 2,
+    "ar": 2
+   },
+   "alternates": [],
+   "views": 13076081,
+   "variants": [
+    "chuunibyou demo koi ga shitai"
+   ],
+   "confirmed": true,
+   "kind": "Novel",
+   "year": 2011,
+   "url": "https://anilist.co/manga/70099",
+   "entities": {
+    "anilist:70099": 1
+   }
+  },
+  {
+   "title": "Triunfo del amor",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 4,
+   "demand": 1,
+   "confidence": 1.0,
+   "genres": {
+    "Spanish-language": 1
+   },
+   "languages": {
+    "en/other": 271,
+    "es": 16,
+    "pt": 1,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 737378,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Telenovela",
+   "year": 2010,
+   "url": "https://en.wikipedia.org/wiki/Triunfo_del_amor",
+   "entities": {
+    "wikipedia:Triunfo del amor": 1
+   }
+  },
+  {
+   "title": "After Earth",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 4,
+   "demand": 5,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 181,
+    "ar": 3,
+    "hi": 1,
+    "ja": 1
+   },
+   "alternates": [],
+   "views": 2186251,
+   "variants": [],
+   "confirmed": true,
+   "kind": "American film",
+   "year": 2013,
+   "url": "https://en.wikipedia.org/wiki/After_Earth",
+   "entities": {
+    "wikipedia:After Earth": 1
+   }
+  },
+  {
+   "title": "Aashiqana",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 3,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 223,
+    "ar": 6,
+    "hi": 2
+   },
+   "alternates": [],
+   "views": 12825108,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Indian series",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/Aashiqana",
+   "entities": {
+    "wikipedia:Aashiqana": 1
+   }
+  },
+  {
+   "title": "Go Ahead",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 2,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 265,
+    "th": 25,
+    "ru": 15,
+    "zh": 7
+   },
+   "alternates": [],
+   "views": 11244314,
+   "variants": [],
+   "confirmed": true,
+   "kind": "C-drama",
+   "year": 2020,
+   "url": "https://en.wikipedia.org/wiki/Go_Ahead_%28TV_series%29",
+   "entities": {
+    "wikipedia:Go Ahead (TV series)": 1
+   }
+  },
+  {
+   "title": "Meg 2: The Trench",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 2,
+   "demand": 9,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 216,
+    "ru": 56,
+    "es": 9,
+    "ar": 8
+   },
+   "alternates": [],
+   "views": 60213529,
+   "variants": [
+    "The Meg 2"
+   ],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Meg_2%3A_The_Trench",
+   "entities": {
+    "wikipedia:Meg 2: The Trench": 1
+   }
+  },
+  {
+   "title": "Strange Love",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 1,
+   "demand": 24,
+   "confidence": 1.0,
+   "genres": {
+    "School drama": 1
+   },
+   "languages": {
+    "en/other": 251,
+    "ru": 8,
+    "ar": 4,
+    "es": 3
+   },
+   "alternates": [],
+   "views": 2868264,
+   "variants": [
+    "strange love"
+   ],
+   "confirmed": true,
+   "kind": "TV series",
+   "year": 2005,
+   "url": "https://en.wikipedia.org/wiki/Strange_Love",
+   "entities": {
+    "wikipedia:Strange Love": 1
+   }
+  },
+  {
+   "title": "Twinkling Watermelon",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 278,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 8007842,
+   "variants": [
+    "twinkling watermelon"
+   ],
+   "confirmed": true,
+   "kind": "K-drama",
+   "year": 2023,
+   "url": "https://en.wikipedia.org/wiki/Twinkling_Watermelon",
+   "entities": {
+    "wikipedia:Twinkling Watermelon": 1
+   }
+  },
+  {
+   "title": "Mann Mast Malang",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 249,
+    "ar": 3,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 12342395,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Pakistani drama",
+   "year": 2025,
+   "url": "https://en.wikipedia.org/wiki/Mann_Mast_Malang",
+   "entities": {
+    "wikipedia:Mann Mast Malang": 1
+   }
+  },
+  {
+   "title": "Fatherhood",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 243,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 28368718,
+   "variants": [
+    "fatherhood"
+   ],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2021,
+   "url": "https://en.wikipedia.org/wiki/Fatherhood_%28film%29",
+   "entities": {
+    "wikipedia:Fatherhood (film)": 1
+   }
+  },
+  {
+   "title": "Destilando Amor",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 1,
+   "confidence": 1.0,
+   "genres": {
+    "Spanish-language": 1
+   },
+   "languages": {
+    "en/other": 203,
+    "es": 33
+   },
+   "alternates": [],
+   "views": 3411706,
+   "variants": [
+    "destilando amor"
+   ],
+   "confirmed": true,
+   "kind": "Telenovela",
+   "year": null,
+   "url": "https://en.wikipedia.org/wiki/Destilando_Amor",
+   "entities": {
+    "wikipedia:Destilando Amor": 1
+   }
+  },
+  {
+   "title": "Renegade Immortal",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 1,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese animation": 1
+   },
+   "languages": {
+    "en/other": 69,
+    "ru": 3
+   },
+   "alternates": [
+    "Xian Ni"
+   ],
+   "views": 718660,
+   "variants": [
+    "Renegade immortal"
+   ],
+   "confirmed": true,
+   "kind": "Donghua",
+   "year": 2023,
+   "url": "https://anilist.co/anime/137653",
+   "entities": {
+    "anilist:137653": 1
+   }
+  },
+  {
+   "title": "Transporter 3",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 283,
+    "ja": 2,
+    "es": 1,
+    "fr": 1
+   },
+   "alternates": [],
+   "views": 4142386,
+   "variants": [],
+   "confirmed": true,
+   "kind": "Film",
+   "year": 2008,
+   "url": "https://en.wikipedia.org/wiki/Transporter_3",
+   "entities": {
+    "wikipedia:Transporter 3": 1
+   }
+  }
+ ],
+ "unconfirmed": [
+  {
+   "title": "Exclusive fairytale",
+   "videos": 4,
+   "commenters": 15,
+   "likes": 266,
+   "demand": 30,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 4
+   },
+   "languages": {
+    "en/other": 1008,
+    "ru": 6,
+    "th": 1,
+    "zh": 2,
+    "ar": 5,
+    "bn": 2,
+    "es": 2,
+    "ja": 1
+   },
+   "alternates": [],
+   "views": 26647929,
+   "variants": [
+    "exclusive fairytale",
+    "Exclusive hairytale",
+    "Exclusive fairy tail"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Our secret diary",
+   "videos": 2,
+   "commenters": 12,
+   "likes": 365,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Japanese": 2
+   },
+   "languages": {
+    "en/other": 559,
+    "ar": 8,
+    "ja": 2,
+    "ru": 5,
+    "es": 3
+   },
+   "alternates": [],
+   "views": 18519134,
+   "variants": [
+    "our secret diary",
+    "Our secret dairy"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Liars in love",
+   "videos": 2,
+   "commenters": 9,
+   "likes": 18,
+   "demand": 21,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 2
+   },
+   "languages": {
+    "en/other": 374,
+    "ru": 23,
+    "ar": 17,
+    "ko": 4,
+    "bn": 6
+   },
+   "alternates": [],
+   "views": 27988113,
+   "variants": [
+    "liars in love"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Marry me again",
+   "videos": 1,
+   "commenters": 10,
+   "likes": 475,
+   "demand": 11,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 202,
+    "ru": 2,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 19895907,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Grab your love",
+   "videos": 1,
+   "commenters": 9,
+   "likes": 80,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 243,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 5784877,
+   "variants": [
+    "grab your love"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Ok! Madam",
+   "videos": 1,
+   "commenters": 9,
+   "likes": 36,
+   "demand": 11,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 201,
+    "ru": 3
+   },
+   "alternates": [],
+   "views": 1988742,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "The black devil",
+   "videos": 1,
+   "commenters": 8,
+   "likes": 1448,
+   "demand": 33,
+   "confidence": 1.0,
+   "genres": {
+    "Japanese": 1
+   },
+   "languages": {
+    "en/other": 291
+   },
+   "alternates": [],
+   "views": 4149147,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Love 020",
+   "videos": 1,
+   "commenters": 8,
+   "likes": 5,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 298,
+    "ko": 5,
+    "bn": 5,
+    "hi": 1
+   },
+   "alternates": [],
+   "views": 26176128,
+   "variants": [
+    "love 020"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Pinjra",
+   "videos": 1,
+   "commenters": 8,
+   "likes": 2,
+   "demand": 11,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 255,
+    "bn": 1
+   },
+   "alternates": [],
+   "views": 21542720,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "BLOODHOUND",
+   "videos": 1,
+   "commenters": 7,
+   "likes": 515,
+   "demand": 3,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 223,
+    "ru": 17,
+    "ar": 3,
+    "th": 3
+   },
+   "alternates": [],
+   "views": 4441754,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "The unncanny counter",
+   "videos": 1,
+   "commenters": 7,
+   "likes": 219,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 261,
+    "es": 3,
+    "ar": 3,
+    "ko": 2
+   },
+   "alternates": [],
+   "views": 3747981,
+   "variants": [
+    "the unncanny counter"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Wu Tang, An American saga",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 8416,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 310
+   },
+   "alternates": [],
+   "views": 18383526,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "How to Survive as a terminally-ill Dragon",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 3136,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 258,
+    "ru": 21,
+    "ko": 3,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 3831251,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Who are you? School",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 1186,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "School drama": 1
+   },
+   "languages": {
+    "en/other": 245,
+    "ru": 15,
+    "ar": 3,
+    "bn": 1
+   },
+   "alternates": [],
+   "views": 51043807,
+   "variants": [
+    "who are you? School"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Aashiquna",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 342,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 300,
+    "bn": 12,
+    "hi": 9,
+    "ru": 9
+   },
+   "alternates": [],
+   "views": 202393001,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Falling high school girl",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 215,
+   "demand": 31,
+   "confidence": 1.0,
+   "genres": {
+    "Japanese": 1
+   },
+   "languages": {
+    "en/other": 344,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 4651187,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Miss the Dragon",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 111,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 220,
+    "bn": 18,
+    "hi": 4,
+    "ko": 2
+   },
+   "alternates": [],
+   "views": 9187385,
+   "variants": [
+    "miss the Dragon"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Shikimori",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 17,
+   "demand": 31,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 251,
+    "ru": 4,
+    "es": 3,
+    "ja": 2
+   },
+   "alternates": [],
+   "views": 3792126,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Mr.bad",
+   "videos": 1,
+   "commenters": 6,
+   "likes": 2,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 229,
+    "bn": 14,
+    "ar": 2,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 13263674,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Midnight runner",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 11133,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 221,
+    "ru": 4,
+    "ko": 2,
+    "zh": 1
+   },
+   "alternates": [],
+   "views": 77849070,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "My lethal man",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 302,
+   "demand": 11,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 210,
+    "ar": 5,
+    "ru": 4
+   },
+   "alternates": [],
+   "views": 35470211,
+   "variants": [
+    "my lethal man"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Dominant yakuza",
+   "videos": 1,
+   "commenters": 5,
+   "likes": 251,
+   "demand": 16,
+   "confidence": 1.0,
+   "genres": {
+    "Japanese": 1
+   },
+   "languages": {
+    "en/other": 221
+   },
+   "alternates": [],
+   "views": 2132050,
+   "variants": [
+    "dominant yakuza"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Moon in the day It",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 1010,
+   "demand": 33,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 297,
+    "ar": 1,
+    "es": 1,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 5019535,
+   "variants": [
+    "moon in the day It"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Everyone loves me",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 679,
+   "demand": 1,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 152,
+    "bn": 3,
+    "ru": 3,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 15435340,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "DayX",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 11,
+   "demand": 3,
+   "confidence": 0.5,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 244,
+    "ru": 3,
+    "ja": 1
+   },
+   "alternates": [],
+   "views": 11909382,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Rabbit on the moon",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 8,
+   "demand": 13,
+   "confidence": 1.0,
+   "genres": {
+    "Thai": 1
+   },
+   "languages": {
+    "en/other": 177,
+    "ru": 4,
+    "ar": 3
+   },
+   "alternates": [],
+   "views": 3028442,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Pachinko",
+   "videos": 1,
+   "commenters": 4,
+   "likes": 8,
+   "demand": 3,
+   "confidence": 0.5,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 150,
+    "es": 5,
+    "ru": 4,
+    "ar": 3
+   },
+   "alternates": [],
+   "views": 13454707,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "A little rope for hope",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 7830,
+   "demand": 3,
+   "confidence": 1.0,
+   "genres": {
+    "Japanese": 1
+   },
+   "languages": {
+    "en/other": 209,
+    "ar": 2,
+    "ja": 1,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 7063083,
+   "variants": [
+    "a little rope for hope"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "You are apple of my eye",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 3461,
+   "demand": 4,
+   "confidence": 0.5,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 288,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 31511869,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "I offended the school prince",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 1554,
+   "demand": 12,
+   "confidence": 0.5,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 244,
+    "ar": 30,
+    "ru": 11,
+    "bn": 5
+   },
+   "alternates": [],
+   "views": 18542327,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Open range",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 114,
+   "demand": 4,
+   "confidence": 0.5,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 239,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 1856994,
+   "variants": [
+    "open range"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Drama name is paramparca",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 24,
+   "demand": 15,
+   "confidence": 1.0,
+   "genres": {
+    "Turkish": 1
+   },
+   "languages": {
+    "en/other": 285,
+    "ar": 10,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 1927842,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Assigned to Drive Her",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 17,
+   "demand": 33,
+   "confidence": 0.5,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 238,
+    "ru": 27,
+    "ar": 12,
+    "es": 9
+   },
+   "alternates": [],
+   "views": 35311856,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "TereBin",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 4,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "General drama": 1
+   },
+   "languages": {
+    "en/other": 237,
+    "ar": 5,
+    "hi": 2
+   },
+   "alternates": [],
+   "views": 21112981,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Descendants of sun",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 3,
+   "demand": 10,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 202,
+    "ar": 29,
+    "ru": 23,
+    "th": 2
+   },
+   "alternates": [],
+   "views": 9201773,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Oh my boss",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 3,
+   "demand": 7,
+   "confidence": 0.5,
+   "genres": {
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 187,
+    "ar": 48,
+    "ru": 18,
+    "th": 1
+   },
+   "alternates": [],
+   "views": 6792033,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Golden boy",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 2,
+   "demand": 11,
+   "confidence": 0.5,
+   "genres": {
+    "Turkish": 1
+   },
+   "languages": {
+    "en/other": 141,
+    "ru": 7,
+    "es": 2,
+    "ar": 2
+   },
+   "alternates": [],
+   "views": 2831186,
+   "variants": [
+    "golden boy"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Gangu bhai",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 1,
+   "demand": 1,
+   "confidence": 0.5,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 190,
+    "hi": 2,
+    "bn": 1
+   },
+   "alternates": [],
+   "views": 35697844,
+   "variants": [
+    "gangu bhai"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Shaidai",
+   "videos": 1,
+   "commenters": 3,
+   "likes": 0,
+   "demand": 7,
+   "confidence": 1.0,
+   "genres": {
+    "Identification query": 1
+   },
+   "languages": {
+    "en/other": 192,
+    "hi": 1
+   },
+   "alternates": [],
+   "views": 2653747,
+   "variants": [
+    "shaidai"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Back to seventeen",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 487,
+   "demand": 18,
+   "confidence": 1.0,
+   "genres": {
+    "School drama": 1
+   },
+   "languages": {
+    "en/other": 290,
+    "ru": 2,
+    "ar": 2,
+    "zh": 1
+   },
+   "alternates": [],
+   "views": 5548681,
+   "variants": [
+    "back to seventeen"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Present is present",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 27,
+   "demand": 8,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 246,
+    "ru": 7,
+    "ar": 7,
+    "zh": 4
+   },
+   "alternates": [],
+   "views": 6826093,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "She walked into the dangerous family",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 25,
+   "demand": 23,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 246,
+    "zh": 1,
+    "es": 1,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 2569105,
+   "variants": [
+    "she walked into the dangerous family"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "The Witcher, it",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 18,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 224,
+    "ar": 8,
+    "ru": 3,
+    "bn": 1
+   },
+   "alternates": [],
+   "views": 195866579,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "My uncanny destiny",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 11,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 186,
+    "bn": 3,
+    "es": 1,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 1190494,
+   "variants": [
+    "my uncanny destiny"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Juego de mentiras",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 6,
+   "demand": 43,
+   "confidence": 1.0,
+   "genres": {
+    "Spanish-language": 1
+   },
+   "languages": {
+    "en/other": 212,
+    "es": 59
+   },
+   "alternates": [],
+   "views": 1912288,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Be passionately in love",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 0,
+   "demand": 10,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 131
+   },
+   "alternates": [],
+   "views": 3170284,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Hear me",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 0,
+   "demand": 4,
+   "confidence": 1.0,
+   "genres": {
+    "Turkish": 1
+   },
+   "languages": {
+    "en/other": 130,
+    "ru": 7,
+    "es": 6,
+    "ar": 4
+   },
+   "alternates": [],
+   "views": 2649325,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Love ın the air",
+   "videos": 1,
+   "commenters": 2,
+   "likes": 0,
+   "demand": 12,
+   "confidence": 1.0,
+   "genres": {
+    "Thai": 1
+   },
+   "languages": {
+    "en/other": 242,
+    "ru": 4,
+    "ar": 3,
+    "zh": 3
+   },
+   "alternates": [],
+   "views": 4251894,
+   "variants": [
+    "love ın the air"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Your fault london",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 3,
+   "demand": 3,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 273,
+    "ar": 2
+   },
+   "alternates": [],
+   "views": 2595304,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "The witch/2",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 3,
+   "demand": 10,
+   "confidence": 1.0,
+   "genres": {
+    "Korean": 1
+   },
+   "languages": {
+    "en/other": 238,
+    "ru": 7,
+    "ko": 3,
+    "hi": 1
+   },
+   "alternates": [],
+   "views": 1439614,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Love In The Edge of Divorce",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 2,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Chinese": 1
+   },
+   "languages": {
+    "en/other": 205,
+    "ar": 6,
+    "ru": 1,
+    "es": 1
+   },
+   "alternates": [],
+   "views": 7272390,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Gata only remix",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 1,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Anime": 1
+   },
+   "languages": {
+    "en/other": 256,
+    "ar": 5,
+    "ja": 3,
+    "ru": 2
+   },
+   "alternates": [],
+   "views": 1019339,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Ryan Ren",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 1,
+   "demand": 7,
+   "confidence": 1.0,
+   "genres": {
+    "Romance": 1
+   },
+   "languages": {
+    "en/other": 215,
+    "ru": 28,
+    "ar": 18,
+    "zh": 3
+   },
+   "alternates": [],
+   "views": 20956065,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Hobbs vs shaw",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 1,
+   "demand": 5,
+   "confidence": 1.0,
+   "genres": {
+    "Film": 1
+   },
+   "languages": {
+    "en/other": 234,
+    "hi": 2,
+    "bn": 2
+   },
+   "alternates": [],
+   "views": 3477126,
+   "variants": [
+    "hobbs vs shaw"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Tu jhooti main makarr",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 6,
+   "confidence": 1.0,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 264,
+    "hi": 2,
+    "ar": 1
+   },
+   "alternates": [],
+   "views": 9045296,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Chalte chalte",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 7,
+   "confidence": 1.0,
+   "genres": {
+    "Indian": 1
+   },
+   "languages": {
+    "en/other": 239,
+    "hi": 5,
+    "ru": 1,
+    "fr": 1
+   },
+   "alternates": [],
+   "views": 12616923,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Dew Jirawat",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 2,
+   "confidence": 1.0,
+   "genres": {
+    "Thai": 1
+   },
+   "languages": {
+    "en/other": 160,
+    "bn": 8,
+    "hi": 2,
+    "ru": 1
+   },
+   "alternates": [],
+   "views": 1312958,
+   "variants": [],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "Star catcher",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "Manhwa/Webtoon": 1
+   },
+   "languages": {
+    "en/other": 119
+   },
+   "alternates": [],
+   "views": 49446,
+   "variants": [
+    "star catcher"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  },
+  {
+   "title": "The promise of giving up together",
+   "videos": 1,
+   "commenters": 1,
+   "likes": 0,
+   "demand": 0,
+   "confidence": 1.0,
+   "genres": {
+    "School drama": 1
+   },
+   "languages": {
+    "en/other": 243,
+    "tr": 1,
+    "bn": 1
+   },
+   "alternates": [],
+   "views": 3234040,
+   "variants": [
+    "the promise of giving up together"
+   ],
+   "confirmed": false,
+   "kind": "",
+   "year": null,
+   "url": "",
+   "entities": {}
+  }
+ ],
+ "rejected": [
+  {
+   "video": "hr8Dh1HGBDQ",
+   "title": "business as usual",
+   "query": "thai drama clip",
+   "known_as": [
+    "Film (wikipedia)"
+   ]
+  },
+  {
+   "video": "s5d-H5fH1zI",
+   "title": "truth or dare",
+   "query": "movie scene shorts",
+   "known_as": [
+    "Manhwa (anilist)"
+   ]
+  },
+  {
+   "video": "0Dk6goDMxlU",
+   "title": "Monster",
+   "query": "telenovela clip",
+   "known_as": [
+    "Anime (anilist)",
+    "K-drama (wikipedia)",
+    "Manga (anilist)",
+    "Manhua (anilist)",
+    "Manhwa (anilist)"
+   ]
+  },
+  {
+   "video": "f1-IW9lRyW0",
+   "title": "Villains",
+   "query": "donghua edit",
+   "known_as": [
+    "Film (wikipedia)",
+    "K-drama (wikipedia)",
+    "Manhwa (anilist)"
+   ]
+  },
+  {
+   "video": "b9_ZaStyrOo",
+   "title": "united states",
+   "query": "school drama clip",
+   "known_as": [
+    "TV series (wikipedia)"
+   ]
+  },
+  {
+   "video": "CnDNIEe7G0I",
+   "title": "The Outlaws",
+   "query": "korean movie scene",
+   "known_as": [
+    "Manhua (anilist)"
+   ]
+  },
+  {
+   "video": "Es7JjfGPNCg",
+   "title": "the boys",
+   "query": "indian serial scene",
+   "known_as": [
+    "TV series (wikipedia)"
+   ]
+  }
+ ],
+ "by_kind": {
+  "K-drama": 82,
+  "Anime": 42,
+  "Manhwa": 24,
+  "C-drama": 18,
+  "Thai drama": 13,
+  "Film": 11,
+  "Novel": 9,
+  "Manga": 5,
+  "Telenovela": 4,
+  "Donghua": 4,
+  "Pakistani drama": 3,
+  "Indian film": 3,
+  "TV series": 2,
+  "American film": 2,
+  "Korean film": 2,
+  "J-drama": 1,
+  "Indian series": 1
+ },
+ "by_genre": {
+  "Korean": 75,
+  "Anime": 65,
+  "Indian": 51,
+  "Film": 47,
+  "Manhwa/Webtoon": 45,
+  "Chinese": 33,
+  "School drama": 31,
+  "General drama": 30,
+  "Spanish-language": 30,
+  "Romance": 23,
+  "Japanese": 22,
+  "Revenge": 21,
+  "Thai": 19,
+  "Chinese animation": 16,
+  "Turkish": 15,
+  "Identification query": 7
+ },
+ "by_language": {
+  "en/other": 124733,
+  "es": 1752,
+  "ru": 1460,
+  "ar": 1060,
+  "hi": 477,
+  "ko": 308,
+  "bn": 262,
+  "ja": 235,
+  "th": 96,
+  "zh": 86,
+  "pt": 43,
+  "fr": 15
+ },
+ "language_reach": {
+  "ru": 153,
+  "ar": 113,
+  "es": 75,
+  "hi": 43,
+  "bn": 31,
+  "ko": 26,
+  "ja": 15,
+  "zh": 13,
+  "th": 11,
+  "pt": 2,
+  "fr": 1
+ },
+ "non_english_comments": 5815,
+ "gap_examples": [
+  {
+   "title": "Option 1 or 2😍 #bjo36 #wangyilei #shorts #cdrama #fyp #chinesedrama #minidrama #",
+   "asked": 33
+  },
+  {
+   "title": "She's savage on her childhood bullies 👏 🤣 #kdrama #kdramaedit #motelcalifornia #",
+   "asked": 22
+  },
+  {
+   "title": "Younger Boyfriend held her hands playing video games saying, don't move, I am ne",
+   "asked": 21
+  },
+  {
+   "title": "Chen si #chinesedrama2024 #drama #love #topnews",
+   "asked": 20
+  },
+  {
+   "title": "She became very jealous. #karasevda #turkishdrama",
+   "asked": 18
+  },
+  {
+   "title": "Just a scene?👀 Look again❤️‍🔥|#kızılgoncalar | #cünzey #zeycün #turkishseries #l",
+   "asked": 18
+  },
+  {
+   "title": "she doesn't know there'r  zombies in train #kdrama #newtopia #shortsvideo #short",
+   "asked": 18
+  },
+  {
+   "title": "\"THE BULL GOT SCARED!\" | Tom Cruise | Knight and Day | Fragment - slxughter (slo",
+   "asked": 17
+  },
+  {
+   "title": "He kissed her😳 || OUR BLUES • #ourblues #kdrama",
+   "asked": 16
+  },
+  {
+   "title": "She knew he doesn’t eat mouth to mouth - turkish drama status #shorts",
+   "asked": 15
+  }
+ ]
+}

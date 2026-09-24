@@ -412,9 +412,7 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
     var box = el("div", "watch");
     function done(text) { box.textContent = ""; box.appendChild(el("span", "done", text)); }
     if (watching(r.video.id)) { done("This one is on your check-back list below. We look again each time you open TitleSift."); return box; }
-    var b = el("button", null, r.answer ? "Check back later for updates" : "Check back for me");
-    b.type = "button";
-    b.addEventListener("click", function () {
+    function save() {
       var list = loadWaiting().filter(function (w) { return w.id !== r.video.id; });
       var snap = snapshot(r);
       list.unshift({ id: r.video.id, title: r.video.title || "", thumb: r.video.thumbnail || "",
@@ -424,7 +422,13 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
         done("Saved to your check-back list below. We’ll look again each time you open TitleSift and mark it when something new turns up.");
         drawWaiting();
       } else done("This browser won’t let us save it. Try again from a normal (not private) window.");
-    });
+    }
+    // Every video still waiting for a name goes on the list by itself:
+    // people expect it to be there, and tapping × removes it.
+    if (!r.answer) { save(); return box; }
+    var b = el("button", null, "Check back later for updates");
+    b.type = "button";
+    b.addEventListener("click", save);
     box.appendChild(b);
     return box;
   }

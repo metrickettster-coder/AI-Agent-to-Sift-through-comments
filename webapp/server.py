@@ -334,6 +334,8 @@ class Handler(BaseHTTPRequestHandler):
         if u.path == "/healthz":
             return self._send(200, b"ok", "text/plain")
         name = "index.html" if u.path in ("/", "") else u.path.lstrip("/")
+        if name in ("privacy", "terms"):
+            name += ".html"
         f = (STATIC / name).resolve()
         if STATIC not in f.parents or not f.is_file():
             return self._send(404, b"Not found", "text/plain")

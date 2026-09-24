@@ -108,6 +108,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .example-tag { font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: 11px;
   background: var(--bubble); padding: 4px 8px; border-radius: 6px; }
 .video { display: flex; gap: 12px; align-items: center; padding: 12px 18px 14px; border-bottom: 1px solid var(--line); }
+a.video { color: inherit; text-decoration: none; }
+a.video:hover p, a.video:focus-visible p { text-decoration: underline; text-underline-offset: 3px; }
 .video img { width: 72px; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; flex: none; background: var(--bubble); max-width: 100%; }
 .video p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.35;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
@@ -171,7 +173,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .how h2 { margin: 0; font: 700 15px var(--display); color: var(--ink); }
 .how ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
 footer { font-size: 13px; color: var(--muted); display: grid; gap: 10px; }
-footer a { color: var(--ink); }
+footer a, .legal a { color: var(--ink); text-underline-offset: 3px; }
+.hint.legal { font-size: 13px; }
 .rate { border-top: 1px solid var(--line); padding: 14px 18px 18px; display: grid; gap: 10px; font-size: 15px; }
 .rate .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .rate .q { font-weight: 700; margin-right: 4px; }
@@ -212,6 +215,7 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
     </div>
     <button class="go" id="go" type="submit">Find the name</button>
     <p class="hint">Works on Shorts, clips and edits of manhwa, manhua, manga, webtoons and anime.</p>
+    <p class="hint legal">By using TitleSift you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>, and to the <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a>.</p>
   </form>
 
   <div id="out" aria-live="polite"></div>
@@ -233,6 +237,7 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
   <footer>
     <span>Answers come from what people wrote in the comments. When nobody has named it yet, we say so rather than guess.</span>
     <span>Questions? Email <a href="mailto:titlesift@gmail.com">titlesift@gmail.com</a></span>
+    <span><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Use</a> · <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a> · Uses YouTube API Services</span>
     <a class="linkish" id="kofi" href="#" target="_blank" rel="noopener" hidden>Like TitleSift? Tip on Ko-fi</a>
     <button class="linkish" id="fb-open" type="button">Send feedback</button>
     <form class="fb" id="fb" hidden novalidate>
@@ -298,7 +303,9 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
     var eb = el("div", "eyebrow");
     eb.appendChild(el("span", null, r.example ? "Here’s one we looked up" : "From this video"));
     if (r.example) eb.appendChild(el("span", "example-tag", "Example"));
-    var v = el("div", "video");
+    var id = r.video && /^[\w-]{11}$/.test(r.video.id || "") ? r.video.id : null;
+    var v = el(id ? "a" : "div", "video");
+    if (id) { v.href = "https://www.youtube.com/watch?v=" + id; v.target = "_blank"; v.rel = "noopener"; v.title = "Open on YouTube"; }
     if (r.video && r.video.thumbnail) {
       var img = el("img"); img.alt = ""; img.loading = "lazy"; img.onerror = function () { img.hidden = true; }; img.src = r.video.thumbnail; v.appendChild(img);
     }

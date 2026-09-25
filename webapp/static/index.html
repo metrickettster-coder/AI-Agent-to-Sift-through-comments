@@ -128,6 +128,7 @@ a.video:hover p, a.video:focus-visible p { text-decoration: underline; text-unde
 .chip.medium { color: var(--medium); background: var(--medium-bg); }
 .chip.low { color: var(--low); background: var(--low-bg); }
 .aka { font-size: 14px; color: var(--muted); }
+.agreed { font-size: 14px; font-weight: 700; color: var(--high); }
 
 .actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 18px 18px; }
 .btn { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 15px;
@@ -181,10 +182,10 @@ footer a, .legal a { color: var(--ink); text-underline-offset: 3px; }
 .pill { border: 2px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px;
   padding: 7px 14px; font: 700 14px var(--body); cursor: pointer; }
 .pill:hover { border-color: var(--ink); }
-textarea, select { width: 100%; border: 2px solid var(--line); border-radius: 12px; background: var(--surface);
+input.name, textarea, select { width: 100%; border: 2px solid var(--line); border-radius: 12px; background: var(--surface);
   color: var(--ink); font: 16px/1.4 var(--body); padding: 10px 12px; }
 textarea { min-height: 84px; resize: vertical; }
-textarea:focus, select:focus { outline: none; border-color: var(--accent); }
+input.name:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
 .send { justify-self: start; border: 0; border-radius: 12px; background: var(--ink); color: var(--ground);
   padding: 10px 16px; font: 700 15px var(--body); cursor: pointer; }
 .thanks { color: var(--high); font-weight: 700; }
@@ -348,6 +349,9 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
       ? a.also_called.join(" · ")
       : "no other names found"));
     ans.appendChild(aka);
+    if (a.community && !a.from_community) {
+      ans.appendChild(el("div", "agreed", "✓ Confirmed by " + (a.community === 1 ? "1 TitleSift user" : a.community + " TitleSift users")));
+    }
     card.appendChild(ans);
 
     var act = el("div", "actions");
@@ -395,6 +399,18 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
       });
       o.appendChild(ul);
       card.appendChild(o);
+    }
+    if (r.community_others && r.community_others.length) {
+      var co = el("div", "others");
+      co.appendChild(el("div", "label", "Other names TitleSift users gave"));
+      var cul = el("ul");
+      r.community_others.forEach(function (x) {
+        var li = el("li"); li.appendChild(el("b", null, x.title));
+        li.appendChild(el("span", null, x.count === 1 ? "1 person" : x.count + " people"));
+        cul.appendChild(li);
+      });
+      co.appendChild(cul);
+      card.appendChild(co);
     }
     if (!r.example) card.appendChild(rateBox(r));
     out.appendChild(card);
@@ -502,28 +518,55 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
       .then(function (res) { return res.json().then(function (j) { if (!res.ok) throw new Error(j.error || "Couldn’t send that."); return j; }); });
   }
 
+  // A name typed here is saved against the video, so the next person who
+  // looks it up can see it even if the comments never say it.
+  function sendName(video, name, yes) {
+    return fetch("/api/name", { method: "POST", headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ video: video, name: name, confirm: !!yes }) })
+      .then(function (res) { return res.json().then(function (j) { if (!res.ok) throw new Error(j.error || "Couldn’t save that."); return j; }); });
+  }
+
   // "Was this right?" under every live answer, and "Know the name?" when
   // there is none: the people who searched are the ones who can tell us.
   function rateBox(r) {
     var box = el("div", "rate");
     var row = el("div", "row");
     function thanks(text) { box.textContent = ""; box.appendChild(el("span", "thanks", text)); }
-    function askWhat(prompt, kind) {
+    // wrong: the answer shown was wrong, so also tell us (and ask what
+    // else went wrong). Otherwise nothing was found and the name is enough.
+    function askWhat(prompt, wrong) {
       box.textContent = "";
       var id = "fix-" + (r.video.id || "x");
       var lab = el("label", null, prompt); lab.htmlFor = id;
-      var ta = el("textarea"); ta.id = id; ta.maxLength = 2000;
-      ta.placeholder = "The right name, or what’s wrong (optional)";
+      var nm = el("input", "name"); nm.id = id; nm.maxLength = 120; nm.autocomplete = "off";
+      nm.placeholder = "The name of the show or comic";
+      box.appendChild(lab); box.appendChild(nm);
+      var ta = null;
+      if (wrong) {
+        ta = el("textarea"); ta.maxLength = 2000; ta.setAttribute("aria-label", "What else went wrong");
+        ta.placeholder = "Anything else that went wrong (optional)";
+        box.appendChild(ta);
+      }
       var send = el("button", "send", "Send"); send.type = "button";
       var st = el("span");
-      send.addEventListener("click", function () {
-        send.disabled = true;
-        sendFeedback({ kind: kind, message: ta.value })
-          .then(function () { thanks("Thanks! This helps us fix it."); })
-          .catch(function (e) { st.textContent = e.message; send.disabled = false; });
-      });
-      box.appendChild(lab); box.appendChild(ta); box.appendChild(send); box.appendChild(st);
-      ta.focus();
+      function go() {
+        var name = nm.value.trim(), more = ta ? ta.value.trim() : "";
+        if (!name && !more) { st.textContent = "Type the name first."; nm.focus(); return; }
+        send.disabled = true; st.textContent = "";
+        var jobs = [];
+        if (name) jobs.push(sendName(r.video.id, name, false));
+        if (wrong) jobs.push(sendFeedback({ kind: "wrong", message: (name ? "Right name: " + name + (more ? "\n\n" : "") : "") + more }));
+        Promise.all(jobs).then(function (res) {
+          var n = name ? res[0] : null;
+          if (!n) thanks("Thanks! This helps us fix it.");
+          else if (n.shown) thanks("Thanks! The next person who looks up this video will see “" + name + "”.");
+          else thanks("Thanks! We’ll show “" + name + "” to others as soon as one more person gives the same name.");
+        }).catch(function (e) { st.textContent = e.message; send.disabled = false; });
+      }
+      send.addEventListener("click", go);
+      nm.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); go(); } });
+      box.appendChild(send); box.appendChild(st);
+      nm.focus();
     }
     if (r.answer) {
       row.appendChild(el("span", "q", "Was this right?"));
@@ -532,13 +575,14 @@ textarea:focus, select:focus { outline: none; border-color: var(--accent); }
       yes.addEventListener("click", function () {
         yes.disabled = no.disabled = true;
         sendFeedback({ kind: "right" }).catch(function () {});
+        sendName(r.video.id, r.answer.title, true).catch(function () {});
         if (askedPrice()) thanks("Thanks for letting us know."); else priceBox(box);
       });
-      no.addEventListener("click", function () { askWhat("What’s the right name, or what went wrong?", "wrong"); });
+      no.addEventListener("click", function () { askWhat("What’s the right name?", true); });
       row.appendChild(yes); row.appendChild(no);
     } else {
       var know = el("button", "pill", "I know the name"); know.type = "button";
-      know.addEventListener("click", function () { askWhat("What is it called?", "wrong"); });
+      know.addEventListener("click", function () { askWhat("What is it called? We’ll show it to the next person who asks.", false); });
       row.appendChild(know);
     }
     box.appendChild(row);

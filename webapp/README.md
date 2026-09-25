@@ -64,6 +64,21 @@ a `PRICEVOTE` line.
 Set `KOFI_URL` (for example `https://ko-fi.com/yourname`) and a "Tip on
 Ko-fi" link appears in the footer and after a vote. Without it, no link shows.
 
+## Names from visitors
+
+"I know the name" (when nothing was found) and "What's the right name?"
+(after "No") save the typed name against the video; "Yes" counts as agreeing
+with the answer shown. Each person counts once per name per video. A name is
+shown to later visitors once AniList, Wikipedia or MangaDex knows it, or two
+different people gave it; agreeing with an answer adds a "Confirmed by N
+TitleSift users" line. `/names` lists everything given, newest first.
+
+Names live in memory. With `GITHUB_TOKEN` set (fine-grained, this repo only,
+Contents and Issues read and write) they are also saved to `community.json`
+on the `titlesift-data` branch every 30 seconds after a change, and loaded
+again on start. Render only deploys `main`, so these saves never redeploy.
+Only the video id, the name, a count and dates are saved, never who gave it.
+
 ## Phone extras
 
 `manifest.json` makes the page installable ("Add to Home screen"). On

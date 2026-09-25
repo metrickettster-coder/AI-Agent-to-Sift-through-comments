@@ -13,6 +13,7 @@ so one busy Short cannot spend the day's quota on its own.
 """
 from __future__ import annotations
 
+import base64
 import html
 import json
 import os
@@ -30,7 +31,9 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 
 from titlesift.fetch import YouTubeAPISource, video_id  # noqa: E402
-from titlesift.finder import default_caches, extractor, find, interactive  # noqa: E402
+from titlesift.finder import (_answer_dict, _db_note, confirm, default_caches,  # noqa: E402
+                              extractor, find, interactive)
+from titlesift.gazetteer import fold  # noqa: E402
 
 STATIC = HERE / "static"
 TYPES = {".html": "text/html; charset=utf-8", ".js": "text/javascript",
@@ -68,8 +71,10 @@ def lookup(url: str, visitor: str) -> tuple[int, dict]:
     now = time.time()
     with _lock:
         hit = _answers.get(vid)
-        if hit and now - hit[0] < CACHE_SECONDS:
-            return 200, hit[1]
+        fresh = hit[1] if hit and now - hit[0] < CACHE_SECONDS else None
+    if fresh:
+        return 200, with_names(fresh)
+    with _lock:
         recent = [t for t in _visits.get(visitor, []) if now - t < 3600]
         if len(recent) >= PER_HOUR:
             return 429, {"error": "That's a lot of lookups in one hour. Give it a little while and try again."}
@@ -95,7 +100,7 @@ def lookup(url: str, visitor: str) -> tuple[int, dict]:
         if len(_answers) > 5000:
             for k in sorted(_answers, key=lambda k: _answers[k][0])[:1000]:
                 _answers.pop(k, None)
-    return 200, result
+    return 200, with_names(result)
 
 
 # ------------------------------------------------------------- feedback
@@ -292,6 +297,214 @@ def config() -> dict:
     return {"kofi": kofi if re.match(r"^https://ko-fi\.com/[A-Za-z0-9_]+/?$", kofi) else ""}
 
 
+# ------------------------------------------------------------- names from visitors
+#
+# When the comments don't name a show, the next best source is the person
+# who just searched for it and later found out. "I know the name" saves what
+# they type against the video, and "Yes, this was right" counts as agreeing
+# with the answer shown. A name reaches other visitors only once AniList,
+# Wikipedia or MangaDex knows it, or two different people gave it, so one
+# person can't put made-up text on the page.
+#
+# Names live in memory. With GITHUB_TOKEN set they are also kept in
+# community.json on the titlesift-data branch of FEEDBACK_REPO (Render only
+# redeploys from main, so these writes never trigger a deploy). Only the
+# video id, the name, how many people gave it and when are saved: nothing
+# about who gave it.
+
+NAMES_BRANCH = os.environ.get("NAMES_BRANCH", "titlesift-data")
+NAMES_FILE = "community.json"
+NAMES_KEEP = 20000                      # videos; the oldest drop off after that
+_names: dict[str, dict[str, dict]] = {}  # video -> fold(name) -> entry
+_gave: dict[tuple[str, str], set] = {}  # (visitor, video) -> names they gave
+_name_posts: dict[str, list[float]] = {}
+_names_dirty = threading.Event()
+_URLISH = re.compile(r"https?:|www\.|\.(com|net|org|io|gg|ly|me)\b", re.I)
+
+
+def _video_meta(vid: str) -> dict:
+    """What confirm() uses to tell a manhwa from a film of the same name."""
+    hit = _answers.get(vid)
+    title = ((hit[1].get("video") or {}).get("title") or "") if hit else ""
+    return {"title": title, "tags": [], "description": ""}
+
+
+def _shown(e: dict) -> bool:
+    return e["count"] >= 2 or (e["count"] >= 1 and bool(e.get("db")))
+
+
+def with_names(result: dict) -> dict:
+    """The looked-up answer plus what TitleSift visitors have said about it."""
+    vid = (result.get("video") or {}).get("id")
+    with _lock:
+        entries = [dict(e) for e in (_names.get(vid) or {}).values()]
+    if not entries:
+        return result
+    entries.sort(key=lambda e: (-e["count"], e["first"]))
+    r = dict(result)
+    a = r.get("answer")
+    if a:
+        known = {fold(a["title"])} | {fold(n) for n in a.get("also_called") or []}
+        if a.get("database"):
+            known.add(fold(a["database"].get("name") or ""))
+        match = next((e for e in entries if fold(e["name"]) in known), None)
+        if match:
+            r["answer"] = dict(a, community=match["count"])
+        rest = [e for e in entries if e is not match and _shown(e)]
+    else:
+        shown = [e for e in entries if _shown(e)]
+        if not shown:
+            return result
+        top, rest = shown[0], shown[1:]
+        n, db = top["count"], top.get("db")
+        people = "1 TitleSift user" if n == 1 else f"{n} TitleSift users"
+        text = f"Named by {people}, not in the comments." + (
+            " I" + _db_note(db)[1:] + "." if db else "")
+        conf = "high" if n >= 2 and db else "medium"
+        r["answer"] = dict(_answer_dict(top["name"], conf, text, db, {"title": (r.get("video") or {}).get("title", "")},
+                                        [], []), community=n, from_community=True)
+    if rest:
+        r["community_others"] = [{"title": e["name"], "count": e["count"]} for e in rest[:3]]
+    return r
+
+
+def add_name(data: dict, visitor: str) -> tuple[int, dict]:
+    vid = str(data.get("video") or "")
+    if not re.fullmatch(r"[\w-]{11}", vid):
+        return 400, {"error": "Look up a video first."}
+    name = re.sub(r"\s+", " ", str(data.get("name") or "")).strip().strip("\"'“”")
+    if len(name) < 2:
+        return 400, {"error": "Type the name first."}
+    if len(name) > 120 or _URLISH.search(name):
+        return 400, {"error": "Just the name, please (no links)."}
+    key = fold(name)
+    if not key:
+        return 400, {"error": "Type the name first."}
+    now = time.time()
+    with _lock:
+        recent = [t for t in _name_posts.get(visitor, []) if now - t < 3600]
+        if len(recent) >= 20:
+            return 429, {"error": "Thanks, that's plenty for this hour."}
+        _name_posts[visitor] = recent + [now]
+        mine = _gave.setdefault((visitor, vid), set())
+        if key in mine:
+            e = (_names.get(vid) or {}).get(key) or {"count": 0}
+            return 200, {"ok": True, "counted": False, "count": e["count"], "shown": _shown(e)}
+        if len(mine) >= 3:
+            return 200, {"ok": True, "counted": False, "count": 0, "shown": False}
+        existing = (_names.get(vid) or {}).get(key)
+        hit = _answers.get(vid)
+        cached = (hit[1].get("answer") or {}) if hit else {}
+
+    db = existing.get("db") if existing else None
+    if not existing:
+        if cached and fold(cached.get("title") or "") == key and cached.get("database"):
+            db = cached["database"]          # the answer we already checked
+        else:
+            found = confirm(name, _video_meta(vid), _caches)
+            db = found if found and found.get("status") == "confirmed" else None
+
+    with _lock:
+        per = _names.setdefault(vid, {})
+        e = per.get(key)
+        if e is None:
+            e = per[key] = {"name": name, "count": 0, "db": db, "first": int(now)}
+        e["count"] += 1
+        e["last"] = int(now)
+        mine.add(key)
+        if len(_names) > NAMES_KEEP:
+            for old in sorted(_names, key=lambda v: max(x.get("last", 0) for x in _names[v].values()))[:1000]:
+                _names.pop(old, None)
+        out = {"ok": True, "counted": True, "count": e["count"], "shown": _shown(e)}
+    print("COMMUNITY " + json.dumps({"video": vid, "name": name, "count": e["count"],
+                                     "db": bool(db), "yes": bool(data.get("confirm"))}, ensure_ascii=False),
+          file=sys.stderr, flush=True)
+    if os.environ.get("GITHUB_TOKEN"):
+        _names_dirty.set()
+    return 200, out
+
+
+def _names_file() -> tuple[dict, str | None]:
+    """The saved file and its version, or nothing when there isn't one yet."""
+    try:
+        got = _github("GET", f"/contents/{NAMES_FILE}?ref={NAMES_BRANCH}")
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            return {}, None
+        raise
+    if not got:
+        return {}, None
+    return json.loads(base64.b64decode(got["content"]).decode() or "{}"), got["sha"]
+
+
+def load_names():
+    try:
+        saved, _ = _names_file()
+        with _lock:
+            for vid, per in (saved.get("videos") or {}).items():
+                for key, e in per.items():
+                    cur = _names.setdefault(vid, {}).get(key)
+                    if cur is None or e.get("count", 0) > cur["count"]:
+                        _names[vid][key] = e
+    except Exception as e:
+        print(f"COMMUNITY could not load saved names: {e}", file=sys.stderr, flush=True)
+
+
+def _ensure_branch():
+    try:
+        _github("GET", f"/git/ref/heads/{NAMES_BRANCH}")
+    except urllib.error.HTTPError as e:
+        if e.code != 404:
+            raise
+        base = _github("GET", "/git/ref/heads/main")
+        _github("POST", "/git/refs", {"ref": f"refs/heads/{NAMES_BRANCH}", "sha": base["object"]["sha"]})
+
+
+def _save_names_forever():
+    while True:
+        _names_dirty.wait()
+        time.sleep(30)                   # one write for a burst of names
+        _names_dirty.clear()
+        try:
+            _ensure_branch()
+            _, sha = _names_file()
+            with _lock:
+                doc = {"about": "Names TitleSift visitors gave for videos. Written by the server.",
+                       "videos": _names}
+                text = json.dumps(doc, ensure_ascii=False, indent=1, sort_keys=True)
+            body = {"message": "Save names from TitleSift visitors", "branch": NAMES_BRANCH,
+                    "content": base64.b64encode(text.encode()).decode()}
+            if sha:
+                body["sha"] = sha
+            _github("PUT", f"/contents/{NAMES_FILE}", body)
+        except Exception as e:
+            print(f"COMMUNITY names not saved: {e}", file=sys.stderr, flush=True)
+            _names_dirty.set()           # try again after the next pause
+
+
+def names_page() -> bytes:
+    with _lock:
+        rows = [(max(e.get("last", 0), e["first"]), vid, dict(e)) for vid, per in _names.items() for e in per.values()]
+    rows.sort(key=lambda x: x[0], reverse=True)
+    body = "".join(
+        f"<tr><td>{time.strftime('%d %b %H:%M', time.gmtime(t))}</td>"
+        f"<td><a href='https://www.youtube.com/watch?v={vid}'>{vid}</a></td>"
+        f"<td>{html.escape(e['name'])}</td><td>{e['count']}</td>"
+        f"<td>{html.escape((e.get('db') or {}).get('source', '')) or '–'}</td>"
+        f"<td>{'Yes' if _shown(e) else 'Not yet'}</td></tr>"
+        for t, vid, e in rows[:300])
+    kept = ("Saved on GitHub, so they survive updates." if os.environ.get("GITHUB_TOKEN")
+            else "Not saved anywhere yet: an update or restart resets them. Add GITHUB_TOKEN on Render to keep them.")
+    return (f"<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'>"
+            f"<meta name=robots content=noindex><title>TitleSift names from visitors</title>"
+            f"<body style='font:15px/1.5 system-ui;margin:16px'>"
+            f"<h1 style='font-size:22px'>Names from visitors</h1>"
+            f"<p style='color:#666'>Newest first (times in UTC). A name is shown to others once a database knows it "
+            f"or 2 people gave it. {kept}</p><div style='overflow-x:auto'>"
+            f"<table cellpadding=6 style='border-collapse:collapse'><tr><th align=left>When</th><th align=left>Video</th>"
+            f"<th align=left>Name</th><th>People</th><th>Found on</th><th>Shown</th></tr>{body}</table></div>").encode()
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "titlesift"
 
@@ -306,7 +519,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         path = urllib.parse.urlparse(self.path).path
-        if path not in ("/api/feedback", "/api/vote"):
+        if path not in ("/api/feedback", "/api/vote", "/api/name"):
             return self._send(404, b"Not found", "text/plain")
         try:
             n = min(int(self.headers.get("Content-Length") or 0), 8000)
@@ -316,7 +529,7 @@ class Handler(BaseHTTPRequestHandler):
         except (ValueError, UnicodeDecodeError):
             return self._send(400, b'{"error": "Bad request"}', "application/json")
         visitor = (self.headers.get("X-Forwarded-For") or self.client_address[0]).split(",")[0].strip()
-        code, out = (vote if path == "/api/vote" else feedback)(data, visitor)
+        code, out = {"/api/vote": vote, "/api/name": add_name}.get(path, feedback)(data, visitor)
         return self._send(code, json.dumps(out).encode(), "application/json; charset=utf-8")
 
     def do_GET(self):
@@ -329,6 +542,8 @@ class Handler(BaseHTTPRequestHandler):
                               "application/json; charset=utf-8")
         if u.path == "/api/config":
             return self._send(200, json.dumps(config()).encode(), "application/json; charset=utf-8")
+        if u.path == "/names":
+            return self._send(200, names_page(), "text/html; charset=utf-8")
         if u.path == "/votes":
             return self._send(200, votes_page(), "text/html; charset=utf-8")
         if u.path == "/healthz":
@@ -355,6 +570,8 @@ def main():
     extractor()          # build the catalogue before the first visitor waits on it
     load_votes()
     threading.Thread(target=_save_votes_forever, daemon=True).start()
+    load_names()
+    threading.Thread(target=_save_names_forever, daemon=True).start()
     port = int(os.environ.get("PORT", "7860"))
     print(f"Listening on http://0.0.0.0:{port}", file=sys.stderr)
     ThreadingHTTPServer(("0.0.0.0", port), Handler).serve_forever()

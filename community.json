@@ -1,0 +1,21 @@
+{
+ "about": "Names TitleSift visitors gave for videos. Written by the server.",
+ "videos": {
+  "s4U56bCwKrE": {
+   "a delinquent s first love": {
+    "count": 1,
+    "db": {
+     "name": "A Delinquent’s First Love",
+     "source": "AniList",
+     "status": "confirmed",
+     "url": "https://anilist.co/manga/202720",
+     "what": "Manhwa",
+     "year": 2025
+    },
+    "first": 1790353974,
+    "last": 1790353974,
+    "name": "A Delinquent’s First Love"
+   }
+  }
+ }
+}

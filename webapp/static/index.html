@@ -7,6 +7,19 @@
 <meta name="description" content="Paste a YouTube clip or Short. Get the name of the manhwa, manhua, manga, webtoon or anime, straight from the comments.">
 <meta name="theme-color" content="#F2F3F7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#101116" media="(prefers-color-scheme: dark)">
+<script>
+// Before anything paints: the saved light/dark choice, and a brief hold
+// while a translation loads, so nobody sees the page flash in English.
+try { var th = localStorage.getItem("titlesift.theme");
+      if (th === "light" || th === "dark") document.documentElement.setAttribute("data-theme", th); } catch (e) {}
+</script>
+<script src="/i18n.js"></script>
+<script>
+if (window.TS_I18N && TS_I18N.pick() !== "en") {
+  document.documentElement.className += " i18n-wait";
+  setTimeout(function () { document.documentElement.classList.remove("i18n-wait"); }, 2500);
+}
+</script>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -52,6 +65,27 @@
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+html.i18n-wait body { visibility: hidden; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.controls { display: flex; align-items: center; gap: 6px; }
+.lang { display: flex; align-items: center; gap: 4px; border: 2px solid var(--line); border-radius: 999px;
+  padding: 0 4px 0 10px; background: var(--surface); color: var(--muted); }
+.lang:focus-within { border-color: var(--accent); }
+.lang svg { width: 16px; height: 16px; flex: none; }
+.lang select { border: 0; background: transparent; color: var(--ink); font: 700 14px var(--body);
+  padding: 7px 4px; max-width: min(150px, 34vw); width: auto; text-overflow: ellipsis; }
+.lang select:focus { outline: none; }
+.icon-btn { width: 38px; height: 38px; flex: none; display: grid; place-items: center; border: 2px solid var(--line);
+  border-radius: 999px; background: var(--surface); color: var(--ink); cursor: pointer; padding: 0; }
+.icon-btn:hover, .icon-btn:focus-visible { border-color: var(--ink); outline: none; }
+.icon-btn svg { width: 18px; height: 18px; }
+.wrap > *, form > *, .top, .controls, .lang { min-width: 0; }
+#url { width: 0; }
+@media (max-width: 370px) {
+  .lang { padding-left: 8px; }
+  .lang svg { display: none; }
+  .lang select { max-width: 30vw; }
+}
 body {
   margin: 0; background: var(--ground); color: var(--ink);
   font: 17px/1.5 var(--body);
@@ -198,62 +232,72 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
 </head>
 <body>
 <main class="wrap">
+  <div class="top">
   <div class="brand" aria-label="TitleSift">
     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 6.5A3.5 3.5 0 0 1 8.5 3h15A3.5 3.5 0 0 1 27 6.5v11a3.5 3.5 0 0 1-3.5 3.5H14l-6.2 5.6c-.6.6-1.8.2-1.8-.7V21a3.5 3.5 0 0 1-1-2.5z" fill="var(--accent)"/><path d="M12.4 9.6a3.6 3.6 0 1 1 5 3.3c-.9.4-1.4 1-1.4 1.9v.4" fill="none" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="18" r="1.5" fill="var(--accent-ink)"/></svg>
     TitleSift
   </div>
+  <div class="controls">
+    <label class="lang">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5z"/></svg>
+      <select id="lang" data-i18n-aria="ui.language" aria-label="Language"></select>
+    </label>
+    <button class="icon-btn" id="theme" type="button" aria-label="Switch to dark mode"></button>
+  </div>
+  </div>
   <header>
-    <h1>What’s this show called?</h1>
-    <p class="lede">Paste a YouTube clip or Short. We read the comments and replies so you don’t have to.</p>
+    <h1 data-i18n="hero.title">What’s this show called?</h1>
+    <p class="lede" data-i18n="hero.lede">Paste a YouTube clip or Short. We read the comments and replies so you don’t have to.</p>
   </header>
 
   <form id="form" novalidate>
     <div class="field">
       <input id="url" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false"
-             placeholder="Paste a YouTube link" aria-label="YouTube link">
-      <button class="clear" id="clear" type="button" aria-label="Clear the link" hidden>×</button>
-      <button class="paste" id="paste" type="button">Paste</button>
+             placeholder="Paste a YouTube link" aria-label="YouTube link" data-i18n-ph="form.placeholder" data-i18n-aria="form.aria">
+      <button class="clear" id="clear" type="button" aria-label="Clear the link" data-i18n-aria="form.clear" hidden>×</button>
+      <button class="paste" id="paste" type="button" data-i18n="form.paste">Paste</button>
     </div>
-    <button class="go" id="go" type="submit">Find the name</button>
-    <p class="hint">Works on Shorts, clips and edits of manhwa, manhua, manga, webtoons and anime.</p>
-    <p class="hint legal">By using TitleSift you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>, and to the <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a>.</p>
+    <button class="go" id="go" type="submit" data-i18n="form.go">Find the name</button>
+    <p class="hint" data-i18n="form.hint">Works on Shorts, clips and edits of manhwa, manhua, manga, webtoons and anime.</p>
+    <p class="hint legal" data-i18n-html="form.legal">By using TitleSift you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>, and to the <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a>.</p>
   </form>
 
   <div id="out" aria-live="polite"></div>
 
   <section class="waiting" id="waiting" hidden>
-    <h2>Your check-back list</h2>
-    <p class="hint">We look again each time you open TitleSift and mark anything new.</p>
+    <h2 data-i18n="waiting.title">Your check-back list</h2>
+    <p class="hint" data-i18n="waiting.hint">We look again each time you open TitleSift and mark anything new.</p>
     <div id="waitlist"></div>
   </section>
 
   <section class="how">
-    <h2>Getting the link on your phone</h2>
+    <h2 data-i18n="how.title">Getting the link on your phone</h2>
     <ol>
-      <li>In the YouTube app, tap <b>Share</b> under the video (on Shorts it’s the arrow on the right).</li>
-      <li>Tap <b>Copy link</b>.</li>
-      <li>Come back here and tap <b>Paste</b>.</li>
+      <li data-i18n-html="how.1">In the YouTube app, tap <b>Share</b> under the video (on Shorts it’s the arrow on the right).</li>
+      <li data-i18n-html="how.2">Tap <b>Copy link</b>.</li>
+      <li data-i18n-html="how.3">Come back here and tap <b>Paste</b>.</li>
     </ol>
   </section>
   <footer>
-    <span>Answers come from what people wrote in the comments. When nobody has named it yet, we say so rather than guess.</span>
-    <span>Questions? Email <a href="mailto:titlesift@gmail.com">titlesift@gmail.com</a></span>
-    <span><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Use</a> · <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a> · Uses YouTube API Services</span>
-    <a class="linkish" id="kofi" href="#" target="_blank" rel="noopener" hidden>Like TitleSift? Tip on Ko-fi</a>
-    <button class="linkish" id="fb-open" type="button">Send feedback</button>
+    <span data-i18n="footer.about">Answers come from what people wrote in the comments. When nobody has named it yet, we say so rather than guess.</span>
+    <span data-i18n-html="footer.email">Questions? Email <a href="mailto:titlesift@gmail.com">titlesift@gmail.com</a></span>
+    <span data-i18n-html="footer.links"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Use</a> · <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of Service</a> · Uses YouTube API Services</span>
+    <span id="legal-en" data-i18n="footer.legal_english" hidden></span>
+    <a class="linkish" id="kofi" href="#" target="_blank" rel="noopener" hidden data-i18n="footer.kofi">Like TitleSift? Tip on Ko-fi</a>
+    <button class="linkish" id="fb-open" type="button" data-i18n="fb.open">Send feedback</button>
     <form class="fb" id="fb" hidden novalidate>
-      <h2>Tell us what to fix</h2>
-      <label for="fb-kind">What is it about?
+      <h2 data-i18n="fb.title">Tell us what to fix</h2>
+      <label for="fb-kind"><span data-i18n="fb.kind">What is it about?</span>
         <select id="fb-kind">
-          <option value="bug">Something broke</option>
-          <option value="wrong">A wrong or missing name</option>
-          <option value="idea">An idea to make it better</option>
+          <option value="bug" data-i18n="fb.kind.bug">Something broke</option>
+          <option value="wrong" data-i18n="fb.kind.wrong">A wrong or missing name</option>
+          <option value="idea" data-i18n="fb.kind.idea">An idea to make it better</option>
         </select>
       </label>
-      <label for="fb-msg">What happened, or what would help?
-        <textarea id="fb-msg" maxlength="2000" placeholder="For a wrong name, the video link and the right name help most."></textarea>
+      <label for="fb-msg"><span data-i18n="fb.msg">What happened, or what would help?</span>
+        <textarea id="fb-msg" maxlength="2000" data-i18n-ph="fb.msg.placeholder" placeholder="For a wrong name, the video link and the right name help most."></textarea>
       </label>
-      <button class="send" type="submit">Send</button>
+      <button class="send" type="submit" data-i18n="fb.send">Send</button>
       <span id="fb-status" aria-live="polite"></span>
     </form>
   </footer>
@@ -263,6 +307,57 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
+
+  // ---- Languages. English is built in (i18n.js); others load from
+  // /i18n/<code>.json. Anything a translation lacks falls back to English.
+  var I18N = window.TS_I18N, EN = I18N.en, S = EN, lang = "en";
+  function fill(s, p) {
+    return p ? s.replace(/\{(\w+)\}/g, function (m, k) { return p[k] != null ? p[k] : m; }) : s;
+  }
+  function tx(k, p) { var s = S[k] != null ? S[k] : EN[k]; return s == null ? k : fill(s, p); }
+  function num(n) { try { return n.toLocaleString(lang); } catch (e) { return String(n); } }
+  function txp(k, n, p) {
+    var cat = "other";
+    try { cat = new Intl.PluralRules(lang).select(n); } catch (e) {}
+    var key = k + "." + cat;
+    if (S[key] == null) key = n === 1 && S[k + ".one"] != null ? k + ".one" : k + ".other";
+    // Some languages call more numbers than 1 "one" (Filipino: 2, 3, 5…);
+    // a form written with a literal 1 only fits the number 1.
+    if (/\.one$/.test(key) && n !== 1 && String(S[key]).indexOf("{n}") < 0) key = k + ".other";
+    var q = { n: num(n) };
+    for (var x in p || {}) q[x] = p[x];
+    return tx(key, q);
+  }
+  function kind(what) { var k = "kind." + String(what || "").toLowerCase(); return S[k] || EN[k] ? tx(k) : what; }
+  function kindWhat(w) { var k = "kind.what." + String(w || "").toLowerCase(); return S[k] || EN[k] ? tx(k) : w; }
+  // Messages from the server arrive in English; show them in the page's language.
+  var SRV = {};
+  Object.keys(EN).forEach(function (k) { if (k.indexOf("srv.") === 0) SRV[EN[k]] = k; });
+  function srv(msg) { return SRV[msg] ? tx(SRV[msg]) : msg; }
+  // So are the notes under an answer: match each against the English
+  // templates and rebuild it in the chosen language.
+  var NOTES = Object.keys(EN).filter(function (k) { return k.indexOf("note.") === 0; }).map(function (k) {
+    var names = [];
+    var rx = EN[k].replace(/[.*+?^$()|[\]\\]/g, "\\$&").replace(/\{(\w+)\}/g, function (m, x) {
+      names.push(x); return x === "n" ? "(\\d+)" : "(.+?)";
+    });
+    return { key: k, rx: new RegExp("^" + rx + "$"), names: names };
+  });
+  function note(text) {
+    if (lang === "en" || !text) return text;
+    for (var i = 0; i < NOTES.length; i++) {
+      var m = NOTES[i].rx.exec(text);
+      if (!m) continue;
+      var v = {};
+      NOTES[i].names.forEach(function (x, j) { v[x] = m[j + 1]; });
+      if (v.what) v.what = kindWhat(v.what);
+      var base = NOTES[i].key.replace(/\.(one|other)$/, "");
+      if (base !== NOTES[i].key) return txp(base, v.n ? +v.n : 1, v);
+      return tx(base, v);
+    }
+    return text;
+  }
+
   var form = $("form"), input = $("url"), go = $("go"), out = $("out");
 
   // A real lookup, kept so the page shows what it does before anyone pastes.
@@ -296,36 +391,38 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
     if (text != null) e.textContent = text;
     return e;
   }
-  function likes(n) { return n ? (n === 1 ? "1 like" : n.toLocaleString() + " likes") : ""; }
+  // Text people wrote (titles, comments) keeps its own direction, so an
+  // English comment reads right in the Arabic page and the reverse.
+  function own(e) { e.dir = "auto"; return e; }
+  function likes(n) { return n ? txp("likes", n) : ""; }
   function safeUrl(u) { return /^https:\/\//.test(u || "") ? u : null; }
-  var CONF = { high: "Confident", medium: "Likely", low: "Guess" };
+  var CONF = { high: "conf.high", medium: "conf.medium", low: "conf.low" };
 
   function videoRow(r) {
     var eb = el("div", "eyebrow");
-    eb.appendChild(el("span", null, r.example ? "Here’s one we looked up" : "From this video"));
-    if (r.example) eb.appendChild(el("span", "example-tag", "Example"));
+    eb.appendChild(el("span", null, tx(r.example ? "card.example_eyebrow" : "card.eyebrow")));
+    if (r.example) eb.appendChild(el("span", "example-tag", tx("card.example_tag")));
     var id = r.video && /^[\w-]{11}$/.test(r.video.id || "") ? r.video.id : null;
     var v = el(id ? "a" : "div", "video");
-    if (id) { v.href = "https://www.youtube.com/watch?v=" + id; v.target = "_blank"; v.rel = "noopener"; v.title = "Open on YouTube"; }
+    if (id) { v.href = "https://www.youtube.com/watch?v=" + id; v.target = "_blank"; v.rel = "noopener"; v.title = tx("card.open_youtube"); }
     if (r.video && r.video.thumbnail) {
       var img = el("img"); img.alt = ""; img.loading = "lazy"; img.onerror = function () { img.hidden = true; }; img.src = r.video.thumbnail; v.appendChild(img);
     }
-    v.appendChild(el("p", null, (r.video && r.video.title) || ""));
+    v.appendChild(own(el("p", null, (r.video && r.video.title) || "")));
     return [eb, v];
   }
 
   function render(r) {
     current = r.example ? null : r;
+    shown = r;
     out.textContent = "";
     var card = el("article", "card");
     videoRow(r).forEach(function (n) { card.appendChild(n); });
 
     if (!r.answer) {
       var none = el("div", "none");
-      none.appendChild(el("h2", null, r.notice ? "Can’t read this one" : "Nobody’s named it yet"));
-      var msg = r.notice || (r.asked
-        ? r.asked + (r.asked === 1 ? " person is" : " people are") + " asking too, but no one has answered in the comments yet. Answers often come in after a day or two."
-        : "We read the comments and nobody has said what it is. Newer videos often get answered after a day or two.");
+      none.appendChild(el("h2", null, tx(r.notice ? "none.cant_read" : "none.title")));
+      var msg = r.notice ? srv(r.notice) : (r.asked ? txp("none.asking", r.asked) : tx("none.nobody"));
       none.appendChild(el("p", null, msg));
       if (!r.notice && !r.example && r.video && r.video.id) none.appendChild(watchButton(r));
       card.appendChild(none);
@@ -336,32 +433,32 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
 
     var a = r.answer;
     var ans = el("div", "answer");
-    ans.appendChild(el("div", "label", "It’s called"));
-    ans.appendChild(el("h2", "title", a.title));
-    if (a.database) ans.appendChild(el("div", "kind", a.database.what + (a.database.year ? ", " + a.database.year : "")));
+    ans.appendChild(el("div", "label", tx("answer.label")));
+    ans.appendChild(own(el("h2", "title", a.title)));
+    if (a.database) ans.appendChild(el("div", "kind", kind(a.database.what) + (a.database.year ? (lang === "ar" ? "، " : ", ") + a.database.year : "")));
     var conf = el("div", "conf");
-    conf.appendChild(el("span", "chip " + a.confidence, CONF[a.confidence] || a.confidence));
-    conf.appendChild(el("span", null, a.note));
+    conf.appendChild(el("span", "chip " + a.confidence, CONF[a.confidence] ? tx(CONF[a.confidence]) : a.confidence));
+    conf.appendChild(el("span", null, note(a.note)));
     ans.appendChild(conf);
     var aka = el("div", "aka");
-    aka.appendChild(el("b", null, "Also known as: "));
+    aka.appendChild(el("b", null, tx("answer.aka") + " "));
     aka.appendChild(document.createTextNode(a.also_called && a.also_called.length
       ? a.also_called.join(" · ")
-      : "no other names found"));
+      : tx("answer.no_aka")));
     ans.appendChild(aka);
     if (a.community && !a.from_community) {
-      ans.appendChild(el("div", "agreed", "✓ Confirmed by " + (a.community === 1 ? "1 TitleSift user" : a.community + " TitleSift users")));
+      ans.appendChild(el("div", "agreed", txp("answer.confirmed", a.community)));
     }
     card.appendChild(ans);
 
     var act = el("div", "actions");
     var db = a.database && safeUrl(a.database.url);
     if (db) {
-      var l = el("a", "btn primary", "Open on " + a.database.source + " ↗");
+      var l = el("a", "btn primary", tx("answer.open_on", { source: a.database.source }));
       l.href = db; l.target = "_blank"; l.rel = "noopener"; act.appendChild(l);
     }
     if (safeUrl(a.search)) {
-      var s = el("a", "btn " + (db ? "quiet" : "primary"), (db ? "Search the web" : "Search for it") + " ↗");
+      var s = el("a", "btn " + (db ? "quiet" : "primary"), tx(db ? "answer.search_web" : "answer.search_for_it"));
       s.href = a.search; s.target = "_blank"; s.rel = "noopener"; act.appendChild(s);
     }
     card.appendChild(act);
@@ -371,16 +468,16 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
 
     if (a.comments && a.comments.length) {
       var th = el("div", "thread");
-      th.appendChild(el("div", "label", "Where we found it"));
+      th.appendChild(el("div", "label", tx("thread.label")));
       a.comments.forEach(function (c) {
         var convo = el("div", "convo");
         if (c.reply_to) {
-          convo.appendChild(el("span", "who", "Someone asked"));
-          var q = el("div", "bubble q", c.reply_to.text);
+          convo.appendChild(el("span", "who", tx("thread.asked")));
+          var q = own(el("div", "bubble q", c.reply_to.text));
           if (c.reply_to.likes) q.appendChild(el("span", "likes", likes(c.reply_to.likes)));
           convo.appendChild(q);
         }
-        var b = el("div", "bubble " + (c.reply_to ? "a" : "solo"), c.text);
+        var b = own(el("div", "bubble " + (c.reply_to ? "a" : "solo"), c.text));
         if (c.likes) b.appendChild(el("span", "likes", likes(c.likes)));
         convo.appendChild(b);
         th.appendChild(convo);
@@ -390,11 +487,11 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
 
     if (r.others && r.others.length) {
       var o = el("div", "others");
-      o.appendChild(el("div", "label", "Other names people mentioned"));
+      o.appendChild(el("div", "label", tx("others.label")));
       var ul = el("ul");
       r.others.forEach(function (x) {
-        var li = el("li"); li.appendChild(el("b", null, x.title));
-        li.appendChild(el("span", null, x.commenters ? x.commenters + (x.commenters === 1 ? " person" : " people") : ""));
+        var li = el("li"); li.appendChild(own(el("b", null, x.title)));
+        li.appendChild(el("span", null, x.commenters ? txp("people", x.commenters) : ""));
         ul.appendChild(li);
       });
       o.appendChild(ul);
@@ -402,11 +499,11 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
     }
     if (r.community_others && r.community_others.length) {
       var co = el("div", "others");
-      co.appendChild(el("div", "label", "Other names TitleSift users gave"));
+      co.appendChild(el("div", "label", tx("others.community_label")));
       var cul = el("ul");
       r.community_others.forEach(function (x) {
-        var li = el("li"); li.appendChild(el("b", null, x.title));
-        li.appendChild(el("span", null, x.count === 1 ? "1 person" : x.count + " people"));
+        var li = el("li"); li.appendChild(own(el("b", null, x.title)));
+        li.appendChild(el("span", null, txp("people", x.count)));
         cul.appendChild(li);
       });
       co.appendChild(cul);
@@ -427,7 +524,7 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
   function watchButton(r) {
     var box = el("div", "watch");
     function done(text) { box.textContent = ""; box.appendChild(el("span", "done", text)); }
-    if (watching(r.video.id)) { done("This one is on your check-back list below. We look again each time you open TitleSift."); return box; }
+    if (watching(r.video.id)) { done(tx("watch.on_list")); return box; }
     function save() {
       var list = loadWaiting().filter(function (w) { return w.id !== r.video.id; });
       var snap = snapshot(r);
@@ -435,14 +532,14 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
                      added: Date.now(), checked: Date.now(), found: snap.name, conf: snap.conf,
                      alts: snap.alts, updated: false });
       if (saveWaiting(list)) {
-        done("Saved to your check-back list below. We’ll look again each time you open TitleSift and mark it when something new turns up.");
+        done(tx("watch.saved"));
         drawWaiting();
-      } else done("This browser won’t let us save it. Try again from a normal (not private) window.");
+      } else done(tx("watch.cant_save"));
     }
     // Every video still waiting for a name goes on the list by itself:
     // people expect it to be there, and tapping × removes it.
     if (!r.answer) { save(); return box; }
-    var b = el("button", null, "Check back later for updates");
+    var b = el("button", null, tx("watch.button"));
     b.type = "button";
     b.addEventListener("click", save);
     box.appendChild(b);
@@ -457,15 +554,15 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
       var row = el("div", "wait-row");
       if (w.thumb) { var img = el("img"); img.alt = ""; img.src = w.thumb; img.onerror = function () { img.hidden = true; }; row.appendChild(img); }
       var t = el("div", "t");
-      var b = el("b", null, w.found || "No name yet");
-      if (w.updated) b.appendChild(el("span", "found-chip", w.found ? "Updated" : "Found"));
+      var b = el("b", null, w.found || tx("wait.no_name"));
+      if (w.updated) b.appendChild(el("span", "found-chip", tx(w.found ? "wait.updated" : "wait.found")));
       t.appendChild(b);
-      t.appendChild(el("span", null, w.title));
+      t.appendChild(own(el("span", null, w.title)));
       row.appendChild(t);
-      var o = el("button", "open", "See it"); o.type = "button";
+      var o = el("button", "open", tx("wait.see")); o.type = "button";
       o.addEventListener("click", function () { run("https://youtu.be/" + w.id); });
       row.appendChild(o);
-      var x = el("button", "x", "×"); x.type = "button"; x.setAttribute("aria-label", "Stop checking this video");
+      var x = el("button", "x", "×"); x.type = "button"; x.setAttribute("aria-label", tx("wait.remove"));
       x.addEventListener("click", function () { saveWaiting(loadWaiting().filter(function (v) { return v.id !== w.id; })); drawWaiting(); });
       row.appendChild(x);
       box.appendChild(row);
@@ -515,7 +612,7 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
     }
     return fetch("/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" },
                                     body: JSON.stringify(payload) })
-      .then(function (res) { return res.json().then(function (j) { if (!res.ok) throw new Error(j.error || "Couldn’t send that."); return j; }); });
+      .then(function (res) { return res.json().then(function (j) { if (!res.ok) throw new Error(j.error ? srv(j.error) : tx("err.send")); return j; }); });
   }
 
   // A name typed here is saved against the video, so the next person who
@@ -523,7 +620,7 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
   function sendName(video, name, yes) {
     return fetch("/api/name", { method: "POST", headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ video: video, name: name, confirm: !!yes }) })
-      .then(function (res) { return res.json().then(function (j) { if (!res.ok) throw new Error(j.error || "Couldn’t save that."); return j; }); });
+      .then(function (res) { return res.json().then(function (j) { if (!res.ok) throw new Error(j.error ? srv(j.error) : tx("err.save")); return j; }); });
   }
 
   // "Was this right?" under every live answer, and "Know the name?" when
@@ -539,28 +636,27 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
       var id = "fix-" + (r.video.id || "x");
       var lab = el("label", null, prompt); lab.htmlFor = id;
       var nm = el("input", "name"); nm.id = id; nm.maxLength = 120; nm.autocomplete = "off";
-      nm.placeholder = "The name of the show or comic";
+      nm.placeholder = tx("rate.name_placeholder");
       box.appendChild(lab); box.appendChild(nm);
       var ta = null;
       if (wrong) {
-        ta = el("textarea"); ta.maxLength = 2000; ta.setAttribute("aria-label", "What else went wrong");
-        ta.placeholder = "Anything else that went wrong (optional)";
+        ta = el("textarea"); ta.maxLength = 2000; ta.setAttribute("aria-label", tx("rate.more_aria"));
+        ta.placeholder = tx("rate.more_placeholder");
         box.appendChild(ta);
       }
-      var send = el("button", "send", "Send"); send.type = "button";
+      var send = el("button", "send", tx("fb.send")); send.type = "button";
       var st = el("span");
       function go() {
         var name = nm.value.trim(), more = ta ? ta.value.trim() : "";
-        if (!name && !more) { st.textContent = "Type the name first."; nm.focus(); return; }
+        if (!name && !more) { st.textContent = tx("rate.type_name"); nm.focus(); return; }
         send.disabled = true; st.textContent = "";
         var jobs = [];
         if (name) jobs.push(sendName(r.video.id, name, false));
         if (wrong) jobs.push(sendFeedback({ kind: "wrong", message: (name ? "Right name: " + name + (more ? "\n\n" : "") : "") + more }));
         Promise.all(jobs).then(function (res) {
           var n = name ? res[0] : null;
-          if (!n) thanks("Thanks! This helps us fix it.");
-          else if (n.shown) thanks("Thanks! The next person who looks up this video will see “" + name + "”.");
-          else thanks("Thanks! We’ll show “" + name + "” to others as soon as one more person gives the same name.");
+          if (!n) thanks(tx("rate.thanks_fix"));
+          else thanks(tx(n.shown ? "rate.thanks_shown" : "rate.thanks_pending", { name: name }));
         }).catch(function (e) { st.textContent = e.message; send.disabled = false; });
       }
       send.addEventListener("click", go);
@@ -569,20 +665,20 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
       nm.focus();
     }
     if (r.answer) {
-      row.appendChild(el("span", "q", "Was this right?"));
-      var yes = el("button", "pill", "Yes"); yes.type = "button";
-      var no = el("button", "pill", "No"); no.type = "button";
+      row.appendChild(el("span", "q", tx("rate.question")));
+      var yes = el("button", "pill", tx("rate.yes")); yes.type = "button";
+      var no = el("button", "pill", tx("rate.no")); no.type = "button";
       yes.addEventListener("click", function () {
         yes.disabled = no.disabled = true;
         sendFeedback({ kind: "right" }).catch(function () {});
         sendName(r.video.id, r.answer.title, true).catch(function () {});
-        if (askedPrice()) thanks("Thanks for letting us know."); else priceBox(box);
+        if (askedPrice()) thanks(tx("rate.thanks")); else priceBox(box);
       });
-      no.addEventListener("click", function () { askWhat("What’s the right name?", true); });
+      no.addEventListener("click", function () { askWhat(tx("rate.right_name"), true); });
       row.appendChild(yes); row.appendChild(no);
     } else {
-      var know = el("button", "pill", "I know the name"); know.type = "button";
-      know.addEventListener("click", function () { askWhat("What is it called? We’ll show it to the next person who asks.", false); });
+      var know = el("button", "pill", tx("rate.know")); know.type = "button";
+      know.addEventListener("click", function () { askWhat(tx("rate.what_called"), false); });
       row.appendChild(know);
     }
     box.appendChild(row);
@@ -595,9 +691,10 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
   function askedPrice() { try { return !!localStorage.getItem(PRICE_KEY); } catch (e) { return false; } }
   function priceBox(box) {
     box.textContent = "";
-    box.appendChild(el("span", "q", "Thanks! One quick question: would you pay to keep TitleSift going?"));
+    box.appendChild(el("span", "q", tx("price.question")));
     var row = el("div", "row");
-    [["free", "Only if it’s free"], ["0.99", "$0.99 a month"], ["1.99", "$1.99 a month"], ["2.99", "$2.99 a month"]]
+    [["free", tx("price.free")], ["0.99", tx("price.month", { price: "$0.99" })],
+     ["1.99", tx("price.month", { price: "$1.99" })], ["2.99", tx("price.month", { price: "$2.99" })]]
       .forEach(function (o) {
         var b = el("button", "pill", o[1]); b.type = "button";
         b.addEventListener("click", function () {
@@ -605,9 +702,9 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
           fetch("/api/vote", { method: "POST", headers: { "Content-Type": "application/json" },
                                body: JSON.stringify({ price: o[0] }) }).catch(function () {});
           box.textContent = "";
-          box.appendChild(el("span", "thanks", "Got it, thank you!"));
+          box.appendChild(el("span", "thanks", tx("price.thanks")));
           if (kofi) {
-            var a = el("a", "linkish", "Want to help now? Tip on Ko-fi"); a.href = kofi; a.target = "_blank"; a.rel = "noopener";
+            var a = el("a", "linkish", tx("price.kofi")); a.href = kofi; a.target = "_blank"; a.rel = "noopener";
             box.appendChild(a);
           }
         });
@@ -623,8 +720,8 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
     }
   }).catch(function () {});
 
-  var STEPS = ["Reading the comments…", "Checking replies under “what’s this called?”…", "Looking it up on AniList and Wikipedia…"];
   function loading() {
+    var STEPS = [tx("load.1"), tx("load.2"), tx("load.3")];
     out.textContent = "";
     var s = el("div", "status");
     var d = el("span", "dots"); d.innerHTML = "<i></i><i></i><i></i>";
@@ -648,7 +745,7 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
     fetch("/api/find?url=" + encodeURIComponent(link))
       .then(function (res) { return res.json().then(function (j) { return [res.ok, j]; }); })
       .then(function (p) {
-        if (!p[0]) throw new Error(p[1].error || "Something went wrong.");
+        if (!p[0]) throw new Error(p[1].error ? srv(p[1].error) : tx("err.generic"));
         render(p[1]);
         if (p[1].video && watching(p[1].video.id)) {
           var cur = loadWaiting();
@@ -662,7 +759,7 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
       .catch(function (e) {
         out.textContent = "";
         out.appendChild(el("div", "error", e && e.message && !/fetch|network|JSON/i.test(e.message)
-          ? e.message : "Couldn’t reach the server. Check your connection and try again."));
+          ? e.message : tx("err.offline")));
       })
       .finally(function () { clearInterval(timer); go.disabled = false; });
   }
@@ -685,11 +782,73 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
   input.addEventListener("paste", function () { setTimeout(function () { if (/youtu/.test(input.value)) run(input.value); }, 0); });
 
   // Arriving from the phone's share sheet, or a link with ?url=
+  // ---- Light and dark. Follows the phone until someone picks one.
+  var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M1.5 12H4M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>';
+  var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>';
+  var root = document.documentElement;
+  function theme() {
+    var t = root.getAttribute("data-theme");
+    return t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  }
+  function paintTheme() {
+    var dark = theme() === "dark", b = $("theme");
+    b.innerHTML = dark ? SUN : MOON;
+    b.setAttribute("aria-label", tx(dark ? "ui.theme.light" : "ui.theme.dark"));
+    b.title = b.getAttribute("aria-label");
+    if (root.getAttribute("data-theme")) {
+      document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.content = dark ? "#101116" : "#F2F3F7"; });
+    }
+  }
+  $("theme").addEventListener("click", function () {
+    var next = theme() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("titlesift.theme", next); } catch (e) {}
+    paintTheme();
+  });
+  try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintTheme); } catch (e) {}
+
+  // ---- Language picker
+  var shown = null;     // the result on screen, redrawn when the language changes
+  function applyStatic() {
+    var info = I18N.langs.filter(function (l) { return l[0] === lang; })[0] || I18N.langs[0];
+    root.lang = lang; root.dir = info[2] || "ltr";
+    document.querySelectorAll("[data-i18n]").forEach(function (e) { e.textContent = tx(e.getAttribute("data-i18n")); });
+    document.querySelectorAll("[data-i18n-html]").forEach(function (e) { e.innerHTML = tx(e.getAttribute("data-i18n-html")); });
+    document.querySelectorAll("[data-i18n-ph]").forEach(function (e) { e.placeholder = tx(e.getAttribute("data-i18n-ph")); });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (e) { e.setAttribute("aria-label", tx(e.getAttribute("data-i18n-aria"))); });
+    var md = document.querySelector('meta[name="description"]'); if (md) md.content = tx("meta.description");
+    $("legal-en").hidden = lang === "en";
+    if (kofi) { $("kofi").href = kofi; $("kofi").hidden = false; }
+    $("lang").value = lang;
+    paintTheme();
+  }
+  function useLang(code, then) {
+    function done(d) {
+      lang = d ? code : "en"; S = d || EN;
+      applyStatic();
+      root.classList.remove("i18n-wait");
+      if (then) then();
+    }
+    if (code === "en") return done(EN);
+    fetch("/i18n/" + code + ".json").then(function (res) { return res.ok ? res.json() : null; })
+      .then(done, function () { done(null); });
+  }
+  I18N.langs.forEach(function (l) {
+    var o = document.createElement("option"); o.value = l[0]; o.textContent = l[1]; $("lang").appendChild(o);
+  });
+  $("lang").addEventListener("change", function () {
+    var code = $("lang").value;
+    try { localStorage.setItem("titlesift.lang", code); } catch (e) {}
+    useLang(code, function () { if (shown && !$("out").querySelector(".status")) render(shown); drawWaiting(); });
+  });
+
   var q = new URLSearchParams(location.search);
   var shared = q.get("url") || q.get("text") || q.get("v");
-  if (shared) run(shared); else render(EXAMPLE);
-  drawWaiting();
-  recheck();
+  useLang(I18N.pick(), function () {
+    if (shared) run(shared); else render(EXAMPLE);
+    drawWaiting();
+    recheck();
+  });
 
   $("fb-open").addEventListener("click", function () { $("fb").hidden = false; $("fb-open").hidden = true; $("fb-msg").focus(); });
   $("fb").addEventListener("submit", function (e) {
@@ -697,7 +856,7 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
     var st = $("fb-status"), btn = $("fb").querySelector(".send");
     btn.disabled = true; st.textContent = "";
     sendFeedback({ kind: $("fb-kind").value, message: $("fb-msg").value })
-      .then(function () { $("fb-msg").value = ""; st.className = "thanks"; st.textContent = "Sent. Thank you!"; })
+      .then(function () { $("fb-msg").value = ""; st.className = "thanks"; st.textContent = tx("fb.sent"); })
       .catch(function (err) { st.className = ""; st.textContent = err.message; })
       .finally(function () { btn.disabled = false; });
   });

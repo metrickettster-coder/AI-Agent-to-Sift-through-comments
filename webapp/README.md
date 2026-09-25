@@ -79,6 +79,21 @@ on the `titlesift-data` branch every 30 seconds after a change, and loaded
 again on start. Render only deploys `main`, so these saves never redeploy.
 Only the video id, the name, a count and dates are saved, never who gave it.
 
+## Languages and light/dark
+
+The page speaks English, Spanish, Portuguese, French, German, Indonesian,
+Filipino, Vietnamese, Turkish, Hindi, Russian and Arabic (right to left).
+English lives in `static/i18n.js`; each other language is
+`static/i18n/<code>.json` with the same keys, and a missing key falls back to
+English. The phone's language is picked unless the visitor chose one from the
+menu. The server still answers in English: the page matches its messages and
+answer notes against the English strings (`srv.*`, `note.*`) and rebuilds them
+in the chosen language, so a new message on the server needs a new key there
+too. Privacy and Terms stay in English.
+
+The moon/sun button overrides the phone's light or dark setting and is
+remembered per browser.
+
 ## Phone extras
 
 `manifest.json` makes the page installable ("Add to Home screen"). On

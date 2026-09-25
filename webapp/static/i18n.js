@@ -2,14 +2,17 @@
 // with the same keys; anything missing there falls back to these.
 // pick() chooses the saved language, else the phone's, else English.
 window.TS_I18N = {
-  langs: [["en", "English"], ["es", "Español"], ["pt", "Português"], ["fr", "Français"], ["de", "Deutsch"], ["id", "Bahasa Indonesia"], ["fil", "Filipino"], ["vi", "Tiếng Việt"], ["tr", "Türkçe"], ["hi", "हिन्दी"], ["ru", "Русский"], ["ja", "日本語"], ["th", "ไทย"], ["zh", "中文（简体）"], ["ar", "العربية", "rtl"]],
-  aliases: { tl: "fil", "in": "id", nb: null },
+  langs: [["en", "English"], ["es", "Español"], ["pt", "Português"], ["fr", "Français"], ["de", "Deutsch"], ["id", "Bahasa Indonesia"], ["ms", "Bahasa Melayu"], ["fil", "Filipino"], ["vi", "Tiếng Việt"], ["tr", "Türkçe"], ["hi", "हिन्दी"], ["ru", "Русский"], ["uk", "Українська"], ["pl", "Polski"], ["ko", "한국어"], ["ja", "日本語"], ["zh", "中文（简体）"], ["zh-hant", "中文（繁體）"], ["th", "ไทย"], ["bn", "বাংলা"], ["pa", "ਪੰਜਾਬੀ"], ["ar", "العربية", "rtl"], ["fa", "فارسی", "rtl"], ["ur", "اردو", "rtl"], ["he", "עברית", "rtl"]],
+  aliases: { tl: "fil", "in": "id", iw: "he", nb: null },
   pick: function () {
     var codes = this.langs.map(function (l) { return l[0]; });
     try { var saved = localStorage.getItem("titlesift.lang"); if (codes.indexOf(saved) >= 0) return saved; } catch (e) {}
     var want = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"]);
     for (var i = 0; i < want.length; i++) {
-      var c = String(want[i] || "").toLowerCase().split("-")[0];
+      var tag = String(want[i] || "").toLowerCase();
+      // Hong Kong, Macau and Taiwan read Traditional characters.
+      if (/^zh-(hk|mo|tw|hant)/.test(tag)) return "zh-hant";
+      var c = tag.split("-")[0];
       if (this.aliases[c]) c = this.aliases[c];
       if (codes.indexOf(c) >= 0) return c;
     }

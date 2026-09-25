@@ -435,7 +435,7 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
     var ans = el("div", "answer");
     ans.appendChild(el("div", "label", tx("answer.label")));
     ans.appendChild(own(el("h2", "title", a.title)));
-    if (a.database) ans.appendChild(el("div", "kind", kind(a.database.what) + (a.database.year ? ({ ar: "، ", ja: "、", zh: "，" }[lang] || ", ") + a.database.year : "")));
+    if (a.database) ans.appendChild(el("div", "kind", kind(a.database.what) + (a.database.year ? ({ ar: "، ", fa: "، ", ur: "، ", ja: "、", zh: "，", "zh-hant": "，" }[lang] || ", ") + a.database.year : "")));
     var conf = el("div", "conf");
     conf.appendChild(el("span", "chip " + a.confidence, CONF[a.confidence] ? tx(CONF[a.confidence]) : a.confidence));
     conf.appendChild(el("span", null, note(a.note)));

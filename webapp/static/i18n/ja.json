@@ -1,5 +1,5 @@
 {
- "meta.description": "YouTubeのクリップやショートを貼り付けるだけ。韓国漫画、中国漫画、マンガ、ウェブトゥーン、アニメのタイトルがコメント欄からわかります。",
+ "meta.description": "YouTubeのクリップやショートを貼り付けるだけ。韓国漫画、中国漫画、マンガ、ウェブトゥーン、アニメ、映画、ドラマのタイトルがコメント欄からわかります。",
  "ui.language": "言語",
  "ui.theme.dark": "ダークモードに切り替え",
  "ui.theme.light": "ライトモードに切り替え",
@@ -10,7 +10,7 @@
  "form.clear": "リンクを消す",
  "form.paste": "貼り付け",
  "form.go": "タイトルを調べる",
- "form.hint": "韓国漫画、中国漫画、マンガ、ウェブトゥーン、アニメのショート動画、切り抜き、編集動画に使えます。",
+ "form.hint": "韓国漫画、中国漫画、マンガ、ウェブトゥーン、アニメ、映画、ドラマのショート動画、切り抜き、編集動画に使えます。",
  "form.legal": "TitleSiftを使うと、<a href=\"/terms\">利用規約</a>と<a href=\"/privacy\">プライバシーポリシー</a>、そして<a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">YouTube利用規約</a>に同意したことになります。",
  "waiting.title": "あとで確認リスト",
  "waiting.hint": "TitleSiftを開くたびにもう一度調べて、新しい情報があれば印をつけます。",

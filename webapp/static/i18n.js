@@ -16,7 +16,7 @@ window.TS_I18N = {
     return "en";
   },
   en: {
- "meta.description": "Paste a YouTube clip or Short. Get the name of the manhwa, manhua, manga, webtoon or anime, straight from the comments.",
+ "meta.description": "Paste a YouTube clip or Short. Get the name of the manhwa, manhua, manga, webtoon, anime, movie or TV show, straight from the comments.",
  "ui.language": "Language",
  "ui.theme.dark": "Switch to dark mode",
  "ui.theme.light": "Switch to light mode",
@@ -27,7 +27,7 @@ window.TS_I18N = {
  "form.clear": "Clear the link",
  "form.paste": "Paste",
  "form.go": "Find the name",
- "form.hint": "Works on Shorts, clips and edits of manhwa, manhua, manga, webtoons and anime.",
+ "form.hint": "Works on Shorts, clips and edits of manhwa, manhua, manga, webtoons, anime, movies and TV shows.",
  "form.legal": "By using TitleSift you agree to our <a href=\"/terms\">Terms</a> and <a href=\"/privacy\">Privacy Policy</a>, and to the <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">YouTube Terms of Service</a>.",
  "waiting.title": "Your check-back list",
  "waiting.hint": "We look again each time you open TitleSift and mark anything new.",

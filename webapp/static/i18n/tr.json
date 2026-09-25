@@ -1,5 +1,5 @@
 {
- "meta.description": "Bir YouTube klibini ya da Short videosunu yapıştır. Manhwa, manhua, manga, webtoon ya da animenin adını doğrudan yorumlardan öğren.",
+ "meta.description": "Bir YouTube klibini ya da Short videosunu yapıştır. Manhwa, manhua, manga, webtoon, anime, film ya da dizinin adını doğrudan yorumlardan öğren.",
  "ui.language": "Dil",
  "ui.theme.dark": "Karanlık moda geç",
  "ui.theme.light": "Aydınlık moda geç",
@@ -10,7 +10,7 @@
  "form.clear": "Bağlantıyı temizle",
  "form.paste": "Yapıştır",
  "form.go": "Adını bul",
- "form.hint": "Manhwa, manhua, manga, webtoon ve anime Shorts videoları, klipleri ve edit’leriyle çalışır.",
+ "form.hint": "Manhwa, manhua, manga, webtoon, anime, film ve dizi Shorts videoları, klipleri ve edit’leriyle çalışır.",
  "form.legal": "TitleSift’i kullanarak <a href=\"/terms\">Koşullarımızı</a>, <a href=\"/privacy\">Gizlilik Politikamızı</a> ve <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">YouTube Hizmet Şartları</a>’nı kabul etmiş olursun.",
  "waiting.title": "Takip listen",
  "waiting.hint": "TitleSift’i her açtığında tekrar bakar, yeni bir şey varsa işaretleriz.",

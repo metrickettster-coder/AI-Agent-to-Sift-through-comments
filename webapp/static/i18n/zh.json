@@ -1,5 +1,5 @@
 {
- "meta.description": "粘贴YouTube视频片段或Shorts链接，直接从评论区找出韩漫、国漫、日漫、条漫或动漫的名字。",
+ "meta.description": "粘贴YouTube视频片段或Shorts链接，直接从评论区找出韩漫、国漫、日漫、条漫、动漫、电影或电视剧的名字。",
  "ui.language": "语言",
  "ui.theme.dark": "切换到深色模式",
  "ui.theme.light": "切换到浅色模式",
@@ -10,7 +10,7 @@
  "form.clear": "清除链接",
  "form.paste": "粘贴",
  "form.go": "查名字",
- "form.hint": "支持韩漫、国漫、日漫、条漫和动漫的Shorts、片段和剪辑。",
+ "form.hint": "支持韩漫、国漫、日漫、条漫、动漫、电影和电视剧的Shorts、片段和剪辑。",
  "form.legal": "使用TitleSift即表示你同意我们的<a href=\"/terms\">条款</a>和<a href=\"/privacy\">隐私政策</a>，以及<a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">YouTube服务条款</a>。",
  "waiting.title": "待查看列表",
  "waiting.hint": "每次打开TitleSift，我们都会再查一遍，有新结果会标出来。",

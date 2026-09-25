@@ -1,5 +1,5 @@
 {
- "meta.description": "Tempel link klip atau Short YouTube. Dapatkan judul manhwa, manhua, manga, webtoon, atau anime-nya, langsung dari komentar.",
+ "meta.description": "Tempel link klip atau Short YouTube. Dapatkan judul manhwa, manhua, manga, webtoon, anime, film, atau serial TV-nya, langsung dari komentar.",
  "ui.language": "Bahasa",
  "ui.theme.dark": "Ganti ke mode gelap",
  "ui.theme.light": "Ganti ke mode terang",
@@ -10,7 +10,7 @@
  "form.clear": "Hapus link",
  "form.paste": "Tempel",
  "form.go": "Cari judulnya",
- "form.hint": "Bisa untuk Shorts, klip, dan edit dari manhwa, manhua, manga, webtoon, dan anime.",
+ "form.hint": "Bisa untuk Shorts, klip, dan edit dari manhwa, manhua, manga, webtoon, anime, film, dan serial TV.",
  "form.legal": "Dengan memakai TitleSift, kamu setuju dengan <a href=\"/terms\">Ketentuan</a> dan <a href=\"/privacy\">Kebijakan Privasi</a> kami, serta <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">Persyaratan Layanan YouTube</a>.",
  "waiting.title": "Daftar pantauanmu",
  "waiting.hint": "Kami cek lagi setiap kali kamu buka TitleSift dan menandai yang baru.",

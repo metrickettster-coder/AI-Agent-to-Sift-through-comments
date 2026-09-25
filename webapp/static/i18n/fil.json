@@ -1,5 +1,5 @@
 {
- "meta.description": "I-paste ang YouTube clip o Short. Makukuha mo ang pangalan ng manhwa, manhua, manga, webtoon o anime, galing mismo sa comments.",
+ "meta.description": "I-paste ang YouTube clip o Short. Makukuha mo ang pangalan ng manhwa, manhua, manga, webtoon, anime, pelikula o TV show, galing mismo sa comments.",
  "ui.language": "Wika",
  "ui.theme.dark": "Lumipat sa dark mode",
  "ui.theme.light": "Lumipat sa light mode",
@@ -10,7 +10,7 @@
  "form.clear": "Burahin ang link",
  "form.paste": "I-paste",
  "form.go": "Hanapin ang title",
- "form.hint": "Gumagana sa Shorts, clips at edits ng manhwa, manhua, manga, webtoon at anime.",
+ "form.hint": "Gumagana sa Shorts, clips at edits ng manhwa, manhua, manga, webtoon, anime, pelikula at TV show.",
  "form.legal": "Sa paggamit ng TitleSift, sumasang-ayon ka sa aming <a href=\"/terms\">Terms</a> at <a href=\"/privacy\">Privacy Policy</a>, pati na rin sa <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">YouTube Terms of Service</a>.",
  "waiting.title": "Ang babalikan mong listahan",
  "waiting.hint": "Titingnan namin ulit tuwing bubuksan mo ang TitleSift at mamarkahan ang anumang bago.",

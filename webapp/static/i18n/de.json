@@ -1,5 +1,5 @@
 {
- "meta.description": "Füge einen YouTube-Clip oder -Short ein und erfahre direkt aus den Kommentaren, wie das Manhwa, Manhua, Manga, Webtoon oder Anime heißt.",
+ "meta.description": "Füge einen YouTube-Clip oder -Short ein und erfahre direkt aus den Kommentaren, wie das Manhwa, Manhua, Manga, Webtoon, Anime, der Film oder die Serie heißt.",
  "ui.language": "Sprache",
  "ui.theme.dark": "Zum dunklen Modus wechseln",
  "ui.theme.light": "Zum hellen Modus wechseln",
@@ -10,7 +10,7 @@
  "form.clear": "Link löschen",
  "form.paste": "Einfügen",
  "form.go": "Namen finden",
- "form.hint": "Klappt mit Shorts, Clips und Edits von Manhwa, Manhua, Manga, Webtoons und Anime.",
+ "form.hint": "Klappt mit Shorts, Clips und Edits von Manhwa, Manhua, Manga, Webtoons, Anime, Filmen und Serien.",
  "form.legal": "Mit der Nutzung von TitleSift stimmst du unseren <a href=\"/terms\">Nutzungsbedingungen</a> und unserer <a href=\"/privacy\">Datenschutzerklärung</a> sowie den <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">Nutzungsbedingungen von YouTube</a> zu.",
  "waiting.title": "Deine Merkliste",
  "waiting.hint": "Jedes Mal, wenn du TitleSift öffnest, schauen wir nochmal nach und markieren alles Neue.",

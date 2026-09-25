@@ -1,7 +1,7 @@
 {
   "name": "TitleSift",
   "short_name": "TitleSift",
-  "description": "Paste a YouTube clip or Short and get the name of the manhwa, manhua, manga, webtoon or anime.",
+  "description": "Paste a YouTube clip or Short and get the name of the manhwa, manga, webtoon, anime, movie or TV show.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F2F3F7",

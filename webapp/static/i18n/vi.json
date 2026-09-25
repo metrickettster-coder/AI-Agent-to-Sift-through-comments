@@ -1,5 +1,5 @@
 {
- "meta.description": "Dán link clip hoặc Short trên YouTube. Biết ngay tên manhwa, manhua, manga, webtoon hay anime, lấy thẳng từ bình luận.",
+ "meta.description": "Dán link clip hoặc Short trên YouTube. Biết ngay tên manhwa, manhua, manga, webtoon, anime, phim điện ảnh hay phim truyền hình, lấy thẳng từ bình luận.",
  "ui.language": "Ngôn ngữ",
  "ui.theme.dark": "Chuyển sang chế độ tối",
  "ui.theme.light": "Chuyển sang chế độ sáng",
@@ -10,7 +10,7 @@
  "form.clear": "Xóa link",
  "form.paste": "Dán",
  "form.go": "Tìm tên",
- "form.hint": "Dùng được cho Shorts, clip và edit của manhwa, manhua, manga, webtoon và anime.",
+ "form.hint": "Dùng được cho Shorts, clip và edit của manhwa, manhua, manga, webtoon, anime, phim điện ảnh và phim truyền hình.",
  "form.legal": "Khi dùng TitleSift, bạn đồng ý với <a href=\"/terms\">Điều khoản</a> và <a href=\"/privacy\">Chính sách quyền riêng tư</a> của tụi mình, cùng với <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">Điều khoản dịch vụ của YouTube</a>.",
  "waiting.title": "Danh sách chờ xem lại",
  "waiting.hint": "Mỗi lần bạn mở TitleSift, tụi mình sẽ xem lại và đánh dấu những gì mới.",

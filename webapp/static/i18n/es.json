@@ -1,5 +1,5 @@
 {
- "meta.description": "Pega un clip o Short de YouTube. Obtén el nombre del manhwa, manhua, manga, webtoon o anime, directo de los comentarios.",
+ "meta.description": "Pega un clip o Short de YouTube. Obtén el nombre del manhwa, manhua, manga, webtoon, anime, película o serie, directo de los comentarios.",
  "ui.language": "Idioma",
  "ui.theme.dark": "Cambiar a modo oscuro",
  "ui.theme.light": "Cambiar a modo claro",
@@ -10,7 +10,7 @@
  "form.clear": "Borrar el enlace",
  "form.paste": "Pegar",
  "form.go": "Buscar el nombre",
- "form.hint": "Funciona con Shorts, clips y edits de manhwa, manhua, manga, webtoons y anime.",
+ "form.hint": "Funciona con Shorts, clips y edits de manhwa, manhua, manga, webtoons, anime, películas y series.",
  "form.legal": "Al usar TitleSift aceptas nuestros <a href=\"/terms\">Términos</a> y nuestra <a href=\"/privacy\">Política de privacidad</a>, así como los <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\" rel=\"noopener\">Términos del Servicio de YouTube</a>.",
  "waiting.title": "Tu lista de seguimiento",
  "waiting.hint": "Volvemos a revisar cada vez que abres TitleSift y marcamos lo nuevo.",

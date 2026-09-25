@@ -2,7 +2,7 @@
 // with the same keys; anything missing there falls back to these.
 // pick() chooses the saved language, else the phone's, else English.
 window.TS_I18N = {
-  langs: [["en", "English"], ["es", "Español"], ["pt", "Português"], ["fr", "Français"], ["de", "Deutsch"], ["id", "Bahasa Indonesia"], ["fil", "Filipino"], ["vi", "Tiếng Việt"], ["tr", "Türkçe"], ["hi", "हिन्दी"], ["ru", "Русский"], ["ar", "العربية", "rtl"]],
+  langs: [["en", "English"], ["es", "Español"], ["pt", "Português"], ["fr", "Français"], ["de", "Deutsch"], ["id", "Bahasa Indonesia"], ["fil", "Filipino"], ["vi", "Tiếng Việt"], ["tr", "Türkçe"], ["hi", "हिन्दी"], ["ru", "Русский"], ["ja", "日本語"], ["th", "ไทย"], ["zh", "中文（简体）"], ["ar", "العربية", "rtl"]],
   aliases: { tl: "fil", "in": "id", nb: null },
   pick: function () {
     var codes = this.langs.map(function (l) { return l[0]; });

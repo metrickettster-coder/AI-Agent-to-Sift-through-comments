@@ -82,6 +82,7 @@ Only the video id, the name, a count and dates are saved, never who gave it.
 ## Languages and light/dark
 
 The page speaks English, Spanish, Portuguese, French, German, Indonesian,
+Japanese, Thai, Simplified Chinese,
 Filipino, Vietnamese, Turkish, Hindi, Russian and Arabic (right to left).
 English lives in `static/i18n.js`; each other language is
 `static/i18n/<code>.json` with the same keys, and a missing key falls back to

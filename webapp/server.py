@@ -322,6 +322,24 @@ _names_dirty = threading.Event()
 _URLISH = re.compile(r"https?:|www\.|\.(com|net|org|io|gg|ly|me)\b", re.I)
 
 
+def _spellings(name: str) -> list[str]:
+    """What to try in the databases when the name as typed isn't found.
+
+    People type two guesses at once ("X or Y"), and a lowercase l for the
+    capital I they saw in a sans-serif font ("Yang llwoo" for "Yang Ilwoo").
+    A spelling only counts if a database confirms it, so trying extras can't
+    put made-up text on the page.
+    """
+    parts = [p.strip(" -,") for p in re.split(r"\s+or\s+|\s*/\s*|\s*,\s*", name, flags=re.I)]
+    parts = [p for p in parts if len(p) >= 2 and p != name]
+    out = []
+    for p in [name] + parts:
+        for v in (p, re.sub(r"\bl(?=[^aeiouyl\W]|l)", "I", p)):
+            if v not in out:
+                out.append(v)
+    return out
+
+
 def _video_meta(vid: str) -> dict:
     """What confirm() uses to tell a manhwa from a film of the same name."""
     hit = _answers.get(vid)
@@ -401,8 +419,17 @@ def add_name(data: dict, visitor: str) -> tuple[int, dict]:
         if cached and fold(cached.get("title") or "") == key and cached.get("database"):
             db = cached["database"]          # the answer we already checked
         else:
-            found = confirm(name, _video_meta(vid), _caches)
-            db = found if found and found.get("status") == "confirmed" else None
+            meta, until = _video_meta(vid), time.time() + 20
+            for tried in _spellings(name)[:6]:
+                if time.time() > until:
+                    break
+                found = confirm(tried, meta, _caches)
+                if found and found.get("status") == "confirmed":
+                    db = found
+                    if tried != name:        # count it under the database's spelling
+                        name = found.get("name") or tried
+                        key = fold(name)
+                    break
 
     with _lock:
         per = _names.setdefault(vid, {})

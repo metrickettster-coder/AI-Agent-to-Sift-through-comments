@@ -2,12 +2,24 @@
  "about": "Names TitleSift visitors gave for videos. Written by the server.",
  "videos": {
   "B2bzNc3woFg": {
-   "yang ll woo and i or yang llwoo and me": {
+   "yang il woo and i": {
     "count": 1,
-    "db": null,
+    "db": {
+     "name": "Yang Il-woo and I",
+     "names": [
+      "Yang Il-woo wa Na",
+      "양일우와 나",
+      "Yang Il-woo and I"
+     ],
+     "source": "MangaDex",
+     "status": "confirmed",
+     "url": "https://mangadex.org/title/5bf14d6b-2f54-4067-8844-7781b695d6b3",
+     "what": "Manhwa",
+     "year": 2025
+    },
     "first": 1790365793,
     "last": 1790365793,
-    "name": "yang ll- woo and I or yang llwoo and me"
+    "name": "Yang Il-woo and I"
    }
   },
   "s4U56bCwKrE": {

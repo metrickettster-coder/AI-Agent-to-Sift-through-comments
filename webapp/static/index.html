@@ -844,7 +844,16 @@ input.name:focus, textarea:focus, select:focus { outline: none; border-color: va
 
   var q = new URLSearchParams(location.search);
   var shared = q.get("url") || q.get("text") || q.get("v");
+  // Daily totals for the /stats page: this browser remembers the last day it
+  // visited, so each visitor counts once a day. Nothing else is sent.
+  function hello() {
+    var d = new Date(), t = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(), last = null;
+    try { last = localStorage.getItem("titlesift.seen"); localStorage.setItem("titlesift.seen", t); } catch (e) {}
+    fetch("/api/hit?first=" + (last !== t ? 1 : 0) + "&new=" + (last ? 0 : 1) + "&lang=" + encodeURIComponent(lang))
+      .catch(function () {});
+  }
   useLang(I18N.pick(), function () {
+    hello();
     if (shared) run(shared); else render(EXAMPLE);
     drawWaiting();
     recheck();

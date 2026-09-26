@@ -448,6 +448,7 @@ def add_name(data: dict, visitor: str) -> tuple[int, dict]:
           file=sys.stderr, flush=True)
     if os.environ.get("GITHUB_TOKEN"):
         _names_dirty.set()
+    count("names")
     return 200, out
 
 
@@ -475,6 +476,43 @@ def load_names():
                         _names[vid][key] = e
     except Exception as e:
         print(f"COMMUNITY could not load saved names: {e}", file=sys.stderr, flush=True)
+
+
+def recheck_names(limit: int = 50):
+    """Look again at saved names no database knew, with today's spelling rules.
+
+    A name typed before a rule existed ("X or Y", an l for an I) would
+    otherwise stay hidden until a second person gave it.
+    """
+    with _lock:
+        todo = [(vid, key, e["name"]) for vid, per in _names.items() for key, e in per.items() if not e.get("db")]
+    changed = False
+    for vid, key, name in todo[:limit]:
+        meta = _video_meta(vid)
+        for tried in _spellings(name)[:6]:
+            found = confirm(tried, meta, _caches)
+            if found and found.get("status") == "confirmed":
+                better = found.get("name") or tried
+                with _lock:
+                    per = _names.get(vid) or {}
+                    e = per.pop(key, None)
+                    if e is None:
+                        break
+                    into = per.get(fold(better))
+                    if into:                     # someone already gave the database name
+                        into["count"] += e["count"]
+                        into["db"] = into.get("db") or found
+                        into["first"] = min(into["first"], e["first"])
+                        into["last"] = max(into.get("last", 0), e.get("last", 0))
+                    else:
+                        per[fold(better)] = dict(e, name=better, db=found)
+                    _names[vid] = per
+                changed = True
+                print("COMMUNITY " + json.dumps({"video": vid, "rechecked": name, "now": better}, ensure_ascii=False),
+                      file=sys.stderr, flush=True)
+                break
+    if changed and os.environ.get("GITHUB_TOKEN"):
+        _names_dirty.set()
 
 
 def _ensure_branch():
@@ -532,6 +570,163 @@ def names_page() -> bytes:
             f"<th align=left>Name</th><th>People</th><th>Found on</th><th>Shown</th></tr>{body}</table></div>").encode()
 
 
+# ------------------------------------------------------------- visit counts
+#
+# Daily totals only, so Chi can see whether anyone uses the site: visitors
+# (the page reports its first visit of the day, remembered by the browser),
+# page views, lookups, answers found, names added, and the language shown.
+# Nothing about who visited is kept. With GITHUB_TOKEN set the totals are
+# saved to stats.json on the data branch so restarts don't lose them. /stats
+# shows them.
+
+STATS_FILE = "stats.json"
+STATS_FIELDS = {"visitors": "Visitors", "new": "First-time visitors", "views": "Page views",
+                "lookups": "Lookups", "found": "Name found", "names": "Names added"}
+_stats: dict[str, dict[str, int]] = {}        # "2026-09-26" -> {"visitors": 3, ...}
+_stats_langs: dict[str, int] = {}
+_hits: dict[tuple[str, str], tuple[int, int]] = {}   # (address, day) -> (views, visitors) counted
+_stats_dirty = threading.Event()
+_stats_ok = threading.Event()                 # set once the saved totals are read (or there are none)
+LANG_NAMES = {"en": "English", "es": "Spanish", "pt": "Portuguese", "fr": "French", "de": "German",
+              "id": "Indonesian", "ms": "Malay", "fil": "Filipino", "vi": "Vietnamese", "tr": "Turkish",
+              "hi": "Hindi", "ru": "Russian", "uk": "Ukrainian", "pl": "Polish", "ko": "Korean",
+              "ja": "Japanese", "zh": "Chinese (Simplified)", "zh-hant": "Chinese (Traditional)", "th": "Thai",
+              "bn": "Bengali", "pa": "Punjabi", "ar": "Arabic", "fa": "Persian", "ur": "Urdu", "he": "Hebrew"}
+
+try:
+    from zoneinfo import ZoneInfo
+    _TZ = ZoneInfo("America/Los_Angeles")     # Chi's day, not UTC's
+except Exception:
+    _TZ = None
+
+
+def _today() -> str:
+    import datetime as dt
+    now = dt.datetime.now(_TZ) if _TZ else dt.datetime.utcnow()
+    return now.strftime("%Y-%m-%d")
+
+
+def count(field: str, n: int = 1, lang: str | None = None):
+    with _lock:
+        day = _stats.setdefault(_today(), {})
+        day[field] = day.get(field, 0) + n
+        if lang:
+            _stats_langs[lang] = _stats_langs.get(lang, 0) + 1
+        if len(_stats) > 400:
+            for old in sorted(_stats)[:len(_stats) - 400]:
+                _stats.pop(old, None)
+    if os.environ.get("GITHUB_TOKEN"):
+        _stats_dirty.set()
+
+
+def page_hello(q: dict, visitor: str) -> tuple[int, dict]:
+    """The page says hello once per load; the first load of the day is a visitor."""
+    # A school or a house shares one address, so allow plenty per address,
+    # but not so many that one script could fill the page with made-up visits.
+    day = _today()
+    first = q.get("first", ["0"])[0] == "1"
+    with _lock:
+        views, people = _hits.get((visitor, day), (0, 0))
+        if views >= 300:
+            return 200, {"ok": True}
+        first = first and people < 50
+        _hits[(visitor, day)] = (views + 1, people + first)
+        if len(_hits) > 50000:
+            for k in [k for k in _hits if k[1] != day]:
+                _hits.pop(k, None)
+    lang = str(q.get("lang", [""])[0])[:10]
+    count("views", lang=lang if first and lang in LANG_NAMES else None)
+    if first:
+        count("visitors")
+        if q.get("new", ["0"])[0] == "1":
+            count("new")
+    return 200, {"ok": True}
+
+
+def load_stats():
+    try:
+        got = _github("GET", f"/contents/{STATS_FILE}?ref={NAMES_BRANCH}")
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            _stats_ok.set()
+        else:
+            print(f"STATS could not load saved counts: {e}", file=sys.stderr, flush=True)
+        return
+    except Exception as e:
+        print(f"STATS could not load saved counts: {e}", file=sys.stderr, flush=True)
+        return
+    if not got:
+        return
+    _stats_ok.set()
+    saved = json.loads(base64.b64decode(got["content"]).decode() or "{}")
+    with _lock:
+        for day, fields in (saved.get("days") or {}).items():
+            cur = _stats.setdefault(day, {})
+            for f, n in fields.items():
+                cur[f] = cur.get(f, 0) + int(n)
+        for l, n in (saved.get("languages") or {}).items():
+            _stats_langs[l] = _stats_langs.get(l, 0) + int(n)
+
+
+def _save_stats_forever():
+    while True:
+        _stats_dirty.wait()
+        time.sleep(30)                   # one write for a burst of visits
+        _stats_dirty.clear()
+        if not _stats_ok.is_set():
+            load_stats()                 # never overwrite saved totals we couldn't read
+            if not _stats_ok.is_set():
+                _stats_dirty.set()
+                time.sleep(300)
+                continue
+        try:
+            _ensure_branch()
+            try:
+                got = _github("GET", f"/contents/{STATS_FILE}?ref={NAMES_BRANCH}")
+            except urllib.error.HTTPError as e:
+                if e.code != 404:
+                    raise
+                got = None
+            with _lock:
+                doc = {"about": "Daily TitleSift totals (US Pacific days). Written by the server; nothing about who visited.",
+                       "days": _stats, "languages": _stats_langs}
+                text = json.dumps(doc, indent=1, sort_keys=True)
+            body = {"message": "Save TitleSift visit counts", "branch": NAMES_BRANCH,
+                    "content": base64.b64encode(text.encode()).decode()}
+            if got:
+                body["sha"] = got["sha"]
+            _github("PUT", f"/contents/{STATS_FILE}", body)
+        except Exception as e:
+            print(f"STATS counts not saved: {e}", file=sys.stderr, flush=True)
+            _stats_dirty.set()
+
+
+def stats_page() -> bytes:
+    with _lock:
+        days = sorted(_stats.items(), reverse=True)
+        langs = sorted(_stats_langs.items(), key=lambda x: -x[1])
+    head = "".join(f"<th>{html.escape(v)}</th>" for v in STATS_FIELDS.values())
+    def row(label, d, bold=False):
+        cells = "".join(f"<td align=right>{d.get(f, 0)}</td>" for f in STATS_FIELDS)
+        return f"<tr style='{'font-weight:700' if bold else ''}'><td>{label}</td>{cells}</tr>"
+    total = {f: sum(d.get(f, 0) for _, d in days) for f in STATS_FIELDS}
+    week = {f: sum(d.get(f, 0) for _, d in days[:7]) for f in STATS_FIELDS}
+    rows = row("All time", total, True) + row("Last 7 days", week, True) + "".join(
+        row(time.strftime("%a %d %b", time.strptime(day, "%Y-%m-%d")), d) for day, d in days[:60])
+    lrows = "".join(f"<tr><td>{html.escape(LANG_NAMES.get(l, l))}</td><td align=right>{n}</td></tr>" for l, n in langs)
+    kept = ("Saved on GitHub, so they survive updates." if os.environ.get("GITHUB_TOKEN")
+            else "Not saved anywhere yet: an update or restart resets them. Add GITHUB_TOKEN on Render to keep them.")
+    return (f"<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width'>"
+            f"<meta name=robots content=noindex><title>TitleSift visits</title>"
+            f"<body style='font:15px/1.5 system-ui;margin:16px'>"
+            f"<h1 style='font-size:22px'>Who's using TitleSift</h1>"
+            f"<p style='color:#666'>Days are US Pacific time. A visitor is one browser, counted once a day. "
+            f"Lookups include repeats of the same video. {kept}</p><div style='overflow-x:auto'>"
+            f"<table cellpadding=6 style='border-collapse:collapse'><tr><th align=left>Day</th>{head}</tr>{rows}</table></div>"
+            f"<h2 style='font-size:18px'>Languages visitors see</h2>"
+            f"<table cellpadding=6 style='border-collapse:collapse'>{lrows or '<tr><td>None yet</td></tr>'}</table>").encode()
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "titlesift"
 
@@ -565,12 +760,22 @@ class Handler(BaseHTTPRequestHandler):
             q = urllib.parse.parse_qs(u.query).get("url", [""])[0]
             visitor = (self.headers.get("X-Forwarded-For") or self.client_address[0]).split(",")[0].strip()
             code, data = lookup(q, visitor)
+            if code == 200:
+                count("lookups")
+                if data.get("answer"):
+                    count("found")
             return self._send(code, json.dumps(data, ensure_ascii=False).encode(),
                               "application/json; charset=utf-8")
         if u.path == "/api/config":
             return self._send(200, json.dumps(config()).encode(), "application/json; charset=utf-8")
         if u.path == "/names":
             return self._send(200, names_page(), "text/html; charset=utf-8")
+        if u.path == "/api/hit":
+            visitor = (self.headers.get("X-Forwarded-For") or self.client_address[0]).split(",")[0].strip()
+            code, data = page_hello(urllib.parse.parse_qs(u.query), visitor)
+            return self._send(code, json.dumps(data).encode(), "application/json")
+        if u.path == "/stats":
+            return self._send(200, stats_page(), "text/html; charset=utf-8")
         if u.path == "/votes":
             return self._send(200, votes_page(), "text/html; charset=utf-8")
         if u.path == "/healthz":
@@ -599,6 +804,9 @@ def main():
     threading.Thread(target=_save_votes_forever, daemon=True).start()
     load_names()
     threading.Thread(target=_save_names_forever, daemon=True).start()
+    threading.Thread(target=recheck_names, daemon=True).start()
+    load_stats()
+    threading.Thread(target=_save_stats_forever, daemon=True).start()
     port = int(os.environ.get("PORT", "7860"))
     print(f"Listening on http://0.0.0.0:{port}", file=sys.stderr)
     ThreadingHTTPServer(("0.0.0.0", port), Handler).serve_forever()

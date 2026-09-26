@@ -79,6 +79,19 @@ on the `titlesift-data` branch every 30 seconds after a change, and loaded
 again on start. Render only deploys `main`, so these saves never redeploy.
 Only the video id, the name, a count and dates are saved, never who gave it.
 
+A name no database knew is tried again as its separate guesses ("X or Y")
+and with a lowercase l read as a capital I. Saved names are rechecked this
+way each time the server starts.
+
+## Visit counts
+
+`/stats` shows daily totals (US Pacific days): visitors, first-time
+visitors, page views, lookups, answers found, names added, and which
+language visitors see. The page tells the server once per load whether it
+is this browser's first visit today (remembered in local storage as
+`titlesift.seen`); nothing about who visited is kept. With `GITHUB_TOKEN`
+set the totals are saved to `stats.json` on the `titlesift-data` branch.
+
 ## Languages and light/dark
 
 The page speaks 25 languages (see `langs` in `static/i18n.js`); Arabic,

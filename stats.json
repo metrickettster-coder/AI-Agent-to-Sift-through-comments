@@ -1,0 +1,15 @@
+{
+ "about": "Daily TitleSift totals (US Pacific days). Written by the server; nothing about who visited.",
+ "days": {
+  "2026-09-26": {
+   "found": 1,
+   "lookups": 1,
+   "new": 1,
+   "views": 1,
+   "visitors": 1
+  }
+ },
+ "languages": {
+  "en": 1
+ }
+}
